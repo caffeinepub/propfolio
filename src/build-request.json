@@ -1,0 +1,89 @@
+{
+  "kind": "build_request",
+  "title": "Fix blank white screen rendering issue",
+  "priority": "high",
+  "requirements": [
+    {
+      "id": "REQ-26",
+      "text": "Diagnose and fix the blank white screen issue preventing the application from rendering. Check for JavaScript errors in browser console, React component mounting failures, routing configuration issues in App.tsx, and ThemeProvider initialization problems.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "blank white screen"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Application loads without displaying a blank white screen",
+        "Landing page renders correctly at root route",
+        "Dashboard pages render correctly when authenticated",
+        "No JavaScript errors appear in browser console",
+        "Router successfully initializes and handles navigation"
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "text": "Verify that frontend/src/main.tsx properly initializes the React application with RouterProvider, QueryClientProvider, and InternetIdentityProvider in the correct order without throwing errors.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ]
+      },
+      "acceptanceCriteria": [
+        "React root successfully mounts to the #root element",
+        "All providers wrap the router without configuration errors",
+        "Internet Identity context initializes without blocking render"
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "text": "Ensure App.tsx router configuration properly defines all routes including root landing page (/), dashboard routes, admin routes, and legal pages without circular dependencies or missing imports.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Root route (/) successfully renders LandingPage component",
+        "All route components are properly imported",
+        "Router creates without throwing configuration errors",
+        "Lazy-loaded routes properly resolve their component imports"
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "text": "Verify that CSS is loading correctly by checking that frontend/index.html references the correct stylesheet, Tailwind CSS processes properly, and no critical CSS syntax errors prevent styles from applying.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Tailwind CSS utility classes apply correctly to components",
+        "Custom CSS variables defined in index.css are available",
+        "Theme colors render properly in both light and dark modes",
+        "No CSS parsing errors in browser developer tools"
+      ]
+    }
+  ],
+  "constraints": [
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts or other immutable hook files",
+    "Do not change the single-actor backend architecture",
+    "Preserve all existing route definitions and component structure"
+  ],
+  "nonGoals": [
+    "Adding new features or functionality",
+    "Redesigning the UI or layout",
+    "Modifying backend logic or data models",
+    "Changing authentication flow"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-diagnose-and-fix-the-blank-white-screen-issue-preventing-the-application-from-rendering-check-for-javascript-errors-in-browser-console-react-component-mounting-failures-routing-configuration-issues-in-app-tsx-and-themeprovider-initialization-problems",
+      "featureTitle": "Diagnose and fix the blank white screen issue preventing the application from rendering. Check for JavaScript errors in browser console, React component mounting failures, routing configuration issues in App.tsx, and ThemeProvider initialization problems.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-26"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-app-tsx-router-configuration-properly-defines-all-routes-including-root-landing-page-dashboard-routes-admin-routes-and-legal-pages-without-circular-dependencies-or-missing-imports",
+      "featureTitle": "Ensure App.tsx router configuration properly defines all routes including root landing page (/), dashboard routes, admin routes, and legal pages without circular dependencies or missing imports.",
+      "files": [
+        "frontend/src/App.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-28"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

@@ -1,0 +1,392 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 5,
+  "summary": "Propfolio - A comprehensive prop trading firm management platform for tracking trading performance, payouts, tax calculations, and financial analysis across multiple prop trading accounts",
+  "architectural_notes": [
+    "Using Stripe for subscription payments instead of crypto gateways (Confirmo/Blockonomics not supported)",
+    "Internet Identity for authentication (email verification and 2FA not available)",
+    "Manual admin entry for prop firm offers instead of automated Discord/website scraping",
+    "Manual data entry forms instead of CSV upload parsing (limited file handling)",
+    "Platform has 55+ predefined prop firms with manual addition option",
+    "Tax calculations will use country-based rules with AI assistance where possible",
+    "PDF export functionality for financial summaries and audit reports",
+    "Affiliate tracking system with commission redemption in vouchers or crypto",
+    "Multi-currency support with live FX and crypto rate conversion",
+    "Admin approval workflow for user-generated content (reviews, disputes)"
+  ],
+  "known_issues": [
+    "Email verification not available (paid feature)",
+    "2FA/Google Authenticator not supported on platform",
+    "Crypto payment gateways (Confirmo, Blockonomics) not supported",
+    "Real-time Discord/website scraping for offers not feasible",
+    "CSV file upload parsing has limited capabilities",
+    "Video embedding from external sources may have restrictions"
+  ],
+  "isFixRequest": true,
+  "existing_features": [
+    {
+      "id": "feature-implement-user-authentication-with-internet-identity-supporting-signup-and-login-user-registration-requires-username-full-name-email-mobile-and-discord-user-id-as-mandatory-fields",
+      "title": "Implement user authentication with Internet Identity supporting signup and login. User registration requires username, full name, email, mobile, and Discord user ID as mandatory fields.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-dashboard-sidebar-navigation-with-menu-items-dashboard-payouts-accounts-expenses-trading-overview-tax-audit-report-income-tax-calculator-exchange-discount-offers-giveaways-tools-p2p-exchange-trading-tools-reviews-disputes-compounding-and-settings-mark-giveaways-and-p2p-exchange-as-coming-soon",
+      "title": "Build dashboard sidebar navigation with menu items: Dashboard, Payouts, Accounts, Expenses, Trading Overview, Tax Audit Report, Income Tax Calculator, Exchange, Discount Offers, Giveaways, Tools, P2P Exchange, Trading Tools, Reviews & Disputes, Compounding, and Settings. Mark 'Giveaways' and 'P2P Exchange' as 'Coming Soon'.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-prop-firm-management-system-with-dropdown-selector-containing-55-prop-firms-ftmo-the5ers-fundednext-funding-pips-apex-trader-funding-fxify-topstep-surgetrader-myforexfunds-alpha-capital-group-funded-trading-plus-crypto-fund-trader-sabiotrade-the-trading-pit-goat-funded-trader-earn2trade-elite-trader-funding-instant-funding-lark-funding-hantec-traders-wall-street-funded-tx3-funding-fx2funding-traders-with-edge-tradersedgefx-e8-funding-true-forex-funds-lux-trading-firm-blufx-city-traders-imperium-the-funded-trader-audacity-capital-funding-talent-smart-prop-trader-finotive-funding-maven-trading-breakout-funding-ospreyfx-funding-brightfunded-tradeday-oneup-trader-leeloo-trading-uprofit-trader-5-ers-funding-traders-market-fidelcrest-ment-funding-nordic-funder-scaleup-capital-super-funded-forex-capital-funds-funding-frontier-quanttekel-skilled-funded-traders-rocket21-challenge-blue-guardian-pipfarm-ifunds-include-option-to-manually-add-custom-prop-firm-if-not-listed-allow-users-to-add-account-number-and-account-size-for-each-prop-firm-account",
+      "title": "Create prop firm management system with dropdown selector containing 55+ prop firms (FTMO, The5ers, FundedNext, Funding Pips, Apex Trader Funding, FXIFY, Topstep, SurgeTrader, MyForexFunds, Alpha Capital Group, Funded Trading Plus, Crypto Fund Trader, SabioTrade, The Trading Pit, Goat Funded Trader, Earn2Trade, Elite Trader Funding, Instant Funding, Lark Funding, Hantec Traders, Wall Street Funded, TX3 Funding, FX2Funding, Traders With Edge, TradersEdgeFX, E8 Funding, True Forex Funds, Lux Trading Firm, BluFX, City Traders Imperium, The Funded Trader, Audacity Capital, Funding Talent, Smart Prop Trader, Finotive Funding, Maven Trading, Breakout Funding, OspreyFX Funding, BrightFunded, TradeDay, OneUp Trader, Leeloo Trading, UProfit Trader, 5%ers, Funding Traders Market, Fidelcrest, Ment Funding, Nordic Funder, ScaleUp Capital, Super Funded, Forex Capital Funds, Funding Frontier, QuantTekel, Skilled Funded Traders, Rocket21 Challenge, Blue Guardian, Pipfarm, ifunds). Include option to manually add custom prop firm if not listed. Allow users to add account number and account size for each prop firm account.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-privacy-policy-page-with-comprehensive-privacy-policy-text-covering-data-collection-usage-storage-third-party-services-user-rights-and-contact-information-create-refund-policy-page-detailing-subscription-refund-terms-conditions-and-process",
+      "title": "Create Privacy Policy page with comprehensive privacy policy text covering data collection, usage, storage, third-party services, user rights, and contact information. Create Refund Policy page detailing subscription refund terms, conditions, and process.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-diagnose-and-fix-the-blank-white-screen-issue-preventing-the-application-from-rendering-check-for-javascript-errors-in-browser-console-react-component-mounting-failures-routing-configuration-issues-in-app-tsx-and-themeprovider-initialization-problems",
+      "title": "Diagnose and fix the blank white screen issue preventing the application from rendering. Check for JavaScript errors in browser console, React component mounting failures, routing configuration issues in App.tsx, and ThemeProvider initialization problems.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-app-tsx-router-configuration-properly-defines-all-routes-including-root-landing-page-dashboard-routes-admin-routes-and-legal-pages-without-circular-dependencies-or-missing-imports",
+      "title": "Ensure App.tsx router configuration properly defines all routes including root landing page (/), dashboard routes, admin routes, and legal pages without circular dependencies or missing imports.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Prop firm management with dropdown selection (55+ firms) and manual entry option",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Trading & payout analysis dashboard per prop firm",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Live FX & crypto rate converter for payout currency conversion",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Country-based tax estimation module with income tax calculator",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Capital growth compounding simulator",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Advance tax payment reminder automation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Audit-ready financial summary export (PDF)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Business and personal expense tracking with categorized dropdowns",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Prop firm review and dispute/complaint system",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Landing page with feature highlights and Propfolio branding",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "User signup/login with Internet Identity authentication",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "User subscription system ($75/year) with Stripe payment integration",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Trading overview dashboard with detailed stats and analytics",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Tax audit report with automated AI-based income tax calculation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Prop firm discount offers listing with logos",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Trading tools calculators (margin, P/L, lot size, swap, 3% risk)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Trading tools shop with cart, checkout, and payment processing",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Admin panel with edit/approve rights for all user dashboard content",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "User profile settings with mandatory and optional fields",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Affiliate program (15% commission, $100 min redemption, voucher/crypto withdrawal)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Privacy policy and refund policy pages",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Create landing page with Propfolio branding and tagline 'Manage all your Prop firm Payouts and Trades analysis in one place'. Include feature highlights section showcasing all dashboard capabilities, subscription pricing ($75/year), and call-to-action for signup/login.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "Create user profile settings page with mandatory fields (username, full name, email, mobile, Discord user ID) and optional fields (profile picture upload, Facebook, LinkedIn, Telegram ID, WhatsApp number). Include security section placeholder for future 2FA implementation.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-27",
+      "summary": "Build dashboard overview page displaying Total Payouts, Net Profit, Total Expenses, and Estimated Tax as summary cards. Include percentage change indicator from last month. Display Payout History section and Advance Tax Reminder section showing quarterly payment due dates with estimated amounts. Include 'Export Summary' button to generate PDF reports. Use the uploaded dashboard design (1111.png) as the visual reference for layout, dark theme, card styling, and component arrangement.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-28",
+      "summary": "Create Payouts page for tracking payout transactions. Allow users to record payouts per prop firm account with date, amount, and currency. Implement prop firm-wise analysis showing total payouts, average payout, payout frequency, and growth trends for each selected prop firm account.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Build Accounts page to display all added prop firm accounts. Show account cards with prop firm name, account number, account size, current balance, and performance metrics. Allow editing and deleting accounts.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-30",
+      "summary": "Create Expenses page with two categorized dropdowns: Business expenses (Data Feeds, Trading Tools, Internet expenses, Laptop/PC, Mobile, Tablets, Professional Fees, Business Travel, Office Rent, Team Salary, Vendor Payments, Client Entertainment, Business Taxes) and Personal expenses (House rent, Grocery, Kids School Fees, Personal Fuel, Car Maintenance, Entertainment). Allow users to add, edit, and delete expense entries with date, category, amount, and description. Display expense summaries with total business expenses, total personal expenses, and monthly breakdowns.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-31",
+      "summary": "Build Trading Overview page with option to manually enter trade data for each prop firm account. Create dashboard displaying detailed statistics and analytics including total trades, win rate, profit factor, average win/loss, drawdown, Sharpe ratio, and equity curve visualization. Organize data by selected prop firm account.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-32",
+      "summary": "Create Tax Audit Report page with automated AI-based income tax calculator. Allow users to select country from dropdown, enter current professional income and additional income from prop payouts. Calculate total taxable income and estimated income tax for the selected financial year based on country tax rules. Display detailed tax breakdown with applicable tax brackets, deductions, and net tax liability. Include options to adjust tax settings and export report as PDF.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-33",
+      "summary": "Build Income Tax Calculator as standalone tool with country selection and tax estimation module. Display estimated quarterly advance tax payment amounts with due dates and automated reminders. Calculate tax based on selected country's tax rules and financial year.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-34",
+      "summary": "Create Exchange page with two converters: Live FX converter supporting major currency pairs, and Live Crypto to Fiat converter supporting major cryptocurrencies (BTC, ETH, USDT, USDC) to fiat currencies. Display real-time exchange rates. For payout currency conversion, automatically convert payout amounts from received currency to user's selected local currency using live rates for tax audit purposes.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-35",
+      "summary": "Build Discount Offers page displaying all prop firms with their logos and current month promotional offers. Implement admin interface to manually add, edit, and remove discount offers with firm name, offer description, discount percentage, promo code, and expiration date. Display offers in card grid layout with clear visual hierarchy.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-36",
+      "summary": "Create Giveaways page with 'Coming Soon' placeholder displaying launch notification signup form.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-37",
+      "summary": "Build Tools page with five trading calculators: 1) 3% Risk Calculator for CFD trading using formula Risk = |Entry Price - Stop-Loss Price| × Position Size ÷ Account Balance × 100% with dropdown to select CFD trading pairs, entry price, stop-loss, lot size inputs, and automatic risk percentage display; 2) Margin Calculator for Forex/CFD/Futures; 3) Profit/Loss Calculator; 4) Lot Size Calculator; 5) Swap Calculator. Each calculator should have clear input fields, real-time calculation, and result display.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-38",
+      "summary": "Create P2P Exchange page with 'Coming Soon' placeholder displaying future feature description.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-39",
+      "summary": "Build Trading Tools shop page displaying trading tools and software products available for purchase or subscription. Implement shopping cart functionality with add-to-cart buttons, cart summary, and checkout flow. Integrate Stripe payment gateway for processing purchases. Each product should display name, description, pricing (one-time or subscription), and purchase button.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-40",
+      "summary": "Create Reviews & Disputes page with two sections: 1) Review system allowing users to write and submit reviews for selected prop firms with star rating, review title, and detailed feedback; 2) Dispute/Complaint system for raising issues with prop firms including dispute category, description, supporting evidence, and status tracking. Display user's submitted reviews and disputes with timestamps.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-41",
+      "summary": "Build Compounding page with capital growth compounding simulator. Allow users to input starting capital, monthly/weekly return percentage, compounding frequency, and time horizon. Display projected growth chart, final capital amount, total return percentage, and month-by-month breakdown table.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-42",
+      "summary": "Implement Stripe subscription system for $75/year Propfolio membership. Create subscription page with plan details, pricing, and Stripe checkout integration. Handle subscription status (active, expired, cancelled) and display current subscription status on user dashboard. Restrict access to premium features based on subscription status.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-43",
+      "summary": "Create affiliate program system allowing users to generate referral links and track referral signups. Calculate 15% commission on each referred user's subscription purchase. Display affiliate earnings dashboard showing total earnings, pending commission, redeemable balance, and referral history. Enable commission redemption once balance reaches $100 minimum via vouchers for prop firm funded accounts or withdrawal request form. Highlight affiliate program prominently on landing page.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-44",
+      "summary": "Build comprehensive admin panel accessible only to admin users with edit and approve rights for all user dashboard content. Include sections to: manage prop firms (add/edit/delete), manage discount offers, approve/reject user reviews, manage dispute status, manage trading tools shop products, view all user accounts, manage subscriptions, and approve affiliate withdrawals. Implement role-based access control to restrict admin features.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-46",
+      "summary": "Implement feature showcase section on landing page highlighting all dashboard services with descriptive text and visual icons or screenshots. Include placeholder sections for explanatory videos demonstrating each major feature (Dashboard Overview, Prop Firm Management, Tax Calculators, Trading Tools, Affiliate Program).",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-48",
+      "summary": "Verify that frontend/src/main.tsx properly initializes the React application with RouterProvider, QueryClientProvider, and InternetIdentityProvider in the correct order without throwing errors.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-50",
+      "summary": "Verify that CSS is loading correctly by checking that frontend/index.html references the correct stylesheet, Tailwind CSS processes properly, and no critical CSS syntax errors prevent styles from applying.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Propfolio",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

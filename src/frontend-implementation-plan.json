@@ -1,0 +1,115 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Fix blank white screen rendering issue",
+  "requirements": [
+    {
+      "id": "REQ-26",
+      "summary": "Diagnose and fix the blank white screen issue preventing the application from rendering",
+      "acceptanceCriteria": [
+        "Application loads without displaying a blank white screen",
+        "Landing page renders correctly at root route",
+        "Dashboard pages render correctly when authenticated",
+        "No JavaScript errors appear in browser console",
+        "Router successfully initializes and handles navigation"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Review and fix the router configuration in App.tsx. Check that all route component imports are valid and not circular. Ensure the router is created without throwing errors. Verify all lazy-loaded routes have proper component paths. Add error boundaries around route definitions to catch and display rendering errors. Ensure ThemeProvider wraps the RouterProvider correctly."
+        },
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Review LandingPage component for rendering errors. Check that all imported components and hooks are valid. Ensure no undefined props are passed to child components. Verify that image assets referenced in the component exist at the correct paths (frontend/public/assets/generated/hero-bg.dim_1920x600.png, frontend/public/assets/generated/propfolio-logo.dim_200x60.png, etc.). Add fallback rendering or error handling if any dependencies fail."
+        },
+        {
+          "path": "frontend/src/components/DashboardLayout.tsx",
+          "operation": "modify",
+          "description": "Review DashboardLayout for potential rendering blockers. Check that useInternetIdentity and useGetCallerUserProfile hooks are implemented correctly and don't throw errors. Ensure the authentication check doesn't prevent initial render. Verify ProfileSetupModal and Sidebar components render without errors. Add error boundaries or fallback UI if authentication state is undefined."
+        }
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "summary": "Verify that frontend/src/main.tsx properly initializes the React application with all providers in correct order",
+      "acceptanceCriteria": [
+        "React root successfully mounts to the #root element",
+        "All providers wrap the router without configuration errors",
+        "Internet Identity context initializes without blocking render"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/main.tsx",
+          "operation": "modify",
+          "description": "Review and fix the React application initialization in main.tsx. Verify the provider nesting order: QueryClientProvider should wrap InternetIdentityProvider, which should wrap RouterProvider. Check that the root element selector matches the div id in index.html (#root). Ensure StrictMode is properly configured. Add error handling for cases where the root element is not found. Verify that createRoot is called correctly and doesn't throw errors."
+        },
+        {
+          "path": "frontend/src/hooks/useInternetIdentity.ts",
+          "operation": "modify",
+          "description": "Review the InternetIdentityProvider implementation for initialization errors. Ensure the provider doesn't throw errors during mount that would prevent the app from rendering. Check that AuthClient initialization is wrapped in error handling. Verify the context provider returns a valid value even during initialization. Add defensive checks for undefined or null values that could cause crashes."
+        },
+        {
+          "path": "frontend/src/hooks/useActor.ts",
+          "operation": "modify",
+          "description": "Review the useActor hook for issues that could prevent app initialization. Ensure the hook doesn't throw errors when identity is not yet available. Check that the backend actor creation is wrapped in proper error handling. Verify that the hook returns a stable object shape even when the actor is not yet initialized. Add defensive null checks and fallback values."
+        }
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "summary": "Ensure App.tsx router configuration properly defines all routes without circular dependencies or missing imports",
+      "acceptanceCriteria": [
+        "Root route (/) successfully renders LandingPage component",
+        "All route components are properly imported",
+        "Router creates without throwing configuration errors",
+        "Lazy-loaded routes properly resolve their component imports"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Audit all route definitions in App.tsx. Verify that every route has a valid component import (check both static and lazy imports). Ensure no circular import dependencies exist between route components. Check that lazy imports use the correct file paths and components are exported correctly. Add fallback loading states for lazy routes. Verify the root route ('/') is configured to render LandingPage. Test that dashboard routes, admin routes, and legal pages all have valid component references."
+        },
+        {
+          "path": "frontend/src/pages/dashboard/DashboardOverview.tsx",
+          "operation": "modify",
+          "description": "Review DashboardOverview and other dashboard page components for import errors or rendering issues. Check that all imported dependencies exist and are exported correctly. Verify no circular imports with layout or shared components. Ensure components don't crash when props or context values are undefined."
+        },
+        {
+          "path": "frontend/src/pages/admin/AdminPanel.tsx",
+          "operation": "modify",
+          "description": "Review AdminPanel and other admin page components for import errors or rendering issues. Check that all navigation links point to valid routes. Verify components render correctly even when user is not authenticated. Ensure no missing imports or undefined component references."
+        }
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "summary": "Verify that CSS is loading correctly and no critical syntax errors prevent styles from applying",
+      "acceptanceCriteria": [
+        "Tailwind CSS utility classes apply correctly to components",
+        "Custom CSS variables defined in index.css are available",
+        "Theme colors render properly in both light and dark modes",
+        "No CSS parsing errors in browser developer tools"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Verify that index.html correctly references the CSS entry point. Ensure the script tag pointing to src/main.tsx is correct and uses type='module'. Check that the #root div element exists and is not hidden by inline styles. Verify no syntax errors in the HTML that could prevent parsing."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Review index.css for CSS syntax errors that could prevent parsing. Check that all Tailwind directives (@tailwind base, @tailwind components, @tailwind utilities) are present and correct. Verify that custom CSS variable definitions use valid syntax. Ensure oklch color values are properly formatted. Check for any unclosed brackets or invalid property values that could break CSS parsing."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Review Tailwind configuration for errors that could prevent CSS generation. Verify that all content paths are correct and match the actual source file locations. Check that theme extensions use valid syntax. Ensure plugins are properly imported and configured. Verify no JavaScript syntax errors exist in the config file."
+        }
+      ]
+    }
+  ]
+}
