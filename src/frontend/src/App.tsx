@@ -24,6 +24,7 @@ import PaymentSuccess from './pages/PaymentSuccess';
 import PaymentFailure from './pages/PaymentFailure';
 import PrivacyPolicy from './pages/PrivacyPolicy';
 import RefundPolicy from './pages/RefundPolicy';
+import AdminLogin from './pages/admin/AdminLogin';
 import AdminPanel from './pages/admin/AdminPanel';
 import AdminPropFirms from './pages/admin/AdminPropFirms';
 import AdminOffers from './pages/admin/AdminOffers';
@@ -38,6 +39,7 @@ import AdminPageManagement from './pages/admin/AdminPageManagement';
 import AdminPricingSettings from './pages/admin/AdminPricingSettings';
 import AdminPaymentGateways from './pages/admin/AdminPaymentGateways';
 import AdminPayments from './pages/admin/AdminPayments';
+import AdminProtectedRoute from './components/AdminProtectedRoute';
 import { Toaster } from './components/ui/sonner';
 
 const rootRoute = createRootRoute({
@@ -188,88 +190,150 @@ const refundPolicyRoute = createRoute({
   component: RefundPolicy,
 });
 
+const adminLoginRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/login',
+  component: AdminLogin,
+});
+
 const adminRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin',
-  component: AdminPanel,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminPanel />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminPropFirmsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/prop-firms',
-  component: AdminPropFirms,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminPropFirms />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminOffersRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/offers',
-  component: AdminOffers,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminOffers />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminReviewsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/reviews',
-  component: AdminReviews,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminReviews />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminDisputesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/disputes',
-  component: AdminDisputes,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminDisputes />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminProductsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/products',
-  component: AdminProducts,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminProducts />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminUsersRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/users',
-  component: AdminUsers,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminUsers />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminSubscriptionsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/subscriptions',
-  component: AdminSubscriptions,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminSubscriptions />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminAffiliateWithdrawalsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/affiliate-withdrawals',
-  component: AdminAffiliateWithdrawals,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminAffiliateWithdrawals />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminThemeSettingsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/theme-settings',
-  component: AdminThemeSettings,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminThemeSettings />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminPageManagementRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/page-management',
-  component: AdminPageManagement,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminPageManagement />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminPricingSettingsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/pricing-settings',
-  component: AdminPricingSettings,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminPricingSettings />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminPaymentGatewaysRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/payment-gateways',
-  component: AdminPaymentGateways,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminPaymentGateways />
+    </AdminProtectedRoute>
+  ),
 });
 
 const adminPaymentsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/payments',
-  component: AdminPayments,
+  component: () => (
+    <AdminProtectedRoute>
+      <AdminPayments />
+    </AdminProtectedRoute>
+  ),
 });
 
 const routeTree = rootRoute.addChildren([
@@ -298,6 +362,7 @@ const routeTree = rootRoute.addChildren([
   paymentFailureRoute,
   privacyPolicyRoute,
   refundPolicyRoute,
+  adminLoginRoute,
   adminRoute,
   adminPropFirmsRoute,
   adminOffersRoute,

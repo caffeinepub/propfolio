@@ -40,7 +40,7 @@ export default function AddAccountDialog({ open, onOpenChange }: AddAccountDialo
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-md">
+      <DialogContent className="sm:max-w-md animate-scale-in">
         <DialogHeader>
           <DialogTitle>Add Prop Firm Account</DialogTitle>
         </DialogHeader>
@@ -48,7 +48,7 @@ export default function AddAccountDialog({ open, onOpenChange }: AddAccountDialo
           <div className="space-y-2">
             <Label htmlFor="propFirm">Prop Firm *</Label>
             <Select value={formData.propFirm} onValueChange={(value) => setFormData({ ...formData, propFirm: value })}>
-              <SelectTrigger>
+              <SelectTrigger className="transition-all duration-300 focus:ring-2 focus:ring-primary">
                 <SelectValue placeholder="Select prop firm" />
               </SelectTrigger>
               <SelectContent>
@@ -63,13 +63,14 @@ export default function AddAccountDialog({ open, onOpenChange }: AddAccountDialo
           </div>
 
           {formData.propFirm === 'custom' && (
-            <div className="space-y-2">
+            <div className="space-y-2 animate-slide-down">
               <Label htmlFor="customFirm">Custom Prop Firm Name *</Label>
               <Input
                 id="customFirm"
                 value={formData.customFirm}
                 onChange={(e) => setFormData({ ...formData, customFirm: e.target.value })}
                 placeholder="Enter prop firm name"
+                className="transition-all duration-300 focus:ring-2 focus:ring-primary"
               />
             </div>
           )}
@@ -81,6 +82,7 @@ export default function AddAccountDialog({ open, onOpenChange }: AddAccountDialo
               value={formData.accountNumber}
               onChange={(e) => setFormData({ ...formData, accountNumber: e.target.value })}
               placeholder="Enter account number"
+              className="transition-all duration-300 focus:ring-2 focus:ring-primary"
             />
           </div>
 
@@ -92,10 +94,11 @@ export default function AddAccountDialog({ open, onOpenChange }: AddAccountDialo
               value={formData.accountSize}
               onChange={(e) => setFormData({ ...formData, accountSize: e.target.value })}
               placeholder="Enter account size (e.g., 100000)"
+              className="transition-all duration-300 focus:ring-2 focus:ring-primary"
             />
           </div>
 
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full transition-all duration-300 hover:scale-105 active:scale-95">
             Add Account
           </Button>
         </form>

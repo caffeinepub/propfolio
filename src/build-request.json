@@ -1,350 +1,166 @@
 {
   "kind": "build_request",
-  "title": "Implement admin backend system, payment gateway integrations, and professional UI/logo redesign",
+  "title": "Build separate admin authentication system with username/password login",
   "projectName": "Propfolio",
   "priority": "high",
   "requirements": [
     {
-      "id": "REQ-30",
-      "text": "Create comprehensive admin authentication system in backend allowing admin login through backend actor methods with role-based access control to distinguish admin users from regular users",
+      "id": "REQ-56",
+      "text": "Create backend admin authentication system in main.mo with stable variable for storing admin credentials (username and hashed password), and actor methods for admin login verification that returns a session token or admin principal identifier upon successful authentication",
       "target": "backend",
       "source": {
         "messageIds": [
           "msg-last"
         ],
         "quotes": [
-          "admin shd login from backend and manage frontend"
+          "Separate admin login",
+          "Backend actor methods for admin authentication using username/password credentials",
+          "Secure credential storage in backend canister"
         ]
       },
       "acceptanceCriteria": [
-        "Backend actor includes admin authentication methods",
-        "Admin role is stored and verified in backend state",
-        "Admin principals are separately managed from regular user principals",
-        "Admin authentication persists across sessions"
+        "Stable variable stores admin credentials with hashed passwords",
+        "Login method accepts username and password and returns authentication result",
+        "Password verification uses secure hashing comparison",
+        "Failed login attempts return error messages without exposing security details"
       ]
     },
     {
-      "id": "REQ-31",
-      "text": "Build admin theme management system allowing admins to select and customize theme settings including color schemes, typography, and layout preferences that apply globally to the frontend",
-      "target": "both",
+      "id": "REQ-57",
+      "text": "Implement role-based access control in backend by adding admin role type to user profile data structure and creating guard methods that verify admin status before allowing access to admin-only operations",
+      "target": "backend",
       "source": {
         "messageIds": [
           "msg-last"
         ],
         "quotes": [
-          "admin shd login from backend and manage frontend make changes to everything like thene selection"
+          "Admin role type in backend to distinguish admin users from regular users",
+          "Permission checks on all admin-only operations"
         ]
       },
       "acceptanceCriteria": [
-        "Backend stores theme configuration with color scheme options",
-        "Admin interface includes theme selection controls",
-        "Theme changes apply immediately across all user sessions",
-        "Theme settings include light/dark mode and custom color palettes"
+        "User profile includes role field (user or admin)",
+        "Backend methods verify admin role before executing privileged operations",
+        "Non-admin users receive authorization errors when attempting admin actions"
       ]
     },
     {
-      "id": "REQ-32",
-      "text": "Implement admin page management system allowing admins to enable/disable pages, reorder navigation menu items, and modify page visibility for all users from the admin panel",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "page managemnt"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend stores page visibility and ordering configuration",
-        "Admin panel includes page management interface",
-        "Changes to page visibility reflect immediately in user navigation",
-        "Page reordering updates the sidebar menu dynamically"
-      ]
-    },
-    {
-      "id": "REQ-33",
-      "text": "Create admin subscription pricing management interface allowing admins to update subscription pricing, change billing intervals, and modify plan features without code changes",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "pricing update for susbcription"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend stores subscription pricing configuration",
-        "Admin interface includes pricing editor with amount and interval fields",
-        "Pricing changes apply to new subscriptions immediately",
-        "Subscribe page displays current pricing from backend configuration"
-      ]
-    },
-    {
-      "id": "REQ-34",
-      "text": "Build payment gateway integration system supporting Stripe, Razorpay, Coinbase Commerce, and NOWPayments with admin interface for configuring API keys and secret keys for each gateway without requiring code deployment",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "add payment gateway - APIkeys for Stripe , Razorpay, coinbase commerce, now payment it shd be ready to use admin can just add api and secret key to add payment gateway"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend stores encrypted API keys and secrets for all four payment gateways",
-        "Admin panel includes secure form for entering API credentials for each gateway",
-        "Payment gateway can be enabled/disabled by admin",
-        "System automatically uses configured gateway credentials for payment processing",
-        "API key validation confirms credentials are correct before saving"
-      ]
-    },
-    {
-      "id": "REQ-35",
-      "text": "Create admin payment management dashboard displaying all transactions, subscriptions, refunds, and payment statuses in real-time with filtering, search, and export capabilities",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "manager payments rtc"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend provides query methods for retrieving all payment transactions",
-        "Admin dashboard displays transaction list with date, user, amount, gateway, and status",
-        "Real-time updates show new transactions without page refresh",
-        "Admin can filter transactions by date range, status, and payment gateway",
-        "Admin can export payment data as CSV or PDF"
-      ]
-    },
-    {
-      "id": "REQ-36",
-      "text": "Redesign application logo to be impressive, professional, and modern with clean lines and a distinctive visual identity that represents prop trading and financial management",
+      "id": "REQ-58",
+      "text": "Create AdminLogin.tsx page component with form containing username and password input fields, login button, form validation, and error message display that authenticates against the backend admin authentication system",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-last"
         ],
         "quotes": [
-          "Make UI & Logo Impressive and proffessional"
+          "Admin login page separate from user Internet Identity login"
         ]
       },
       "acceptanceCriteria": [
-        "New logo is displayed in sidebar navigation",
-        "Logo appears on landing page header",
-        "Logo maintains quality at different sizes",
-        "Logo design is professional and suitable for financial platform"
+        "Login form includes username and password fields with proper validation",
+        "Submit button calls backend admin login method",
+        "Successful login redirects to admin dashboard",
+        "Failed login displays error message without page reload",
+        "Form prevents submission with empty fields"
       ]
     },
     {
-      "id": "REQ-37",
-      "text": "Upgrade UI design to professional standards with polished visual hierarchy, refined spacing, sophisticated color palette, premium typography, and smooth animations throughout all pages and components",
+      "id": "REQ-59",
+      "text": "Implement frontend admin session management using React Context or local storage to persist admin authentication state, storing admin session token or identifier after successful login and clearing it on logout",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-last"
         ],
         "quotes": [
-          "Make UI & Logo Impressive and proffessional"
+          "Session management for admin users"
         ]
       },
       "acceptanceCriteria": [
-        "All pages use consistent spacing and alignment",
-        "Color palette conveys professionalism and trust",
-        "Typography is readable and hierarchically clear",
-        "Interactive elements have smooth hover and transition effects",
-        "Cards and containers have refined shadows and borders",
-        "Overall design feels premium and production-ready"
+        "Admin authentication state persists across page refreshes",
+        "Session token is stored securely in browser storage",
+        "Logout clears admin session data completely",
+        "Expired sessions redirect to admin login page"
       ]
     },
     {
-      "id": "REQ-38",
-      "text": "Implement full functionality for Payouts module allowing users to add, edit, and delete payout records with prop firm selection, date, amount, and currency, and display payout history table with sorting and filtering",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "all moduels shd be live and working as added to dashboard"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend stores payout records linked to user accounts",
-        "Users can add payout with form including prop firm, date, amount, currency",
-        "Payout history displays as sortable table",
-        "Users can edit and delete existing payouts",
-        "Summary statistics calculate total payouts correctly"
-      ]
-    },
-    {
-      "id": "REQ-39",
-      "text": "Implement full functionality for Expenses module allowing users to add expenses with category selection (business or personal), subcategory, date, amount, and description, and display categorized expense summaries with monthly breakdowns",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "all moduels shd be live and working as added to dashboard"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend stores expense records with categories",
-        "Users can add expenses using category dropdowns as specified in earlier requirements",
-        "Expense list displays with edit and delete options",
-        "Summary shows total business and personal expenses separately",
-        "Monthly breakdown chart displays expense trends"
-      ]
-    },
-    {
-      "id": "REQ-40",
-      "text": "Implement full functionality for Trading Overview module allowing users to manually enter trade data including entry/exit prices, lot size, profit/loss, and display comprehensive trading statistics with equity curve visualization",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "all moduels shd be live and working as added to dashboard"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend stores individual trade records linked to prop firm accounts",
-        "Users can add trades with all required fields",
-        "Dashboard calculates win rate, profit factor, and other metrics from trade data",
-        "Equity curve chart renders based on actual trade history",
-        "Statistics update in real-time as trades are added"
-      ]
-    },
-    {
-      "id": "REQ-41",
-      "text": "Implement full functionality for Tools page calculators (Risk Calculator, Margin Calculator, P/L Calculator, Lot Size Calculator, Swap Calculator) with all input fields, real-time calculation logic, and result displays working correctly",
+      "id": "REQ-60",
+      "text": "Create protected route wrapper component for admin routes that checks admin authentication status and redirects unauthenticated users to the admin login page before allowing access to admin dashboard and admin management pages",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-last"
         ],
         "quotes": [
-          "all moduels shd be live and working as added to dashboard"
+          "Admin-only routes and components in frontend",
+          "Protected routes that require admin authentication"
         ]
       },
       "acceptanceCriteria": [
-        "Risk Calculator accepts CFD pair, entry price, stop-loss, lot size and calculates risk percentage",
-        "Margin Calculator computes required margin based on inputs",
-        "P/L Calculator shows profit or loss based on entry/exit prices",
-        "Lot Size Calculator determines appropriate position size",
-        "Swap Calculator computes overnight financing charges",
-        "All calculators display results immediately as inputs change"
+        "All admin routes require authentication before rendering",
+        "Unauthenticated access attempts redirect to admin login",
+        "Authenticated admin users can access all admin pages",
+        "Route protection works consistently across all admin paths"
       ]
     },
     {
-      "id": "REQ-42",
-      "text": "Implement full functionality for Reviews & Disputes module allowing users to submit prop firm reviews with ratings and text, and file disputes with category selection, description, and evidence upload, with backend storage and display of submission history",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "all moduels shd be live and working as added to dashboard"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Backend stores review submissions with firm, rating, title, and content",
-        "Users can submit reviews using the form on Reviews & Disputes page",
-        "Backend stores dispute records with category, description, and status",
-        "Users can file disputes and view their status",
-        "Review and dispute history displays user's previous submissions"
-      ]
-    },
-    {
-      "id": "REQ-43",
-      "text": "Implement full functionality for Compounding calculator allowing users to input starting capital, return percentage, compounding frequency, and time period, and display projected growth chart with detailed breakdown table",
+      "id": "REQ-61",
+      "text": "Update AdminPanel.tsx to display admin profile information (logged-in username, role) in the header section and add logout button that clears admin session and redirects to admin login page",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-last"
         ],
         "quotes": [
-          "all moduels shd be live and working as added to dashboard"
+          "Admin profile display showing logged-in admin details",
+          "Admin Dashboard Foundation"
         ]
       },
       "acceptanceCriteria": [
-        "Input fields accept starting capital, return rate, frequency, and duration",
-        "Calculator computes compound growth using correct formula",
-        "Growth chart visualizes capital growth over time",
-        "Breakdown table shows period-by-period growth values",
-        "Results update immediately when inputs change"
+        "Admin dashboard header shows current admin username",
+        "Logout button is visible and accessible in admin panel",
+        "Clicking logout clears session and returns to login page",
+        "Admin role is displayed if multiple admin types exist"
       ]
     },
     {
-      "id": "REQ-44",
-      "text": "Implement full functionality for Income Tax Calculator with country selection dropdown, income input fields (professional and prop payout income), automated tax calculation based on country-specific tax brackets, and display of detailed tax breakdown with estimated quarterly payments",
-      "target": "both",
+      "id": "REQ-62",
+      "text": "Add admin login route to App.tsx routing configuration at path /admin/login that renders the AdminLogin component and is accessible without authentication",
+      "target": "frontend",
       "source": {
         "messageIds": [
           "msg-last"
         ],
         "quotes": [
-          "all moduels shd be live and working as added to dashboard"
+          "Admin login page separate from user Internet Identity login"
         ]
       },
       "acceptanceCriteria": [
-        "Country dropdown includes major countries with tax rules stored in backend",
-        "Users can enter professional income and prop payout income separately",
-        "Calculator applies correct tax brackets and rates for selected country",
-        "Tax breakdown displays applicable brackets, deductions, and total liability",
-        "Quarterly payment estimates show amounts and due dates"
-      ]
-    },
-    {
-      "id": "REQ-45",
-      "text": "Implement full functionality for Exchange converters (FX and Crypto) with real-time rate fetching, currency selection dropdowns, amount input, and immediate conversion result display",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "all moduels shd be live and working as added to dashboard"
-        ]
-      },
-      "acceptanceCriteria": [
-        "FX converter supports major currency pairs with live rates",
-        "Crypto converter supports BTC, ETH, USDT, USDC to fiat currencies",
-        "Rates update automatically at regular intervals",
-        "Conversion calculates immediately when amount or currency changes",
-        "Display shows exchange rate and converted amount clearly"
+        "Route /admin/login renders AdminLogin component",
+        "Admin login page is accessible without authentication",
+        "Route does not conflict with existing admin routes",
+        "Successful login redirects to /admin path"
       ]
     }
   ],
   "constraints": [
-    "Do not modify frontend/src/hooks/useInternetIdentity.ts or useInternetIdentity.tsx",
-    "Do not modify frontend/src/hooks/useActor.ts",
-    "Do not modify frontend/src/main.tsx",
-    "Do not edit frontend/src/components/ui/* files directly",
-    "Backend must remain single-actor architecture in backend/main.mo",
-    "Admin authentication must integrate with existing Internet Identity system",
-    "Payment gateway API keys must be stored securely and encrypted in backend",
-    "All theme changes must respect existing Tailwind CSS configuration structure"
+    "Use single-actor architecture in backend/main.mo for all admin authentication logic",
+    "Do not modify Internet Identity authentication system for regular users",
+    "Admin authentication must be completely separate from user Internet Identity flow",
+    "Do not modify files in frontend/src/hooks/useInternetIdentity.ts or frontend/src/hooks/useActor.ts",
+    "Password storage must use secure hashing, never plain text"
   ],
   "nonGoals": [
-    "Implementing Rust, Python, or other non-Motoko backend languages",
-    "Using Vue, Angular, or other frontend frameworks instead of React",
-    "Integrating third-party authentication beyond Internet Identity",
-    "Adding WebSocket or real-time chat features",
-    "Implementing SMS, email, or push notification services",
-    "Adding GPS, maps, or geolocation features",
-    "Integrating MetaMask or other Web3 wallets beyond Stripe payments"
+    "Payment gateway configuration functionality",
+    "Theme management controls",
+    "Page management system",
+    "Backend integration for Payouts, Expenses, Trading Overview modules",
+    "Multi-factor authentication for admin users",
+    "Password reset or forgot password functionality",
+    "Admin user registration through UI"
   ],
   "imageRequirements": {
-    "required": [
-      "Professional prop trading logo with modern design, clean lines, and financial theme representing trading and portfolio management (propfolio-logo.dim_400x120.png)"
-    ],
+    "required": [],
     "edits": []
   }
 }

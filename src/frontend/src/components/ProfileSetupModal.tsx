@@ -5,6 +5,7 @@ import { Input } from './ui/input';
 import { Label } from './ui/label';
 import { useSaveCallerUserProfile } from '../hooks/useSaveCallerUserProfile';
 import { toast } from 'sonner';
+import { Loader2 } from 'lucide-react';
 
 export default function ProfileSetupModal() {
   const [formData, setFormData] = useState({
@@ -35,7 +36,7 @@ export default function ProfileSetupModal() {
 
   return (
     <Dialog open={true}>
-      <DialogContent className="sm:max-w-md" onPointerDownOutside={(e) => e.preventDefault()}>
+      <DialogContent className="sm:max-w-md animate-scale-in" onPointerDownOutside={(e) => e.preventDefault()}>
         <DialogHeader>
           <DialogTitle>Complete Your Profile</DialogTitle>
           <DialogDescription>
@@ -50,6 +51,7 @@ export default function ProfileSetupModal() {
               value={formData.username}
               onChange={(e) => setFormData({ ...formData, username: e.target.value })}
               placeholder="Enter username"
+              className="transition-all duration-300 focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="space-y-2">
@@ -59,6 +61,7 @@ export default function ProfileSetupModal() {
               value={formData.fullName}
               onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
               placeholder="Enter full name"
+              className="transition-all duration-300 focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="space-y-2">
@@ -69,6 +72,7 @@ export default function ProfileSetupModal() {
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               placeholder="Enter email"
+              className="transition-all duration-300 focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="space-y-2">
@@ -78,6 +82,7 @@ export default function ProfileSetupModal() {
               value={formData.mobile}
               onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
               placeholder="Enter mobile number"
+              className="transition-all duration-300 focus:ring-2 focus:ring-primary"
             />
           </div>
           <div className="space-y-2">
@@ -87,10 +92,22 @@ export default function ProfileSetupModal() {
               value={formData.discordUserId}
               onChange={(e) => setFormData({ ...formData, discordUserId: e.target.value })}
               placeholder="Enter Discord user ID"
+              className="transition-all duration-300 focus:ring-2 focus:ring-primary"
             />
           </div>
-          <Button type="submit" className="w-full" disabled={saveProfile.isPending}>
-            {saveProfile.isPending ? 'Creating Profile...' : 'Create Profile'}
+          <Button 
+            type="submit" 
+            className="w-full transition-all duration-300 hover:scale-105 active:scale-95" 
+            disabled={saveProfile.isPending}
+          >
+            {saveProfile.isPending ? (
+              <>
+                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                Creating Profile...
+              </>
+            ) : (
+              'Create Profile'
+            )}
           </Button>
         </form>
       </DialogContent>

@@ -1,483 +1,101 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Frontend implementation for admin UI, payment gateways, professional redesign, and module functionality",
+  "title": "Build separate admin authentication system with username/password login",
   "requirements": [
     {
-      "id": "REQ-31",
-      "summary": "Build admin theme management UI allowing admins to select and customize theme settings",
+      "id": "REQ-58",
+      "summary": "Create AdminLogin.tsx page component with username/password authentication form",
       "acceptanceCriteria": [
-        "Admin interface includes theme selection controls",
-        "Theme changes apply immediately across all user sessions",
-        "Theme settings include light/dark mode and custom color palettes"
+        "Login form includes username and password fields with proper validation",
+        "Submit button calls backend admin login method",
+        "Successful login redirects to admin dashboard",
+        "Failed login displays error message without page reload",
+        "Form prevents submission with empty fields"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/admin/AdminThemeSettings.tsx",
+          "path": "frontend/src/pages/admin/AdminLogin.tsx",
           "operation": "create",
-          "description": "Create admin theme management page with dropdowns for color scheme selection, light/dark mode toggle, and custom color palette inputs. Include preview section showing theme changes in real-time. Use backend methods to fetch and save theme configuration. Verify the authorization component's usage instructions before implementing admin-only access guards."
+          "description": "Create admin login page component with username and password input fields, form validation (required fields, min lengths), submit button that calls backend admin authentication, error message display for failed attempts, and redirect to /admin on successful login. Use shadcn/ui form components (Input, Button, Card) for consistent styling with the rest of the admin interface."
+        }
+      ]
+    },
+    {
+      "id": "REQ-59",
+      "summary": "Implement frontend admin session management using React Context",
+      "acceptanceCriteria": [
+        "Admin authentication state persists across page refreshes",
+        "Session token is stored securely in browser storage",
+        "Logout clears admin session data completely",
+        "Expired sessions redirect to admin login page"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useAdminAuth.tsx",
+          "operation": "create",
+          "description": "Create React Context provider and hook for admin authentication state management. Store admin session token and username in sessionStorage (cleared on browser close for security). Provide login function that calls backend authentication and stores returned token, logout function that clears storage and redirects to /admin/login, and isAdminAuthenticated boolean state. Include useEffect to initialize state from storage on mount and clear expired sessions."
+        }
+      ]
+    },
+    {
+      "id": "REQ-60",
+      "summary": "Create protected route wrapper component for admin routes",
+      "acceptanceCriteria": [
+        "All admin routes require authentication before rendering",
+        "Unauthenticated access attempts redirect to admin login",
+        "Authenticated admin users can access all admin pages",
+        "Route protection works consistently across all admin paths"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AdminProtectedRoute.tsx",
+          "operation": "create",
+          "description": "Create wrapper component that uses useAdminAuth hook to check admin authentication status. If not authenticated, redirect to /admin/login using TanStack Router's navigate function. If authenticated, render children components. Include loading state while checking authentication to prevent flash of unauthorized content."
         },
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Add route for /admin/theme-settings linking to AdminThemeSettings component within the admin section routes."
-        },
-        {
-          "path": "frontend/src/pages/admin/AdminPanel.tsx",
-          "operation": "modify",
-          "description": "Add a new card to the admin panel grid linking to the theme settings page with an appropriate icon (Palette or Paintbrush from lucide-react)."
-        },
-        {
-          "path": "frontend/src/hooks/useThemeConfiguration.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for fetching current theme configuration (useGetThemeConfiguration) and updating theme settings (useSaveThemeConfiguration). Include query key 'themeConfiguration' and invalidate on save."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Ensure CSS variables support dynamic theme updates by referencing backend theme configuration where applicable. Keep existing structure but ensure values can be overridden programmatically."
+          "description": "Wrap all existing admin routes (AdminPanel, AdminThemeSettings, AdminPageManagement, AdminPricingSettings, AdminPaymentGateways, AdminPayments, AdminPropFirms, AdminOffers, AdminReviews, AdminDisputes, AdminProducts, AdminUsers, AdminSubscriptions, AdminAffiliateWithdrawals) with AdminProtectedRoute component to require authentication before access. Import AdminProtectedRoute and wrap each admin route's component property."
         }
       ]
     },
     {
-      "id": "REQ-32",
-      "summary": "Implement admin page management UI for enabling/disabling pages and reordering navigation",
+      "id": "REQ-61",
+      "summary": "Update AdminPanel.tsx to display admin profile and logout functionality",
       "acceptanceCriteria": [
-        "Admin panel includes page management interface",
-        "Changes to page visibility reflect immediately in user navigation",
-        "Page reordering updates the sidebar menu dynamically"
+        "Admin dashboard header shows current admin username",
+        "Logout button is visible and accessible in admin panel",
+        "Clicking logout clears session and returns to login page",
+        "Admin role is displayed if multiple admin types exist"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/admin/AdminPageManagement.tsx",
-          "operation": "create",
-          "description": "Create admin page management interface displaying list of all dashboard pages with toggle switches for visibility and drag-and-drop handles for reordering. Include save button that calls backend methods to persist configuration. Use backend methods to fetch and update page visibility and order."
-        },
+          "path": "frontend/src/pages/admin/AdminPanel.tsx",
+          "operation": "modify",
+          "description": "Add header section at the top of AdminPanel displaying logged-in admin username and role (retrieved from useAdminAuth hook). Include logout button in the header that calls the logout function from useAdminAuth context. Style header with flex layout to align username on left and logout button on right. Use existing card styling for consistency with the rest of the admin panel."
+        }
+      ]
+    },
+    {
+      "id": "REQ-62",
+      "summary": "Add admin login route to App.tsx routing configuration",
+      "acceptanceCriteria": [
+        "Route /admin/login renders AdminLogin component",
+        "Admin login page is accessible without authentication",
+        "Route does not conflict with existing admin routes",
+        "Successful login redirects to /admin path"
+      ],
+      "file_operations": [
         {
           "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Add route for /admin/page-management linking to AdminPageManagement component."
+          "description": "Add new route configuration for /admin/login path that renders AdminLogin component. Place this route before the protected admin routes to ensure it's accessible without authentication. Import AdminLogin component at the top of the file. Ensure the route is configured with TanStack Router's Route component."
         },
         {
-          "path": "frontend/src/pages/admin/AdminPanel.tsx",
+          "path": "frontend/src/main.tsx",
           "operation": "modify",
-          "description": "Add a card to the admin panel grid linking to page management with an appropriate icon (Layout or Layers from lucide-react)."
-        },
-        {
-          "path": "frontend/src/hooks/usePageConfiguration.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for fetching page configuration (useGetPageConfiguration) and updating page settings (useSavePageConfiguration). Include invalidation logic to refresh sidebar menu."
-        },
-        {
-          "path": "frontend/src/components/Sidebar.tsx",
-          "operation": "modify",
-          "description": "Modify sidebar to fetch page configuration from backend and conditionally render menu items based on visibility settings and custom ordering. Filter out disabled pages and apply custom sort order from configuration."
-        }
-      ]
-    },
-    {
-      "id": "REQ-33",
-      "summary": "Create admin subscription pricing management UI for updating pricing and plan features",
-      "acceptanceCriteria": [
-        "Admin interface includes pricing editor with amount and interval fields",
-        "Pricing changes apply to new subscriptions immediately",
-        "Subscribe page displays current pricing from backend configuration"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/admin/AdminPricingSettings.tsx",
-          "operation": "create",
-          "description": "Create admin pricing management page with input fields for subscription amount, billing interval dropdown (monthly/yearly), and feature list editor. Include save button calling backend methods to persist pricing configuration. Display current pricing with edit form."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add route for /admin/pricing-settings linking to AdminPricingSettings component."
-        },
-        {
-          "path": "frontend/src/pages/admin/AdminPanel.tsx",
-          "operation": "modify",
-          "description": "Add a card to the admin panel grid linking to pricing settings with an appropriate icon (DollarSign or CreditCard from lucide-react)."
-        },
-        {
-          "path": "frontend/src/hooks/usePricingConfiguration.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for fetching pricing configuration (useGetPricingConfiguration) and updating pricing (useSavePricingConfiguration). Use query key 'pricingConfiguration'."
-        },
-        {
-          "path": "frontend/src/pages/Subscribe.tsx",
-          "operation": "modify",
-          "description": "Modify Subscribe page to fetch pricing configuration from backend using useGetPricingConfiguration hook and display dynamic pricing, interval, and feature list instead of hardcoded values."
-        }
-      ]
-    },
-    {
-      "id": "REQ-34",
-      "summary": "Build payment gateway integration UI for configuring Stripe, Razorpay, Coinbase Commerce, and NOWPayments API keys",
-      "acceptanceCriteria": [
-        "Admin panel includes secure form for entering API credentials for each gateway",
-        "Payment gateway can be enabled/disabled by admin",
-        "API key validation confirms credentials are correct before saving"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/admin/AdminPaymentGateways.tsx",
-          "operation": "create",
-          "description": "Create admin payment gateway configuration page with tabs for each gateway (Stripe, Razorpay, Coinbase Commerce, NOWPayments). Each tab includes secure input fields for API key and secret key, enable/disable toggle, and test connection button. Show masked keys when viewing existing configuration. Use backend methods to save and validate credentials."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add route for /admin/payment-gateways linking to AdminPaymentGateways component."
-        },
-        {
-          "path": "frontend/src/pages/admin/AdminPanel.tsx",
-          "operation": "modify",
-          "description": "Add a card to the admin panel grid linking to payment gateways configuration with an appropriate icon (Wallet or CreditCard from lucide-react)."
-        },
-        {
-          "path": "frontend/src/hooks/usePaymentGatewayConfiguration.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for fetching gateway configuration (useGetPaymentGatewayConfiguration) for each gateway type, and mutation for saving configuration (useSavePaymentGatewayConfiguration). Include test connection mutation (useTestPaymentGatewayConnection)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-35",
-      "summary": "Create admin payment management dashboard displaying transactions with filtering and export",
-      "acceptanceCriteria": [
-        "Admin dashboard displays transaction list with date, user, amount, gateway, and status",
-        "Real-time updates show new transactions without page refresh",
-        "Admin can filter transactions by date range, status, and payment gateway",
-        "Admin can export payment data as CSV or PDF"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/admin/AdminPayments.tsx",
-          "operation": "create",
-          "description": "Create admin payment management dashboard with table displaying all transactions including columns for date, user, amount, gateway, and status. Include filter controls for date range picker, status dropdown, and gateway dropdown. Add export buttons for CSV and PDF. Use backend query methods to fetch transaction list with real-time polling or query invalidation."
-        },
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Add route for /admin/payments linking to AdminPayments component."
-        },
-        {
-          "path": "frontend/src/pages/admin/AdminPanel.tsx",
-          "operation": "modify",
-          "description": "Add a card to the admin panel grid linking to payment management with an appropriate icon (Receipt or FileText from lucide-react)."
-        },
-        {
-          "path": "frontend/src/hooks/usePaymentTransactions.ts",
-          "operation": "create",
-          "description": "Create React Query hook for fetching all payment transactions (useGetPaymentTransactions) with filters as parameters. Enable refetchInterval for real-time updates. Include export mutation hooks (useExportTransactionsCSV, useExportTransactionsPDF)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-36",
-      "summary": "Replace application logo with new professional design representing prop trading",
-      "acceptanceCriteria": [
-        "New logo is displayed in sidebar navigation",
-        "Logo appears on landing page header",
-        "Logo maintains quality at different sizes",
-        "Logo design is professional and suitable for financial platform"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/Sidebar.tsx",
-          "operation": "modify",
-          "description": "Replace the current logo image source with the generated professional logo at frontend/public/assets/generated/propfolio-logo.dim_400x120.png. Ensure proper sizing and aspect ratio in the sidebar header."
-        },
-        {
-          "path": "frontend/src/pages/LandingPage.tsx",
-          "operation": "modify",
-          "description": "Replace the logo in the landing page hero section with the generated professional logo at frontend/public/assets/generated/propfolio-logo.dim_400x120.png. Ensure the logo is prominent and properly sized in the header area."
-        },
-        {
-          "path": "frontend/src/components/Footer.tsx",
-          "operation": "modify",
-          "description": "Update footer to display the new professional logo at frontend/public/assets/generated/propfolio-logo.dim_400x120.png in the branding section."
-        }
-      ]
-    },
-    {
-      "id": "REQ-37",
-      "summary": "Upgrade UI design to professional standards with refined spacing, premium typography, and smooth animations",
-      "acceptanceCriteria": [
-        "All pages use consistent spacing and alignment",
-        "Color palette conveys professionalism and trust",
-        "Typography is readable and hierarchically clear",
-        "Interactive elements have smooth hover and transition effects",
-        "Cards and containers have refined shadows and borders",
-        "Overall design feels premium and production-ready"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Refine global CSS with professional color palette emphasizing trust and sophistication. Update CSS variables for refined shadows (subtle depth), improved border colors (professional grays/blues), and premium transition timings. Ensure color contrast meets accessibility standards."
-        },
-        {
-          "path": "frontend/tailwind.config.js",
-          "operation": "modify",
-          "description": "Enhance Tailwind configuration with professional spacing scale, refined shadow definitions (card, elevated, premium), premium font families (if custom fonts desired), and smooth animation curves for hover and transitions."
-        },
-        {
-          "path": "frontend/src/components/DashboardLayout.tsx",
-          "operation": "modify",
-          "description": "Apply consistent spacing, refined card styling with subtle shadows, and smooth transition effects to the dashboard layout wrapper. Ensure visual hierarchy is clear and spacing is generous."
-        },
-        {
-          "path": "frontend/src/pages/LandingPage.tsx",
-          "operation": "modify",
-          "description": "Upgrade landing page with premium design: refined hero section with better spacing, polished feature cards with hover effects, professional color scheme, and smooth scroll animations. Ensure typography hierarchy is clear with appropriate font sizes and weights."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "operation": "modify",
-          "description": "Apply professional styling to dashboard overview cards: refined shadows, consistent spacing, premium hover effects, clear data hierarchy, and smooth transitions on interactive elements."
-        },
-        {
-          "path": "frontend/src/components/Sidebar.tsx",
-          "operation": "modify",
-          "description": "Refine sidebar design with professional styling: smooth hover transitions on menu items, refined active state indicators, proper spacing between items, and premium visual treatment."
-        }
-      ]
-    },
-    {
-      "id": "REQ-38",
-      "summary": "Implement full functionality for Payouts module with add, edit, delete, and history display",
-      "acceptanceCriteria": [
-        "Users can add payout with form including prop firm, date, amount, currency",
-        "Payout history displays as sortable table",
-        "Users can edit and delete existing payouts",
-        "Summary statistics calculate total payouts correctly"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/dashboard/Payouts.tsx",
-          "operation": "modify",
-          "description": "Replace placeholder with full payout functionality: add payout dialog with form fields (prop firm dropdown from constants/propFirms.ts, date picker, amount input, currency dropdown), payout history table with sort functionality, edit and delete buttons for each row, and summary statistics card showing total payouts. Use backend methods to create, update, delete, and fetch payouts."
-        },
-        {
-          "path": "frontend/src/hooks/usePayouts.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for payout operations: useGetPayouts for fetching payout history, useAddPayout mutation for creating payouts, useUpdatePayout mutation for editing, and useDeletePayout mutation for removing payouts. Include proper query invalidation on mutations."
-        },
-        {
-          "path": "frontend/src/components/AddPayoutDialog.tsx",
-          "operation": "create",
-          "description": "Create reusable dialog component for adding payouts with form fields: prop firm dropdown (using constants/propFirms.ts), date picker, amount number input with validation, and currency dropdown (USD, EUR, GBP, etc.). Include form validation and submission handling."
-        },
-        {
-          "path": "frontend/src/components/EditPayoutDialog.tsx",
-          "operation": "create",
-          "description": "Create dialog component for editing existing payouts with pre-filled form fields and update functionality."
-        }
-      ]
-    },
-    {
-      "id": "REQ-39",
-      "summary": "Implement full functionality for Expenses module with category selection and monthly breakdowns",
-      "acceptanceCriteria": [
-        "Users can add expenses using category dropdowns as specified in earlier requirements",
-        "Expense list displays with edit and delete options",
-        "Summary shows total business and personal expenses separately",
-        "Monthly breakdown chart displays expense trends"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/dashboard/Expenses.tsx",
-          "operation": "modify",
-          "description": "Replace placeholder with full expense functionality: add expense dialog with category dropdown (business/personal), subcategory dropdown (context-specific), date picker, amount input, and description field. Display expense list table with edit/delete buttons. Show summary cards for total business and personal expenses. Include monthly breakdown chart using a chart library. Use backend methods for expense CRUD operations."
-        },
-        {
-          "path": "frontend/src/hooks/useExpenses.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for expense operations: useGetExpenses for fetching expense history, useAddExpense mutation for creating, useUpdateExpense mutation for editing, and useDeleteExpense mutation for removing expenses. Include query invalidation."
-        },
-        {
-          "path": "frontend/src/components/AddExpenseDialog.tsx",
-          "operation": "create",
-          "description": "Create dialog component for adding expenses with form fields: category dropdown (business/personal), subcategory dropdown (conditional based on category), date picker, amount input, and description textarea. Include validation."
-        },
-        {
-          "path": "frontend/src/components/EditExpenseDialog.tsx",
-          "operation": "create",
-          "description": "Create dialog component for editing existing expenses with pre-filled form fields."
-        },
-        {
-          "path": "frontend/src/components/ExpenseChart.tsx",
-          "operation": "create",
-          "description": "Create chart component displaying monthly expense breakdown using a charting library (recharts or similar). Show business and personal expenses as separate series."
-        }
-      ]
-    },
-    {
-      "id": "REQ-40",
-      "summary": "Implement full functionality for Trading Overview with trade entry and statistics visualization",
-      "acceptanceCriteria": [
-        "Users can add trades with all required fields",
-        "Dashboard calculates win rate, profit factor, and other metrics from trade data",
-        "Equity curve chart renders based on actual trade history",
-        "Statistics update in real-time as trades are added"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/dashboard/TradingOverview.tsx",
-          "operation": "modify",
-          "description": "Replace placeholder metrics with real calculations from backend trade data. Implement add trade dialog with fields for prop firm account selection, entry price, exit price, lot size, profit/loss, trade date. Display calculated statistics: Total Trades, Win Rate, Profit Factor, Sharpe Ratio. Render equity curve chart using actual trade history. Use backend methods to fetch and create trades."
-        },
-        {
-          "path": "frontend/src/hooks/useTrades.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for trade operations: useGetTrades for fetching trade history, useGetTradingStatistics for calculated metrics, and useAddTrade mutation for creating trades. Include query invalidation to update statistics."
-        },
-        {
-          "path": "frontend/src/components/AddTradeDialog.tsx",
-          "operation": "create",
-          "description": "Create dialog component for adding trades with form fields: prop firm account dropdown, entry price, exit price, lot size, profit/loss (calculated or manual), trade date picker, and optional notes field. Include validation."
-        },
-        {
-          "path": "frontend/src/components/EquityCurveChart.tsx",
-          "operation": "create",
-          "description": "Create chart component displaying equity curve based on cumulative profit/loss from trade history using a charting library. Show timeline on x-axis and cumulative P/L on y-axis."
-        }
-      ]
-    },
-    {
-      "id": "REQ-41",
-      "summary": "Implement full functionality for Tools page calculators with real-time calculation logic",
-      "acceptanceCriteria": [
-        "Risk Calculator accepts CFD pair, entry price, stop-loss, lot size and calculates risk percentage",
-        "Margin Calculator computes required margin based on inputs",
-        "P/L Calculator shows profit or loss based on entry/exit prices",
-        "Lot Size Calculator determines appropriate position size",
-        "Swap Calculator computes overnight financing charges",
-        "All calculators display results immediately as inputs change"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/dashboard/Tools.tsx",
-          "operation": "modify",
-          "description": "Replace placeholders with functional calculator implementations for all five tools. Each calculator tab includes: input fields specific to calculation type, real-time calculation logic triggered on input change, and result display. Risk Calculator: CFD pair input, entry price, stop-loss, lot size inputs with risk % output. Margin Calculator: leverage, position size inputs with margin required output. P/L Calculator: entry/exit price, lot size inputs with profit/loss output. Lot Size Calculator: account balance, risk %, stop-loss distance inputs with lot size output. Swap Calculator: position size, swap rate, days inputs with swap charge output."
-        },
-        {
-          "path": "frontend/src/utils/calculators.ts",
-          "operation": "create",
-          "description": "Create utility functions for each calculator's mathematical logic: calculateRisk, calculateMargin, calculateProfitLoss, calculateLotSize, calculateSwap. Export pure functions that accept parameters and return calculated results."
-        }
-      ]
-    },
-    {
-      "id": "REQ-42",
-      "summary": "Implement full functionality for Reviews & Disputes with submission forms and history display",
-      "acceptanceCriteria": [
-        "Users can submit reviews using the form on Reviews & Disputes page",
-        "Backend stores dispute records with category, description, and status",
-        "Users can file disputes and view their status",
-        "Review and dispute history displays user's previous submissions"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/dashboard/ReviewsDisputes.tsx",
-          "operation": "modify",
-          "description": "Replace placeholders with full functionality for both tabs. Reviews tab: form with prop firm dropdown, rating selector (1-5 stars), title input, review text area, and submit button. Display user's review history below. Disputes tab: form with prop firm dropdown, category dropdown, description textarea, evidence file upload (Use the blob-storage component to support evidence file uploads), and submit button. Display user's dispute history with status indicators. Use backend methods for creating and fetching reviews and disputes. Verify the blob-storage component's usage instructions before implementing file uploads."
-        },
-        {
-          "path": "frontend/src/hooks/useReviews.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for review operations: useGetUserReviews for fetching user's reviews, useSubmitReview mutation for creating reviews. Include query invalidation."
-        },
-        {
-          "path": "frontend/src/hooks/useDisputes.ts",
-          "operation": "create",
-          "description": "Create React Query hooks for dispute operations: useGetUserDisputes for fetching user's disputes, useSubmitDispute mutation for creating disputes. Include query invalidation."
-        }
-      ]
-    },
-    {
-      "id": "REQ-43",
-      "summary": "Implement full functionality for Compounding calculator with growth projection and breakdown",
-      "acceptanceCriteria": [
-        "Input fields accept starting capital, return rate, frequency, and duration",
-        "Calculator computes compound growth using correct formula",
-        "Growth chart visualizes capital growth over time",
-        "Breakdown table shows period-by-period growth values",
-        "Results update immediately when inputs change"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/dashboard/Compounding.tsx",
-          "operation": "modify",
-          "description": "Replace placeholder with functional compounding calculator. Include input fields: starting capital (number), return percentage (number), compounding frequency dropdown (daily/weekly/monthly/yearly), and time period (number with unit selector). Calculate compound growth using formula: A = P(1 + r/n)^(nt). Display growth chart visualizing capital over time periods. Show breakdown table with columns for period, starting balance, interest earned, ending balance. Update calculations and display immediately on input change."
-        },
-        {
-          "path": "frontend/src/utils/compoundingCalculator.ts",
-          "operation": "create",
-          "description": "Create utility function for compounding calculation that accepts starting capital, return rate, frequency, and duration, then returns array of period-by-period values for table and chart display."
-        },
-        {
-          "path": "frontend/src/components/CompoundingChart.tsx",
-          "operation": "create",
-          "description": "Create chart component displaying capital growth over time using a charting library. Show periods on x-axis and capital value on y-axis with smooth line graph."
-        }
-      ]
-    },
-    {
-      "id": "REQ-44",
-      "summary": "Implement full functionality for Income Tax Calculator with country-specific tax brackets",
-      "acceptanceCriteria": [
-        "Country dropdown includes major countries with tax rules stored in backend",
-        "Users can enter professional income and prop payout income separately",
-        "Calculator applies correct tax brackets and rates for selected country",
-        "Tax breakdown displays applicable brackets, deductions, and total liability",
-        "Quarterly payment estimates show amounts and due dates"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/dashboard/IncomeTaxCalculator.tsx",
-          "operation": "modify",
-          "description": "Replace placeholder with functional income tax calculator. Include: country dropdown (fetched from backend with available countries), professional income input, prop payout income input, calculate button. Display tax breakdown showing applicable brackets with amounts and rates, total tax liability, and quarterly payment estimates with due dates. Fetch country-specific tax rules from backend and apply calculation logic. Show results in organized card layout."
-        },
-        {
-          "path": "frontend/src/hooks/useTaxCalculator.ts",
-          "operation": "create",
-          "description": "Create React Query hooks: useGetTaxCountries for fetching available countries, useCalculateTax mutation for computing tax based on country and income inputs. Return detailed breakdown structure."
-        },
-        {
-          "path": "frontend/src/components/TaxBreakdownDisplay.tsx",
-          "operation": "create",
-          "description": "Create component for displaying tax calculation results including bracket breakdown table, total tax summary, and quarterly payment schedule with amounts and due dates."
-        }
-      ]
-    },
-    {
-      "id": "REQ-45",
-      "summary": "Implement full functionality for FX and Crypto exchange converters with live rates",
-      "acceptanceCriteria": [
-        "FX converter supports major currency pairs with live rates",
-        "Crypto converter supports BTC, ETH, USDT, USDC to fiat currencies",
-        "Rates update automatically at regular intervals",
-        "Conversion calculates immediately when amount or currency changes",
-        "Display shows exchange rate and converted amount clearly"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/dashboard/Exchange.tsx",
-          "operation": "modify",
-          "description": "Replace placeholders with functional converters. FX tab: from currency dropdown (USD, EUR, GBP, JPY, etc.), to currency dropdown, amount input, converted amount display, exchange rate display. Crypto tab: from crypto dropdown (BTC, ETH, USDT, USDC), to fiat dropdown (USD, EUR, etc.), amount input, converted amount display, exchange rate display. Fetch live rates from backend at regular intervals. Calculate conversion immediately on input or currency selection change. Use backend methods for fetching exchange rates."
-        },
-        {
-          "path": "frontend/src/hooks/useExchangeRates.ts",
-          "operation": "create",
-          "description": "Create React Query hooks: useGetFXRates for fetching forex rates, useGetCryptoRates for fetching cryptocurrency rates. Enable automatic refetch at intervals (e.g., every 60 seconds) for live rate updates."
-        },
-        {
-          "path": "frontend/src/utils/exchangeConverter.ts",
-          "operation": "create",
-          "description": "Create utility functions for conversion calculations: convertFX (amount, fromCurrency, toCurrency, rate) and convertCrypto (amount, fromCrypto, toFiat, rate). Return converted amount and formatted strings."
+          "description": "Wrap the App component with AdminAuthProvider (from useAdminAuth.tsx) to provide admin authentication context throughout the application. Place it inside the existing InternetIdentityProvider but outside QueryClientProvider to ensure admin auth state is available globally. Import AdminAuthProvider and add it to the component tree."
         }
       ]
     }

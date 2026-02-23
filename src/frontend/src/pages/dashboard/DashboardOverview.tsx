@@ -40,34 +40,40 @@ export default function DashboardOverview() {
 
   return (
     <div className="p-8 space-y-8">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between animate-fade-in">
         <div>
           <h1 className="text-3xl font-bold">Overview</h1>
           <p className="text-muted-foreground">Your financial health at a glance.</p>
         </div>
-        <Button>Export Summary</Button>
+        <Button className="transition-all duration-300 hover:scale-105 active:scale-95">
+          Export Summary
+        </Button>
       </div>
 
       {/* Metrics Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {metrics.map((metric, index) => (
-          <Card key={index}>
+          <Card 
+            key={index} 
+            className="hover:shadow-elevated hover:scale-105 hover:-translate-y-1 transition-all duration-300 animate-slide-up"
+            style={{ animationDelay: `${index * 0.1}s` }}
+          >
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium text-muted-foreground">
                 {metric.title}
               </CardTitle>
-              <img src={metric.icon} alt="" className="h-8 w-8 opacity-80" />
+              <img src={metric.icon} alt="" className="h-8 w-8 opacity-80 transition-transform duration-300 hover:scale-110" />
             </CardHeader>
             <CardContent>
               <div className="text-3xl font-bold">{metric.value}</div>
               <div className="flex items-center gap-1 mt-2">
-                <span className={`text-sm font-medium ${metric.isPositive ? 'text-green-500' : 'text-red-500'}`}>
+                <span className={`text-sm font-medium ${metric.isPositive ? 'text-success' : 'text-destructive'}`}>
                   {metric.change}
                 </span>
                 {metric.isPositive ? (
-                  <TrendingUp className="h-4 w-4 text-green-500" />
+                  <TrendingUp className="h-4 w-4 text-success" />
                 ) : (
-                  <TrendingDown className="h-4 w-4 text-red-500" />
+                  <TrendingDown className="h-4 w-4 text-destructive" />
                 )}
                 <span className="text-sm text-muted-foreground ml-1">{metric.description}</span>
               </div>
@@ -77,7 +83,7 @@ export default function DashboardOverview() {
       </div>
 
       {/* Payout History */}
-      <Card>
+      <Card className="hover:shadow-elevated transition-all duration-300 animate-fade-in">
         <CardHeader>
           <CardTitle>Payout History</CardTitle>
         </CardHeader>
@@ -89,13 +95,13 @@ export default function DashboardOverview() {
       </Card>
 
       {/* Advance Tax Reminder */}
-      <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
+      <Card className="bg-gradient-to-br from-primary/10 via-secondary/10 to-accent/10 border-primary/30 hover:shadow-elevated transition-all duration-300 animate-scale-in">
         <CardHeader>
           <CardTitle>Advance Tax Reminder</CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="flex items-start gap-4 p-4 bg-background/50 rounded-lg border border-border">
-            <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
+          <div className="flex items-start gap-4 p-4 bg-background/50 rounded-lg border border-border hover:border-primary/30 transition-all duration-300">
+            <div className="h-12 w-12 rounded-full bg-gradient-to-br from-primary/30 to-secondary/30 flex items-center justify-center flex-shrink-0 animate-bounce-subtle">
               <span className="text-2xl">📅</span>
             </div>
             <div className="flex-1">

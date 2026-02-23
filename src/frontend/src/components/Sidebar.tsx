@@ -48,38 +48,39 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 border-r border-border bg-sidebar flex flex-col shadow-lg">
-      <div className="p-6 border-b border-border bg-gradient-to-br from-primary/5 to-transparent">
+    <aside className="w-64 border-r border-border bg-sidebar flex flex-col shadow-elevated">
+      <div className="p-6 border-b border-border">
         <img 
-          src="/assets/generated/propfolio-logo.dim_400x120.png" 
+          src="/assets/generated/propfolio-logo-compact.dim_64x64.png" 
           alt="Propfolio" 
-          className="h-12 w-auto"
+          className="h-12 w-12 mb-3"
         />
-        <p className="text-xs text-muted-foreground mt-2 font-medium">Professional Trader Suite</p>
+        <h2 className="text-lg font-bold text-sidebar-foreground">Propfolio</h2>
+        <p className="text-xs text-muted-foreground mt-1">Professional Trading Suite</p>
       </div>
       
-      <nav className="flex-1 overflow-y-auto p-4 space-y-1">
+      <nav className="flex-1 overflow-y-auto p-3 space-y-0.5">
         {menuItems.map((item) => (
           <button
             key={item.path}
             onClick={() => navigate({ to: item.path })}
             className={cn(
-              "w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200",
+              "w-full flex items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium transition-all duration-150",
               currentPath === item.path
-                ? "bg-primary text-primary-foreground font-semibold shadow-md"
-                : "text-sidebar-foreground hover:bg-sidebar-accent/70 hover:translate-x-1"
+                ? "bg-primary text-primary-foreground shadow-sm"
+                : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
             )}
           >
             {item.icon}
             <span className="flex-1 text-left">{item.label}</span>
             {item.comingSoon && (
-              <Badge variant="secondary" className="text-xs">Soon</Badge>
+              <Badge variant="secondary" className="text-xs py-0 px-1.5">Soon</Badge>
             )}
           </button>
         ))}
       </nav>
 
-      <div className="p-4 border-t border-border bg-sidebar-accent/30">
+      <div className="p-4 border-t border-border">
         <LoginButton />
       </div>
     </aside>

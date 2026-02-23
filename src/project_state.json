@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 13,
   "summary": "Propfolio - A comprehensive prop trading firm management platform for tracking trading performance, payouts, tax calculations, and financial analysis across multiple prop trading accounts",
   "architectural_notes": [
     "Internet Identity for authentication (email verification and 2FA not available)",
@@ -22,7 +22,6 @@
     "Video embedding from external sources may have restrictions"
   ],
   "isFixRequest": true,
-  "imageRequirements": "## Required Images\n- Professional prop trading logo with modern design, clean lines, and financial theme representing trading and portfolio management (propfolio-logo.dim_400x120.png)",
   "existing_features": [
     {
       "id": "feature-implement-user-authentication-with-internet-identity-supporting-signup-and-login-user-registration-requires-username-full-name-email-mobile-and-discord-user-id-as-mandatory-fields",
@@ -149,6 +148,126 @@
       "title": "Implement full functionality for Exchange converters (FX and Crypto) with real-time rate fetching, currency selection dropdowns, amount input, and immediate conversion result display",
       "reqIds": [
         "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-the-application-logo-inspired-by-the-ic-markets-website-https-www-icmarkets-com-global-en-to-achieve-a-professional-modern-and-impressive-look-with-clean-lines-and-premium-aesthetic-that-represents-prop-trading-and-financial-management",
+      "title": "Redesign the application logo inspired by the IC Markets website (https://www.icmarkets.com/global/en/) to achieve a professional, modern, and impressive look with clean lines and premium aesthetic that represents prop trading and financial management",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-the-entire-ui-theme-inspired-by-the-ic-markets-website-https-www-icmarkets-com-global-en-to-create-an-impressive-professional-and-polished-interface-across-all-pages-and-components",
+      "title": "Redesign the entire UI theme inspired by the IC Markets website (https://www.icmarkets.com/global/en/) to create an impressive, professional, and polished interface across all pages and components",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-css-variables-in-frontend-index-css-to-implement-the-new-professional-theme-inspired-by-ic-markets-replacing-current-color-scheme-with-sophisticated-blues-grays-and-professional-accent-colors-for-both-light-and-dark-modes",
+      "title": "Update CSS variables in frontend/index.css to implement the new professional theme inspired by IC Markets, replacing current color scheme with sophisticated blues, grays, and professional accent colors for both light and dark modes",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-sidebar-component-to-use-the-new-professional-logo-and-apply-refined-styling-consistent-with-the-ic-markets-inspired-theme",
+      "title": "Update the Sidebar component to use the new professional logo and apply refined styling consistent with the IC Markets-inspired theme",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-component-to-use-the-new-professional-logo-and-apply-styling-consistent-with-the-ic-markets-inspired-theme",
+      "title": "Update the Footer component to use the new professional logo and apply styling consistent with the IC Markets-inspired theme",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-landingpage-component-to-showcase-the-new-professional-theme-with-hero-section-feature-cards-and-pricing-sections-styled-to-match-the-ic-markets-inspired-aesthetic",
+      "title": "Update the LandingPage component to showcase the new professional theme with hero section, feature cards, and pricing sections styled to match the IC Markets-inspired aesthetic",
+      "reqIds": [
+        "REQ-51"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-render-the-newly-generated-logo-images-as-static-assets-in-the-frontend-application-replacing-existing-logo-references-throughout-all-components",
+      "title": "Render the newly generated logo images as static assets in the frontend application, replacing existing logo references throughout all components",
+      "reqIds": [
+        "REQ-52"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-color-scheme-across-the-entire-application-to-introduce-more-vibrant-and-colorful-accents-while-maintaining-professional-aesthetics-replace-muted-blues-and-grays-with-livelier-colors-including-accent-colors-for-interactive-elements-cards-and-highlights",
+      "title": "Update the color scheme across the entire application to introduce more vibrant and colorful accents while maintaining professional aesthetics. Replace muted blues and grays with livelier colors including accent colors for interactive elements, cards, and highlights.",
+      "reqIds": [
+        "REQ-53"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-smooth-animations-and-transitions-throughout-the-application-including-page-transitions-card-hover-effects-button-interactions-form-field-focus-states-modal-entrance-exit-animations-and-loading-states-to-make-the-interface-feel-more-dynamic-and-engaging",
+      "title": "Add smooth animations and transitions throughout the application including page transitions, card hover effects, button interactions, form field focus states, modal entrance/exit animations, and loading states to make the interface feel more dynamic and engaging.",
+      "reqIds": [
+        "REQ-54"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-horizontal-scrolling-ticker-displaying-prop-firm-names-and-logos-that-continuously-loops-across-the-landing-page-and-or-dashboard-header-the-ticker-should-showcase-the-55-supported-prop-firms-with-smooth-automatic-scrolling-animation",
+      "title": "Implement a horizontal scrolling ticker displaying prop firm names and logos that continuously loops across the landing page and/or dashboard header. The ticker should showcase the 55+ supported prop firms with smooth, automatic scrolling animation.",
+      "reqIds": [
+        "REQ-55"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-adminlogin-tsx-page-component-with-form-containing-username-and-password-input-fields-login-button-form-validation-and-error-message-display-that-authenticates-against-the-backend-admin-authentication-system",
+      "title": "Create AdminLogin.tsx page component with form containing username and password input fields, login button, form validation, and error message display that authenticates against the backend admin authentication system",
+      "reqIds": [
+        "REQ-58"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-frontend-admin-session-management-using-react-context-or-local-storage-to-persist-admin-authentication-state-storing-admin-session-token-or-identifier-after-successful-login-and-clearing-it-on-logout",
+      "title": "Implement frontend admin session management using React Context or local storage to persist admin authentication state, storing admin session token or identifier after successful login and clearing it on logout",
+      "reqIds": [
+        "REQ-59"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-protected-route-wrapper-component-for-admin-routes-that-checks-admin-authentication-status-and-redirects-unauthenticated-users-to-the-admin-login-page-before-allowing-access-to-admin-dashboard-and-admin-management-pages",
+      "title": "Create protected route wrapper component for admin routes that checks admin authentication status and redirects unauthenticated users to the admin login page before allowing access to admin dashboard and admin management pages",
+      "reqIds": [
+        "REQ-60"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-adminpanel-tsx-to-display-admin-profile-information-logged-in-username-role-in-the-header-section-and-add-logout-button-that-clears-admin-session-and-redirects-to-admin-login-page",
+      "title": "Update AdminPanel.tsx to display admin profile information (logged-in username, role) in the header section and add logout button that clears admin session and redirects to admin login page",
+      "reqIds": [
+        "REQ-61"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-admin-login-route-to-app-tsx-routing-configuration-at-path-admin-login-that-renders-the-adminlogin-component-and-is-accessible-without-authentication",
+      "title": "Add admin login route to App.tsx routing configuration at path /admin/login that renders the AdminLogin component and is accessible without authentication",
+      "reqIds": [
+        "REQ-62"
       ],
       "version": 1
     }
@@ -557,6 +676,40 @@
       "summary": "Implement full functionality for Income Tax Calculator with country selection dropdown, income input fields (professional and prop payout income), automated tax calculation based on country-specific tax brackets, and display of detailed tax breakdown with estimated quarterly payments",
       "reqIds": [
         "REQ-44"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-74",
+      "summary": "Add colorful accents and animations to UI to make it more vibrant and engaging",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-75",
+      "summary": "Implement ticker/carousel displaying prop firm names/logos on landing page or dashboard",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-76",
+      "summary": "Build comprehensive admin authentication system in backend with username/password login separate from Internet Identity, including secure credential storage, admin login page, session management, role-based access control, and protected admin dashboard with navigation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-77",
+      "summary": "Create backend admin authentication system in main.mo with stable variable for storing admin credentials (username and hashed password), and actor methods for admin login verification that returns a session token or admin principal identifier upon successful authentication",
+      "reqIds": [
+        "REQ-56"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-78",
+      "summary": "Implement role-based access control in backend by adding admin role type to user profile data structure and creating guard methods that verify admin status before allowing access to admin-only operations",
+      "reqIds": [
+        "REQ-57"
       ],
       "status": "pending"
     }

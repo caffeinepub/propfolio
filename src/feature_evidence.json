@@ -2,13 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-build-admin-theme-management-system-allowing-admins-to-select-and-customize-theme-settings-including-color-schemes-typography-and-layout-preferences-that-apply-globally-to-the-frontend",
-      "featureTitle": "Build admin theme management system allowing admins to select and customize theme settings including color schemes, typography, and layout preferences that apply globally to the frontend",
+      "featureId": "feature-create-adminlogin-tsx-page-component-with-form-containing-username-and-password-input-fields-login-button-form-validation-and-error-message-display-that-authenticates-against-the-backend-admin-authentication-system",
+      "featureTitle": "Create AdminLogin.tsx page component with form containing username and password input fields, login button, form validation, and error message display that authenticates against the backend admin authentication system",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/index.css",
-        "frontend/src/pages/admin/AdminPanel.tsx",
-        "frontend/src/pages/admin/AdminThemeSettings.tsx"
+        "frontend/src/pages/admin/AdminLogin.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -22,17 +19,59 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-31"
+        "REQ-58"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-implement-admin-page-management-system-allowing-admins-to-enable-disable-pages-reorder-navigation-menu-items-and-modify-page-visibility-for-all-users-from-the-admin-panel",
-      "featureTitle": "Implement admin page management system allowing admins to enable/disable pages, reorder navigation menu items, and modify page visibility for all users from the admin panel",
+      "featureId": "feature-implement-frontend-admin-session-management-using-react-context-or-local-storage-to-persist-admin-authentication-state-storing-admin-session-token-or-identifier-after-successful-login-and-clearing-it-on-logout",
+      "featureTitle": "Implement frontend admin session management using React Context or local storage to persist admin authentication state, storing admin session token or identifier after successful login and clearing it on logout",
+      "files": [
+        "frontend/src/hooks/useAdminAuth.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-59"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-create-protected-route-wrapper-component-for-admin-routes-that-checks-admin-authentication-status-and-redirects-unauthenticated-users-to-the-admin-login-page-before-allowing-access-to-admin-dashboard-and-admin-management-pages",
+      "featureTitle": "Create protected route wrapper component for admin routes that checks admin authentication status and redirects unauthenticated users to the admin login page before allowing access to admin dashboard and admin management pages",
       "files": [
         "frontend/src/App.tsx",
-        "frontend/src/components/Sidebar.tsx",
-        "frontend/src/pages/admin/AdminPageManagement.tsx",
+        "frontend/src/components/AdminProtectedRoute.tsx"
+      ],
+      "components": [
+        "authorization@4.0.0",
+        "blob-storage@4.0.0",
+        "stripe@3.0.0",
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "http-outcalls@3.0.0"
+      ],
+      "testIds": [
+        "REQ-60"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-adminpanel-tsx-to-display-admin-profile-information-logged-in-username-role-in-the-header-section-and-add-logout-button-that-clears-admin-session-and-redirects-to-admin-login-page",
+      "featureTitle": "Update AdminPanel.tsx to display admin profile information (logged-in username, role) in the header section and add logout button that clears admin session and redirects to admin login page",
+      "files": [
         "frontend/src/pages/admin/AdminPanel.tsx"
       ],
       "components": [
@@ -47,17 +86,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-32"
+        "REQ-61"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-create-admin-subscription-pricing-management-interface-allowing-admins-to-update-subscription-pricing-change-billing-intervals-and-modify-plan-features-without-code-changes",
-      "featureTitle": "Create admin subscription pricing management interface allowing admins to update subscription pricing, change billing intervals, and modify plan features without code changes",
+      "featureId": "feature-add-admin-login-route-to-app-tsx-routing-configuration-at-path-admin-login-that-renders-the-adminlogin-component-and-is-accessible-without-authentication",
+      "featureTitle": "Add admin login route to App.tsx routing configuration at path /admin/login that renders the AdminLogin component and is accessible without authentication",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/admin/AdminPanel.tsx",
-        "frontend/src/pages/admin/AdminPricingSettings.tsx"
+        "frontend/src/App.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -71,169 +108,7 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-33"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-build-payment-gateway-integration-system-supporting-stripe-razorpay-coinbase-commerce-and-nowpayments-with-admin-interface-for-configuring-api-keys-and-secret-keys-for-each-gateway-without-requiring-code-deployment",
-      "featureTitle": "Build payment gateway integration system supporting Stripe, Razorpay, Coinbase Commerce, and NOWPayments with admin interface for configuring API keys and secret keys for each gateway without requiring code deployment",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/admin/AdminPanel.tsx",
-        "frontend/src/pages/admin/AdminPaymentGateways.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-34"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-admin-payment-management-dashboard-displaying-all-transactions-subscriptions-refunds-and-payment-statuses-in-real-time-with-filtering-search-and-export-capabilities",
-      "featureTitle": "Create admin payment management dashboard displaying all transactions, subscriptions, refunds, and payment statuses in real-time with filtering, search, and export capabilities",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/pages/admin/AdminPanel.tsx",
-        "frontend/src/pages/admin/AdminPayments.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-35"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-redesign-application-logo-to-be-impressive-professional-and-modern-with-clean-lines-and-a-distinctive-visual-identity-that-represents-prop-trading-and-financial-management",
-      "featureTitle": "Redesign application logo to be impressive, professional, and modern with clean lines and a distinctive visual identity that represents prop trading and financial management",
-      "files": [
-        "frontend/src/components/Sidebar.tsx",
-        "frontend/src/pages/LandingPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-36"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-upgrade-ui-design-to-professional-standards-with-polished-visual-hierarchy-refined-spacing-sophisticated-color-palette-premium-typography-and-smooth-animations-throughout-all-pages-and-components",
-      "featureTitle": "Upgrade UI design to professional standards with polished visual hierarchy, refined spacing, sophisticated color palette, premium typography, and smooth animations throughout all pages and components",
-      "files": [
-        "frontend/src/components/Sidebar.tsx",
-        "frontend/src/index.css",
-        "frontend/src/pages/LandingPage.tsx",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-37"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-full-functionality-for-tools-page-calculators-risk-calculator-margin-calculator-p-l-calculator-lot-size-calculator-swap-calculator-with-all-input-fields-real-time-calculation-logic-and-result-displays-working-correctly",
-      "featureTitle": "Implement full functionality for Tools page calculators (Risk Calculator, Margin Calculator, P/L Calculator, Lot Size Calculator, Swap Calculator) with all input fields, real-time calculation logic, and result displays working correctly",
-      "files": [
-        "frontend/src/pages/dashboard/Tools.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-41"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-full-functionality-for-compounding-calculator-allowing-users-to-input-starting-capital-return-percentage-compounding-frequency-and-time-period-and-display-projected-growth-chart-with-detailed-breakdown-table",
-      "featureTitle": "Implement full functionality for Compounding calculator allowing users to input starting capital, return percentage, compounding frequency, and time period, and display projected growth chart with detailed breakdown table",
-      "files": [
-        "frontend/src/pages/dashboard/Compounding.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-43"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-full-functionality-for-exchange-converters-fx-and-crypto-with-real-time-rate-fetching-currency-selection-dropdowns-amount-input-and-immediate-conversion-result-display",
-      "featureTitle": "Implement full functionality for Exchange converters (FX and Crypto) with real-time rate fetching, currency selection dropdowns, amount input, and immediate conversion result display",
-      "files": [
-        "frontend/src/pages/dashboard/Exchange.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-45"
+        "REQ-62"
       ],
       "confidence": "high"
     }
