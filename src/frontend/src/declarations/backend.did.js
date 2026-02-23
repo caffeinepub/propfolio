@@ -31,6 +31,12 @@ export const ShoppingItem = IDL.Record({
   'priceInCents' : IDL.Nat,
   'productDescription' : IDL.Text,
 });
+export const Time = IDL.Int;
+export const UserProfile = IDL.Record({
+  'name' : IDL.Text,
+  'createdAt' : Time,
+  'email' : IDL.Text,
+});
 export const StripeSessionStatus = IDL.Variant({
   'completed' : IDL.Record({
     'userPrincipal' : IDL.Opt(IDL.Text),
@@ -95,10 +101,12 @@ export const idlService = IDL.Service({
       [IDL.Text],
       [],
     ),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
   'getStripeSessionStatus' : IDL.Func([IDL.Text], [StripeSessionStatus], []),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   'isStripeConfigured' : IDL.Func([], [IDL.Bool], ['query']),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'setStripeConfiguration' : IDL.Func([StripeConfiguration], [], []),
   'transform' : IDL.Func(
       [TransformationInput],
@@ -132,6 +140,12 @@ export const idlFactory = ({ IDL }) => {
     'quantity' : IDL.Nat,
     'priceInCents' : IDL.Nat,
     'productDescription' : IDL.Text,
+  });
+  const Time = IDL.Int;
+  const UserProfile = IDL.Record({
+    'name' : IDL.Text,
+    'createdAt' : Time,
+    'email' : IDL.Text,
   });
   const StripeSessionStatus = IDL.Variant({
     'completed' : IDL.Record({
@@ -194,10 +208,12 @@ export const idlFactory = ({ IDL }) => {
         [IDL.Text],
         [],
       ),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
     'getStripeSessionStatus' : IDL.Func([IDL.Text], [StripeSessionStatus], []),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
     'isStripeConfigured' : IDL.Func([], [IDL.Bool], ['query']),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'setStripeConfiguration' : IDL.Func([StripeConfiguration], [], []),
     'transform' : IDL.Func(
         [TransformationInput],

@@ -1,32 +1,62 @@
-import AccessControl "authorization/access-control";
-import MixinAuthorization "authorization/MixinAuthorization";
-import MixinStorage "blob-storage/Mixin";
 import Stripe "stripe/stripe";
+import MixinStorage "blob-storage/Mixin";
+import MixinAuthorization "authorization/MixinAuthorization";
+import AccessControl "authorization/access-control";
 import OutCall "http-outcalls/outcall";
 import Runtime "mo:core/Runtime";
+import Map "mo:core/Map";
+import List "mo:core/List";
+import Time "mo:core/Time";
+import Migration "migration";
+import Principal "mo:core/Principal";
 
+(with migration = Migration.run)
 actor {
-  include MixinStorage();
-
+  // Configure authorization functionality
   let accessControlState = AccessControl.initState();
   include MixinAuthorization(accessControlState);
 
-  var stripeConfig : ?Stripe.StripeConfiguration = null;
+  // Configure blob storage functionality
+  include MixinStorage();
+
+  public type UserProfile = {
+    name : Text;
+    email : Text;
+    createdAt : Time.Time;
+  };
+
+  let userProfiles = Map.empty<Principal, UserProfile>();
+  public shared ({ caller }) func saveCallerUserProfile(profile : UserProfile) : async () {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can save profiles");
+    };
+    userProfiles.add(caller, profile);
+  };
+
+  public query ({ caller }) func getCallerUserProfile() : async ?UserProfile {
+    if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
+      Runtime.trap("Unauthorized: Only users can get their profile");
+    };
+    userProfiles.get(caller);
+  };
+
+  // Stripe integration
+  var configuration : ?Stripe.StripeConfiguration = null;
 
   public query func isStripeConfigured() : async Bool {
-    stripeConfig != null;
+    configuration != null;
   };
 
   public shared ({ caller }) func setStripeConfiguration(config : Stripe.StripeConfiguration) : async () {
     if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
-      Runtime.trap("Unauthorized: Only admins can perform this action");
+      Runtime.trap("Unauthorized: Only admins can set Stripe configuration");
     };
-    stripeConfig := ?config;
+    configuration := ?config;
   };
 
   func getStripeConfiguration() : Stripe.StripeConfiguration {
-    switch (stripeConfig) {
-      case (null) { Runtime.trap("Stripe needs to be configured") };
+    switch (configuration) {
+      case (null) { Runtime.trap("Stripe must be configured first") };
       case (?config) { config };
     };
   };
@@ -35,18 +65,15 @@ actor {
     await Stripe.getSessionStatus(getStripeConfiguration(), sessionId, transform);
   };
 
-  public shared ({ caller }) func createCheckoutSession(
-    items : [Stripe.ShoppingItem],
-    successUrl : Text,
-    cancelUrl : Text
-  ) : async Text {
+  public shared ({ caller }) func createCheckoutSession(items : [Stripe.ShoppingItem], successUrl : Text, cancelUrl : Text) : async Text {
     if (not (AccessControl.hasPermission(accessControlState, caller, #user))) {
       Runtime.trap("Unauthorized: Only users can create checkout sessions");
     };
     await Stripe.createCheckoutSession(getStripeConfiguration(), caller, items, successUrl, cancelUrl, transform);
   };
 
-  public query func transform(input : OutCall.TransformationInput) : async OutCall.TransformationOutput {
+  public shared query ({ caller }) func transform(input : OutCall.TransformationInput) : async OutCall.TransformationOutput {
     OutCall.transform(input);
   };
 };
+

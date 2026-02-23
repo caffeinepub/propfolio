@@ -1,9 +1,8 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 7,
   "summary": "Propfolio - A comprehensive prop trading firm management platform for tracking trading performance, payouts, tax calculations, and financial analysis across multiple prop trading accounts",
   "architectural_notes": [
-    "Using Stripe for subscription payments instead of crypto gateways (Confirmo/Blockonomics not supported)",
     "Internet Identity for authentication (email verification and 2FA not available)",
     "Manual admin entry for prop firm offers instead of automated Discord/website scraping",
     "Manual data entry forms instead of CSV upload parsing (limited file handling)",
@@ -12,17 +11,18 @@
     "PDF export functionality for financial summaries and audit reports",
     "Affiliate tracking system with commission redemption in vouchers or crypto",
     "Multi-currency support with live FX and crypto rate conversion",
-    "Admin approval workflow for user-generated content (reviews, disputes)"
+    "Admin approval workflow for user-generated content (reviews, disputes)",
+    "Admin panel will support multiple payment gateway integrations: Stripe, Razorpay, Coinbase Commerce, and NOWPayments"
   ],
   "known_issues": [
     "Email verification not available (paid feature)",
     "2FA/Google Authenticator not supported on platform",
-    "Crypto payment gateways (Confirmo, Blockonomics) not supported",
     "Real-time Discord/website scraping for offers not feasible",
     "CSV file upload parsing has limited capabilities",
     "Video embedding from external sources may have restrictions"
   ],
   "isFixRequest": true,
+  "imageRequirements": "## Required Images\n- Professional prop trading logo with modern design, clean lines, and financial theme representing trading and portfolio management (propfolio-logo.dim_400x120.png)",
   "existing_features": [
     {
       "id": "feature-implement-user-authentication-with-internet-identity-supporting-signup-and-login-user-registration-requires-username-full-name-email-mobile-and-discord-user-id-as-mandatory-fields",
@@ -69,6 +69,86 @@
       "title": "Ensure App.tsx router configuration properly defines all routes including root landing page (/), dashboard routes, admin routes, and legal pages without circular dependencies or missing imports.",
       "reqIds": [
         "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-admin-theme-management-system-allowing-admins-to-select-and-customize-theme-settings-including-color-schemes-typography-and-layout-preferences-that-apply-globally-to-the-frontend",
+      "title": "Build admin theme management system allowing admins to select and customize theme settings including color schemes, typography, and layout preferences that apply globally to the frontend",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-admin-page-management-system-allowing-admins-to-enable-disable-pages-reorder-navigation-menu-items-and-modify-page-visibility-for-all-users-from-the-admin-panel",
+      "title": "Implement admin page management system allowing admins to enable/disable pages, reorder navigation menu items, and modify page visibility for all users from the admin panel",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-admin-subscription-pricing-management-interface-allowing-admins-to-update-subscription-pricing-change-billing-intervals-and-modify-plan-features-without-code-changes",
+      "title": "Create admin subscription pricing management interface allowing admins to update subscription pricing, change billing intervals, and modify plan features without code changes",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-build-payment-gateway-integration-system-supporting-stripe-razorpay-coinbase-commerce-and-nowpayments-with-admin-interface-for-configuring-api-keys-and-secret-keys-for-each-gateway-without-requiring-code-deployment",
+      "title": "Build payment gateway integration system supporting Stripe, Razorpay, Coinbase Commerce, and NOWPayments with admin interface for configuring API keys and secret keys for each gateway without requiring code deployment",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-admin-payment-management-dashboard-displaying-all-transactions-subscriptions-refunds-and-payment-statuses-in-real-time-with-filtering-search-and-export-capabilities",
+      "title": "Create admin payment management dashboard displaying all transactions, subscriptions, refunds, and payment statuses in real-time with filtering, search, and export capabilities",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-application-logo-to-be-impressive-professional-and-modern-with-clean-lines-and-a-distinctive-visual-identity-that-represents-prop-trading-and-financial-management",
+      "title": "Redesign application logo to be impressive, professional, and modern with clean lines and a distinctive visual identity that represents prop trading and financial management",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-upgrade-ui-design-to-professional-standards-with-polished-visual-hierarchy-refined-spacing-sophisticated-color-palette-premium-typography-and-smooth-animations-throughout-all-pages-and-components",
+      "title": "Upgrade UI design to professional standards with polished visual hierarchy, refined spacing, sophisticated color palette, premium typography, and smooth animations throughout all pages and components",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-full-functionality-for-tools-page-calculators-risk-calculator-margin-calculator-p-l-calculator-lot-size-calculator-swap-calculator-with-all-input-fields-real-time-calculation-logic-and-result-displays-working-correctly",
+      "title": "Implement full functionality for Tools page calculators (Risk Calculator, Margin Calculator, P/L Calculator, Lot Size Calculator, Swap Calculator) with all input fields, real-time calculation logic, and result displays working correctly",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-full-functionality-for-compounding-calculator-allowing-users-to-input-starting-capital-return-percentage-compounding-frequency-and-time-period-and-display-projected-growth-chart-with-detailed-breakdown-table",
+      "title": "Implement full functionality for Compounding calculator allowing users to input starting capital, return percentage, compounding frequency, and time period, and display projected growth chart with detailed breakdown table",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-full-functionality-for-exchange-converters-fx-and-crypto-with-real-time-rate-fetching-currency-selection-dropdowns-amount-input-and-immediate-conversion-result-display",
+      "title": "Implement full functionality for Exchange converters (FX and Crypto) with real-time rate fetching, currency selection dropdowns, amount input, and immediate conversion result display",
+      "reqIds": [
+        "REQ-45"
       ],
       "version": 1
     }
@@ -381,6 +461,102 @@
       "summary": "Verify that CSS is loading correctly by checking that frontend/index.html references the correct stylesheet, Tailwind CSS processes properly, and no critical CSS syntax errors prevent styles from applying.",
       "reqIds": [
         "REQ-29"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-51",
+      "summary": "Redesign UI and logo to be impressive and professional",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-52",
+      "summary": "Make all dashboard modules fully functional (not mockups)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-53",
+      "summary": "Admin backend login system with comprehensive frontend management",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-54",
+      "summary": "Admin theme selection and customization controls",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-55",
+      "summary": "Admin page management system for all frontend pages",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-56",
+      "summary": "Admin subscription pricing management with dynamic update capability",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-57",
+      "summary": "Payment gateway integration system supporting Stripe, Razorpay, Coinbase Commerce, and NOWPayments with admin API key configuration interface",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-58",
+      "summary": "Admin payment management dashboard with real-time transaction tracking",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-59",
+      "summary": "Create comprehensive admin authentication system in backend allowing admin login through backend actor methods with role-based access control to distinguish admin users from regular users",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-67",
+      "summary": "Implement full functionality for Payouts module allowing users to add, edit, and delete payout records with prop firm selection, date, amount, and currency, and display payout history table with sorting and filtering",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-68",
+      "summary": "Implement full functionality for Expenses module allowing users to add expenses with category selection (business or personal), subcategory, date, amount, and description, and display categorized expense summaries with monthly breakdowns",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-69",
+      "summary": "Implement full functionality for Trading Overview module allowing users to manually enter trade data including entry/exit prices, lot size, profit/loss, and display comprehensive trading statistics with equity curve visualization",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-71",
+      "summary": "Implement full functionality for Reviews & Disputes module allowing users to submit prop firm reviews with ratings and text, and file disputes with category selection, description, and evidence upload, with backend storage and display of submission history",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-73",
+      "summary": "Implement full functionality for Income Tax Calculator with country selection dropdown, income input fields (professional and prop payout income), automated tax calculation based on country-specific tax brackets, and display of detailed tax breakdown with estimated quarterly payments",
+      "reqIds": [
+        "REQ-44"
       ],
       "status": "pending"
     }

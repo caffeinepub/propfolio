@@ -16,6 +16,7 @@ export interface TransformationOutput {
     body: Uint8Array;
     headers: Array<http_header>;
 }
+export type Time = bigint;
 export interface ShoppingItem {
     productName: string;
     currency: string;
@@ -43,6 +44,11 @@ export interface StripeConfiguration {
     allowedCountries: Array<string>;
     secretKey: string;
 }
+export interface UserProfile {
+    name: string;
+    createdAt: Time;
+    email: string;
+}
 export interface http_request_result {
     status: bigint;
     body: Uint8Array;
@@ -56,10 +62,12 @@ export enum UserRole {
 export interface backendInterface {
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     createCheckoutSession(items: Array<ShoppingItem>, successUrl: string, cancelUrl: string): Promise<string>;
+    getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
     getStripeSessionStatus(sessionId: string): Promise<StripeSessionStatus>;
     isCallerAdmin(): Promise<boolean>;
     isStripeConfigured(): Promise<boolean>;
+    saveCallerUserProfile(profile: UserProfile): Promise<void>;
     setStripeConfiguration(config: StripeConfiguration): Promise<void>;
     transform(input: TransformationInput): Promise<TransformationOutput>;
 }

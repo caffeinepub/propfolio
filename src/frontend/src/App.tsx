@@ -33,6 +33,11 @@ import AdminProducts from './pages/admin/AdminProducts';
 import AdminUsers from './pages/admin/AdminUsers';
 import AdminSubscriptions from './pages/admin/AdminSubscriptions';
 import AdminAffiliateWithdrawals from './pages/admin/AdminAffiliateWithdrawals';
+import AdminThemeSettings from './pages/admin/AdminThemeSettings';
+import AdminPageManagement from './pages/admin/AdminPageManagement';
+import AdminPricingSettings from './pages/admin/AdminPricingSettings';
+import AdminPaymentGateways from './pages/admin/AdminPaymentGateways';
+import AdminPayments from './pages/admin/AdminPayments';
 import { Toaster } from './components/ui/sonner';
 
 const rootRoute = createRootRoute({
@@ -237,6 +242,36 @@ const adminAffiliateWithdrawalsRoute = createRoute({
   component: AdminAffiliateWithdrawals,
 });
 
+const adminThemeSettingsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/theme-settings',
+  component: AdminThemeSettings,
+});
+
+const adminPageManagementRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/page-management',
+  component: AdminPageManagement,
+});
+
+const adminPricingSettingsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/pricing-settings',
+  component: AdminPricingSettings,
+});
+
+const adminPaymentGatewaysRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/payment-gateways',
+  component: AdminPaymentGateways,
+});
+
+const adminPaymentsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/admin/payments',
+  component: AdminPayments,
+});
+
 const routeTree = rootRoute.addChildren([
   indexRoute,
   dashboardRoute.addChildren([
@@ -272,6 +307,11 @@ const routeTree = rootRoute.addChildren([
   adminUsersRoute,
   adminSubscriptionsRoute,
   adminAffiliateWithdrawalsRoute,
+  adminThemeSettingsRoute,
+  adminPageManagementRoute,
+  adminPricingSettingsRoute,
+  adminPaymentGatewaysRoute,
+  adminPaymentsRoute,
 ]);
 
 const router = createRouter({ routeTree });

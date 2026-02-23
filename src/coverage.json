@@ -1,72 +1,265 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-23T15:31:10.515Z",
+  "generatedAt": "2026-02-23T19:47:43.295Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 4,
-    "implemented": 2,
+    "total": 16,
+    "implemented": 10,
     "items": [
       {
-        "id": "REQ-26",
-        "summary": "Diagnose and fix the blank white screen issue preventing the application from rendering. Check for JavaScript errors in browser console, React component mounting failures, routing configuration issues in App.tsx, and ThemeProvider initialization problems.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/pages/LandingPage.tsx",
-          "frontend/src/components/DashboardLayout.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-27",
-        "summary": "Verify that frontend/src/main.tsx properly initializes the React application with RouterProvider, QueryClientProvider, and InternetIdentityProvider in the correct order without throwing errors.",
-        "status": "missing",
-        "plannedFiles": [
-          "frontend/src/main.tsx",
-          "frontend/src/hooks/useInternetIdentity.ts",
-          "frontend/src/hooks/useActor.ts"
-        ],
+        "id": "REQ-30",
+        "summary": "Create comprehensive admin authentication system in backend allowing admin login through backend actor methods with role-based access control to distinguish admin users from regular users",
+        "status": "unknown",
+        "plannedFiles": [],
         "matchedFiles": []
       },
       {
-        "id": "REQ-28",
-        "summary": "Ensure App.tsx router configuration properly defines all routes including root landing page (/), dashboard routes, admin routes, and legal pages without circular dependencies or missing imports.",
+        "id": "REQ-31",
+        "summary": "Build admin theme management system allowing admins to select and customize theme settings including color schemes, typography, and layout preferences that apply globally to the frontend",
         "status": "implemented",
         "plannedFiles": [
+          "frontend/src/pages/admin/AdminThemeSettings.tsx",
           "frontend/src/App.tsx",
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
+          "frontend/src/pages/admin/AdminPanel.tsx",
+          "frontend/src/hooks/useThemeConfiguration.ts",
+          "frontend/src/index.css"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/admin/AdminThemeSettings.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/admin/AdminPanel.tsx",
+          "frontend/src/index.css"
+        ]
+      },
+      {
+        "id": "REQ-32",
+        "summary": "Implement admin page management system allowing admins to enable/disable pages, reorder navigation menu items, and modify page visibility for all users from the admin panel",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/admin/AdminPageManagement.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/admin/AdminPanel.tsx",
+          "frontend/src/hooks/usePageConfiguration.ts",
+          "frontend/src/components/Sidebar.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/admin/AdminPageManagement.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/admin/AdminPanel.tsx",
+          "frontend/src/components/Sidebar.tsx"
+        ]
+      },
+      {
+        "id": "REQ-33",
+        "summary": "Create admin subscription pricing management interface allowing admins to update subscription pricing, change billing intervals, and modify plan features without code changes",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/admin/AdminPricingSettings.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/admin/AdminPanel.tsx",
+          "frontend/src/hooks/usePricingConfiguration.ts",
+          "frontend/src/pages/Subscribe.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/admin/AdminPricingSettings.tsx",
+          "frontend/src/App.tsx",
           "frontend/src/pages/admin/AdminPanel.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/App.tsx"
         ]
       },
       {
-        "id": "REQ-29",
-        "summary": "Verify that CSS is loading correctly by checking that frontend/index.html references the correct stylesheet, Tailwind CSS processes properly, and no critical CSS syntax errors prevent styles from applying.",
+        "id": "REQ-34",
+        "summary": "Build payment gateway integration system supporting Stripe, Razorpay, Coinbase Commerce, and NOWPayments with admin interface for configuring API keys and secret keys for each gateway without requiring code deployment",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/admin/AdminPaymentGateways.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/admin/AdminPanel.tsx",
+          "frontend/src/hooks/usePaymentGatewayConfiguration.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/admin/AdminPaymentGateways.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/admin/AdminPanel.tsx"
+        ]
+      },
+      {
+        "id": "REQ-35",
+        "summary": "Create admin payment management dashboard displaying all transactions, subscriptions, refunds, and payment statuses in real-time with filtering, search, and export capabilities",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/admin/AdminPayments.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/admin/AdminPanel.tsx",
+          "frontend/src/hooks/usePaymentTransactions.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/admin/AdminPayments.tsx",
+          "frontend/src/App.tsx",
+          "frontend/src/pages/admin/AdminPanel.tsx"
+        ]
+      },
+      {
+        "id": "REQ-36",
+        "summary": "Redesign application logo to be impressive, professional, and modern with clean lines and a distinctive visual identity that represents prop trading and financial management",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/Sidebar.tsx",
+          "frontend/src/pages/LandingPage.tsx",
+          "frontend/src/components/Footer.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/Sidebar.tsx",
+          "frontend/src/pages/LandingPage.tsx"
+        ]
+      },
+      {
+        "id": "REQ-37",
+        "summary": "Upgrade UI design to professional standards with polished visual hierarchy, refined spacing, sophisticated color palette, premium typography, and smooth animations throughout all pages and components",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/DashboardLayout.tsx",
+          "frontend/src/pages/LandingPage.tsx",
+          "frontend/src/pages/dashboard/DashboardOverview.tsx",
+          "frontend/src/components/Sidebar.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/pages/LandingPage.tsx",
+          "frontend/src/components/Sidebar.tsx"
+        ]
+      },
+      {
+        "id": "REQ-38",
+        "summary": "Implement full functionality for Payouts module allowing users to add, edit, and delete payout records with prop firm selection, date, amount, and currency, and display payout history table with sorting and filtering",
         "status": "missing",
         "plannedFiles": [
-          "frontend/index.html",
-          "frontend/src/index.css",
-          "frontend/tailwind.config.js"
+          "frontend/src/pages/dashboard/Payouts.tsx",
+          "frontend/src/hooks/usePayouts.ts",
+          "frontend/src/components/AddPayoutDialog.tsx",
+          "frontend/src/components/EditPayoutDialog.tsx"
         ],
         "matchedFiles": []
+      },
+      {
+        "id": "REQ-39",
+        "summary": "Implement full functionality for Expenses module allowing users to add expenses with category selection (business or personal), subcategory, date, amount, and description, and display categorized expense summaries with monthly breakdowns",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/dashboard/Expenses.tsx",
+          "frontend/src/hooks/useExpenses.ts",
+          "frontend/src/components/AddExpenseDialog.tsx",
+          "frontend/src/components/EditExpenseDialog.tsx",
+          "frontend/src/components/ExpenseChart.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-40",
+        "summary": "Implement full functionality for Trading Overview module allowing users to manually enter trade data including entry/exit prices, lot size, profit/loss, and display comprehensive trading statistics with equity curve visualization",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/dashboard/TradingOverview.tsx",
+          "frontend/src/hooks/useTrades.ts",
+          "frontend/src/components/AddTradeDialog.tsx",
+          "frontend/src/components/EquityCurveChart.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-41",
+        "summary": "Implement full functionality for Tools page calculators (Risk Calculator, Margin Calculator, P/L Calculator, Lot Size Calculator, Swap Calculator) with all input fields, real-time calculation logic, and result displays working correctly",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/dashboard/Tools.tsx",
+          "frontend/src/utils/calculators.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/dashboard/Tools.tsx"
+        ]
+      },
+      {
+        "id": "REQ-42",
+        "summary": "Implement full functionality for Reviews & Disputes module allowing users to submit prop firm reviews with ratings and text, and file disputes with category selection, description, and evidence upload, with backend storage and display of submission history",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/dashboard/ReviewsDisputes.tsx",
+          "frontend/src/hooks/useReviews.ts",
+          "frontend/src/hooks/useDisputes.ts"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-43",
+        "summary": "Implement full functionality for Compounding calculator allowing users to input starting capital, return percentage, compounding frequency, and time period, and display projected growth chart with detailed breakdown table",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/dashboard/Compounding.tsx",
+          "frontend/src/utils/compoundingCalculator.ts",
+          "frontend/src/components/CompoundingChart.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/dashboard/Compounding.tsx"
+        ]
+      },
+      {
+        "id": "REQ-44",
+        "summary": "Implement full functionality for Income Tax Calculator with country selection dropdown, income input fields (professional and prop payout income), automated tax calculation based on country-specific tax brackets, and display of detailed tax breakdown with estimated quarterly payments",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/dashboard/IncomeTaxCalculator.tsx",
+          "frontend/src/hooks/useTaxCalculator.ts",
+          "frontend/src/components/TaxBreakdownDisplay.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-45",
+        "summary": "Implement full functionality for Exchange converters (FX and Crypto) with real-time rate fetching, currency selection dropdowns, amount input, and immediate conversion result display",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/dashboard/Exchange.tsx",
+          "frontend/src/hooks/useExchangeRates.ts",
+          "frontend/src/utils/exchangeConverter.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/pages/dashboard/Exchange.tsx"
+        ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
-    "build-template/README.md",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/propfolio-logo.dim_400x120.png",
     "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/Sidebar.tsx",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/index.css",
+    "frontend/src/pages/LandingPage.tsx",
+    "frontend/src/pages/admin/AdminPageManagement.tsx",
+    "frontend/src/pages/admin/AdminPanel.tsx",
+    "frontend/src/pages/admin/AdminPaymentGateways.tsx",
+    "frontend/src/pages/admin/AdminPayments.tsx",
+    "frontend/src/pages/admin/AdminPricingSettings.tsx",
+    "frontend/src/pages/admin/AdminThemeSettings.tsx",
+    "frontend/src/pages/dashboard/Compounding.tsx",
+    "frontend/src/pages/dashboard/Exchange.tsx",
+    "frontend/src/pages/dashboard/Tools.tsx",
+    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

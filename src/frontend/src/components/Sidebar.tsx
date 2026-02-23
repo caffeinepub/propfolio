@@ -48,14 +48,14 @@ export default function Sidebar() {
   ];
 
   return (
-    <aside className="w-64 border-r border-border bg-sidebar flex flex-col">
-      <div className="p-6 border-b border-border">
+    <aside className="w-64 border-r border-border bg-sidebar flex flex-col shadow-lg">
+      <div className="p-6 border-b border-border bg-gradient-to-br from-primary/5 to-transparent">
         <img 
-          src="/assets/generated/propfolio-logo.dim_200x60.png" 
+          src="/assets/generated/propfolio-logo.dim_400x120.png" 
           alt="Propfolio" 
-          className="h-10"
+          className="h-12 w-auto"
         />
-        <p className="text-xs text-muted-foreground mt-1">Professional Trader Suite</p>
+        <p className="text-xs text-muted-foreground mt-2 font-medium">Professional Trader Suite</p>
       </div>
       
       <nav className="flex-1 overflow-y-auto p-4 space-y-1">
@@ -64,10 +64,10 @@ export default function Sidebar() {
             key={item.path}
             onClick={() => navigate({ to: item.path })}
             className={cn(
-              "w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-colors",
+              "w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm transition-all duration-200",
               currentPath === item.path
-                ? "bg-sidebar-accent text-sidebar-accent-foreground font-medium"
-                : "text-sidebar-foreground hover:bg-sidebar-accent/50"
+                ? "bg-primary text-primary-foreground font-semibold shadow-md"
+                : "text-sidebar-foreground hover:bg-sidebar-accent/70 hover:translate-x-1"
             )}
           >
             {item.icon}
@@ -79,7 +79,7 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      <div className="p-4 border-t border-border">
+      <div className="p-4 border-t border-border bg-sidebar-accent/30">
         <LoginButton />
       </div>
     </aside>
