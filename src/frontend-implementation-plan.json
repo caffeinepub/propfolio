@@ -1,448 +1,131 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Transform UI to vibrant, playful, and energetic design with bold animations",
+  "title": "Enhance Add Account Dialog with Live Search, Custom Prop Firm Addition, and Fix Submission Error",
   "requirements": [
     {
-      "id": "REQ-68",
-      "summary": "Replace entire color scheme with vibrant, playful palette in frontend/src/index.css",
+      "id": "REQ-111",
+      "summary": "Implement live search functionality in AddAccountDialog prop firm dropdown that filters firms as user types with case-insensitive partial matching",
       "acceptanceCriteria": [
-        "CSS variables in frontend/src/index.css define vibrant primary colors (not blues)",
-        "Accent colors are bold and energetic",
-        "Card backgrounds use colorful gradients or highlights",
-        "Interactive elements have vivid hover states"
+        "Search input field appears above or within the prop firm dropdown",
+        "Typing in search box immediately filters displayed prop firms",
+        "Search matches partial strings anywhere in firm name (case-insensitive)",
+        "Empty search shows all 55+ firms from PROP_FIRMS constant",
+        "Clear search functionality resets filter to show all firms"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/index.css",
+          "path": "frontend/src/components/AddAccountDialog.tsx",
           "operation": "modify",
-          "description": "Replace the current IC Markets-inspired blue/gray color scheme with vibrant, playful colors using OKLCH color space. Define bold primary colors (e.g., vibrant purples, magentas, oranges), energetic accent colors (bright yellows, cyans, pinks), colorful gradients for backgrounds, and vivid hover state colors. Update all CSS custom properties including --primary, --secondary, --accent, --card, --background, and chart colors to reflect the new energetic palette."
+          "description": "Add live search input field above the prop firm Select component. Implement useState for search term and useMemo to filter firms from PROP_FIRMS constant based on case-insensitive partial match. Update Select component to display filtered results. Include clear search button that resets filter."
         }
       ]
     },
     {
-      "id": "REQ-69",
-      "summary": "Update all dashboard components to use vibrant color classes from new scheme",
+      "id": "REQ-112",
+      "summary": "Add 'Add your Prop firm' option in AddAccountDialog that allows users to manually enter custom prop firm names",
       "acceptanceCriteria": [
-        "All dashboard cards display colorful backgrounds or borders",
-        "Chart elements use vibrant colors for different data series",
-        "Metric cards feature bold accent colors",
-        "Interactive elements use energetic color states"
+        "'Add your Prop firm' option is visible in the dropdown or as a separate action button",
+        "Clicking the option opens an input field or inline form to enter custom firm name",
+        "User can type any custom prop firm name without validation constraints",
+        "Custom firm name is immediately available for selection in current session"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/dashboard/DashboardOverview.tsx",
+          "path": "frontend/src/components/AddAccountDialog.tsx",
           "operation": "modify",
-          "description": "Apply vibrant color classes to metric cards, payout history cards, and tax reminder sections. Use colorful gradients for card backgrounds and bold accent colors for text highlights and borders. Update chart color schemes to use energetic colors from the new palette."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Accounts.tsx",
-          "operation": "modify",
-          "description": "Apply vibrant colors to account cards, add colorful borders, use energetic accent colors for action buttons, and update empty state styling with playful colors."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Payouts.tsx",
-          "operation": "modify",
-          "description": "Update payout cards with colorful backgrounds, apply bold accent colors to status badges, and use vibrant colors for payout history visualization."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Expenses.tsx",
-          "operation": "modify",
-          "description": "Apply vibrant colors to expense category cards, use colorful borders for business vs personal expenses, and update totals display with energetic accent colors."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/TradingOverview.tsx",
-          "operation": "modify",
-          "description": "Update trading metrics cards with bold accent colors, apply vibrant color schemes to equity curve charts, and use colorful indicators for win/loss statistics."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Tools.tsx",
-          "operation": "modify",
-          "description": "Apply vibrant colors to calculator tabs, use colorful backgrounds for input sections, and update result displays with energetic accent colors."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Exchange.tsx",
-          "operation": "modify",
-          "description": "Update currency converter cards with colorful backgrounds, apply bold accent colors to conversion buttons, and use vibrant colors for rate displays."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Compounding.tsx",
-          "operation": "modify",
-          "description": "Apply vibrant colors to calculator inputs, use colorful gradients for results display, and update projection chart with energetic color scheme."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/ReviewsDisputes.tsx",
-          "operation": "modify",
-          "description": "Update tab styling with vibrant colors, apply colorful backgrounds to review/dispute cards, and use bold accent colors for action buttons."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/DiscountOffers.tsx",
-          "operation": "modify",
-          "description": "Apply vibrant colors to offer cards, use colorful gradients for promotional highlights, and update badge styling with energetic accent colors."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/TaxAuditReport.tsx",
-          "operation": "modify",
-          "description": "Update report cards with colorful backgrounds, apply bold accent colors to section headers, and use vibrant colors for export buttons."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/IncomeTaxCalculator.tsx",
-          "operation": "modify",
-          "description": "Apply vibrant colors to calculator interface, use colorful backgrounds for reminder cards, and update result displays with energetic accent colors."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Affiliate.tsx",
-          "operation": "modify",
-          "description": "Update stats cards with bold accent colors, apply colorful backgrounds to earnings displays, and use vibrant colors for referral link section."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Settings.tsx",
-          "operation": "modify",
-          "description": "Apply vibrant colors to settings sections, use colorful borders for form groups, and update action buttons with energetic accent colors."
+          "description": "Add 'Add your Prop firm' option at the top of the filtered prop firm list. When clicked, show an inline input field with confirm/cancel buttons below the search box. On confirm, add the custom firm to a local state array and merge with PROP_FIRMS for display. Allow immediate selection of the newly added custom firm in the dropdown."
         }
       ]
     },
     {
-      "id": "REQ-70",
-      "summary": "Redesign Sidebar component with playful, energetic visual style",
+      "id": "REQ-113",
+      "summary": "Store custom prop firms in backend user profile and cache them in frontend localStorage for persistence across sessions and devices",
       "acceptanceCriteria": [
-        "Sidebar background uses vibrant gradients or colors",
-        "Menu items have colorful icons and animated hover states",
-        "Active menu item displays bold accent color",
-        "Sidebar incorporates playful visual elements"
+        "Backend actor method in main.mo saves custom prop firm names to user profile in stable storage",
+        "Custom firms are associated with the authenticated user's principal",
+        "Frontend stores custom firms in localStorage after successful backend save",
+        "On component mount, AddAccountDialog loads custom firms from localStorage and merges with PROP_FIRMS constant",
+        "Custom firms persist across browser sessions and device logins",
+        "Duplicate custom firm names are prevented"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Sidebar.tsx",
-          "operation": "modify",
-          "description": "Replace current sidebar styling with vibrant gradient background using the new playful color palette. Add colorful icon styling for each menu item, implement animated hover effects (scale, glow, color shift) using CSS transitions or Framer Motion. Apply bold accent colors to active menu items with animated indicators. Add playful visual elements such as animated dividers or decorative shapes."
-        }
-      ]
-    },
-    {
-      "id": "REQ-71",
-      "summary": "Update LandingPage with energetic hero section and colorful feature cards",
-      "acceptanceCriteria": [
-        "Hero section displays animated gradient background",
-        "Feature cards use vibrant, varied colors",
-        "CTA buttons feature bold, energetic colors",
-        "Landing page sections have playful visual styling"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/LandingPage.tsx",
-          "operation": "modify",
-          "description": "Redesign hero section with animated gradient background using vibrant colors from the new palette. Update feature cards (12 core features) to use varied, colorful backgrounds and highlights. Apply bold, energetic colors to CTA buttons with hover animations. Add playful visual styling to benefit sections and update overall layout to reflect energetic theme. Reference generated hero background image at frontend/public/assets/generated/hero-bg.dim_1920x600.png if appropriate for the new design."
-        }
-      ]
-    },
-    {
-      "id": "REQ-72",
-      "summary": "Implement prominent entrance animations for all dashboard components using Framer Motion",
-      "acceptanceCriteria": [
-        "All dashboard pages animate in when rendered",
-        "Card grids use staggered entrance animations",
-        "Modals and dialogs slide in smoothly",
-        "Animation timing feels energetic and dynamic"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/package.json",
-          "operation": "modify",
-          "description": "Add framer-motion as a dependency if not already present to support animation requirements throughout the application."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "operation": "modify",
-          "description": "Wrap page content in Framer Motion components with scale-in and fade-in entrance animations. Implement staggered animations for metric cards grid using staggerChildren and variants."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Accounts.tsx",
-          "operation": "modify",
-          "description": "Add Framer Motion entrance animations with fade and scale effects for page content and account cards."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Payouts.tsx",
-          "operation": "modify",
-          "description": "Implement Framer Motion entrance animations for payout cards with staggered timing."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Expenses.tsx",
-          "operation": "modify",
-          "description": "Add Framer Motion scale-in animations for expense category cards with stagger effect."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/TradingOverview.tsx",
-          "operation": "modify",
-          "description": "Implement entrance animations for trading metrics and chart sections using Framer Motion."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Tools.tsx",
-          "operation": "modify",
-          "description": "Add Framer Motion animations for calculator tabs and input sections with dynamic entrance effects."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Exchange.tsx",
-          "operation": "modify",
-          "description": "Implement entrance animations for currency converter cards using Framer Motion."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Compounding.tsx",
-          "operation": "modify",
-          "description": "Add Framer Motion scale and fade animations for calculator interface and results display."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/ReviewsDisputes.tsx",
-          "operation": "modify",
-          "description": "Implement entrance animations for tabbed interface and content cards using Framer Motion."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/DiscountOffers.tsx",
-          "operation": "modify",
-          "description": "Add staggered entrance animations for offer cards grid using Framer Motion."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/TaxAuditReport.tsx",
-          "operation": "modify",
-          "description": "Implement entrance animations for report sections using Framer Motion."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/IncomeTaxCalculator.tsx",
-          "operation": "modify",
-          "description": "Add Framer Motion animations for calculator interface and reminder cards."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Affiliate.tsx",
-          "operation": "modify",
-          "description": "Implement entrance animations for stats cards and referral section using Framer Motion with stagger."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Settings.tsx",
-          "operation": "modify",
-          "description": "Add Framer Motion entrance animations for settings sections with fade and slide effects."
-        }
-      ]
-    },
-    {
-      "id": "REQ-73",
-      "summary": "Add parallax scrolling effects to LandingPage component",
-      "acceptanceCriteria": [
-        "Hero section implements parallax effect on scroll",
-        "Background elements move at different rates than foreground",
-        "Parallax creates noticeable depth perception",
-        "Scroll performance remains smooth"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/LandingPage.tsx",
-          "operation": "modify",
-          "description": "Implement parallax scrolling effects using Framer Motion's useScroll and useTransform hooks or a parallax library. Apply parallax to hero section background elements, feature showcase backgrounds, and decorative elements. Configure different scroll speeds for foreground content vs background layers to create depth. Ensure smooth performance by optimizing transform calculations and using will-change CSS property where appropriate."
-        }
-      ]
-    },
-    {
-      "id": "REQ-74",
-      "summary": "Implement animated gradient backgrounds throughout the application",
-      "acceptanceCriteria": [
-        "Key sections display continuously animating gradients",
-        "Gradient animations are smooth and performant",
-        "Animation speed is appropriate (not too fast/slow)",
-        "Animated backgrounds use vibrant colors from the new palette"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Define CSS keyframe animations for gradient backgrounds that continuously shift between vibrant colors from the new palette. Create animation classes like 'animate-gradient' with appropriate duration (e.g., 6-10 seconds) and background-size/position transforms for smooth color transitions. Ensure animations are GPU-accelerated for performance."
-        },
-        {
-          "path": "frontend/src/pages/LandingPage.tsx",
-          "operation": "modify",
-          "description": "Apply animated gradient backgrounds to hero section, feature showcase areas, and key content sections using the CSS animation classes defined in index.css."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "operation": "modify",
-          "description": "Add animated gradient backgrounds to dashboard header and featured metric cards using CSS animation classes."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Accounts.tsx",
-          "operation": "modify",
-          "description": "Apply subtle animated gradient backgrounds to empty state sections or featured account cards."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/TradingOverview.tsx",
-          "operation": "modify",
-          "description": "Add animated gradient backgrounds to header sections or highlighted metric displays."
-        }
-      ]
-    },
-    {
-      "id": "REQ-75",
-      "summary": "Add dynamic hover effects and micro-interactions to all interactive elements",
-      "acceptanceCriteria": [
-        "All buttons scale and change color on hover",
-        "Cards lift and glow on hover",
-        "Input fields show colorful focus states",
-        "Navigation items animate on hover",
-        "Hover effects feel energetic and responsive"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "Define utility classes for dynamic hover effects including scale transforms (hover:scale-105, hover:scale-110), color transitions, glow effects using box-shadow with vibrant colors, and bounce animations. Add focus state classes for input fields with colorful borders and glows. Create transition classes for smooth, energetic animations (duration-200, duration-300)."
-        },
-        {
-          "path": "frontend/src/components/Sidebar.tsx",
-          "operation": "modify",
-          "description": "Add hover animations to navigation items including scale, glow, and color shift effects using the utility classes from index.css or Framer Motion whileHover props."
-        },
-        {
-          "path": "frontend/src/pages/LandingPage.tsx",
-          "operation": "modify",
-          "description": "Apply dynamic hover effects to all CTA buttons, feature cards (lift and glow), and interactive links throughout the landing page."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "operation": "modify",
-          "description": "Add hover effects to metric cards (lift and glow), action buttons (scale and color shift), and interactive elements."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Tools.tsx",
-          "operation": "modify",
-          "description": "Apply hover effects to calculator tabs, calculate buttons, and result sections with scale and glow animations."
+          "path": "frontend/src/hooks/useAddCustomPropFirm.ts",
+          "operation": "create",
+          "description": "Create custom mutation hook that calls actor.addCustomPropFirm() to save a custom prop firm name to the backend. On success, update the cached user profile query to include the new custom firm. Handle duplicate firm name validation by checking against existing custom firms from the user profile."
         },
         {
           "path": "frontend/src/components/AddAccountDialog.tsx",
           "operation": "modify",
-          "description": "Add hover effects to form buttons, input fields (colorful focus states), and dialog action buttons."
+          "description": "Import useGetCallerUserProfile hook to fetch user profile containing customPropFirms array. Import useAddCustomPropFirm hook for saving new custom firms. On component mount, merge customPropFirms from user profile with PROP_FIRMS constant. When user adds a custom firm, call useAddCustomPropFirm mutation and also cache the firm in localStorage under key 'customPropFirms'. On mount, check localStorage for customPropFirms and merge with profile data as fallback. Prevent duplicate firm names by checking both PROP_FIRMS and existing customPropFirms before allowing addition."
         },
         {
-          "path": "frontend/src/components/LoginButton.tsx",
-          "operation": "modify",
-          "description": "Enhance login button with scale transform, glow effect, and color transition on hover using vibrant accent colors."
-        }
-      ]
-    },
-    {
-      "id": "REQ-76",
-      "summary": "Implement smooth page transitions with scale and fade effects in App.tsx",
-      "acceptanceCriteria": [
-        "Route changes trigger page transition animations",
-        "Exiting pages fade/scale out smoothly",
-        "Entering pages fade/scale in dynamically",
-        "Transitions complete within 300-500ms"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/App.tsx",
-          "operation": "modify",
-          "description": "Wrap route rendering with Framer Motion's AnimatePresence component to enable exit animations. Apply page-level animations using motion.div with initial, animate, and exit props featuring scale (0.95-1.0) and opacity (0-1) transitions. Set transition duration to 300-400ms for dynamic, energetic feel. Ensure each route has a unique key for proper animation triggering."
-        }
-      ]
-    },
-    {
-      "id": "REQ-77",
-      "summary": "Create animated loading states for all data-fetching components",
-      "acceptanceCriteria": [
-        "Loading indicators use vibrant colors",
-        "Skeleton screens have animated shimmer",
-        "Loading states appear during data fetching",
-        "Loading animations feel energetic and polished"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/LoadingSpinner.tsx",
+          "path": "frontend/src/utils/customPropFirmsStorage.ts",
           "operation": "create",
-          "description": "Create a reusable LoadingSpinner component using vibrant colors from the new palette. Implement spinning animation using CSS animations or Framer Motion with colorful gradient effects. Export multiple size variants (small, medium, large) for different use cases."
-        },
-        {
-          "path": "frontend/src/components/SkeletonCard.tsx",
-          "operation": "create",
-          "description": "Create a reusable SkeletonCard component with animated shimmer effect using vibrant colors. Implement CSS animation with gradient background that shifts across the skeleton. Export variants for different card types (metric card, account card, payout card, etc.)."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "operation": "modify",
-          "description": "Add loading states using LoadingSpinner and SkeletonCard components for metric cards and data sections while fetching data."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Accounts.tsx",
-          "operation": "modify",
-          "description": "Implement loading states with skeleton cards for account listings during data fetch."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/Payouts.tsx",
-          "operation": "modify",
-          "description": "Add animated loading indicators for payout history data fetching using skeleton components."
-        },
-        {
-          "path": "frontend/src/pages/dashboard/TradingOverview.tsx",
-          "operation": "modify",
-          "description": "Implement loading states for trading metrics and chart data using colorful loading spinner and skeleton screens."
-        },
-        {
-          "path": "frontend/src/components/DashboardLayout.tsx",
-          "operation": "modify",
-          "description": "Add loading state with colorful spinner during authentication verification and initial data loading."
+          "description": "Create utility functions for localStorage operations: saveCustomPropFirm(firmName: string), getCustomPropFirms(): string[], and clearCustomPropFirms(). Implement duplicate checking logic. Handle JSON parsing errors gracefully."
         }
       ]
     },
     {
-      "id": "REQ-78",
-      "summary": "Update PropFirmTicker component with colorful styling and enhanced animation",
+      "id": "REQ-114",
+      "summary": "Fix dropdown scrolling issue in AddAccountDialog where prop firm dropdown does not scroll properly through the list",
       "acceptanceCriteria": [
-        "Ticker displays on vibrant background",
-        "Firm names use colorful badges or cards",
-        "Scrolling animation is smooth and dynamic",
-        "Ticker styling matches new energetic theme"
+        "Dropdown properly displays vertical scrollbar when firm list exceeds visible height",
+        "Mouse scroll and keyboard arrow keys navigate through full list of firms",
+        "Dropdown height is constrained to reasonable maximum (e.g., 300-400px)",
+        "Selected firm remains visible when dropdown closes",
+        "Dropdown z-index ensures it appears above other form elements"
       ],
       "file_operations": [
-        {
-          "path": "frontend/src/components/PropFirmTicker.tsx",
-          "operation": "modify",
-          "description": "Update ticker with vibrant gradient background from the new color palette. Style firm names as colorful badges or cards with varied accent colors. Enhance scrolling animation for more dynamic movement (consider adjusting speed or adding subtle bounce effects). Apply playful visual styling consistent with the energetic theme. Ensure smooth animation performance."
-        }
-      ]
-    },
-    {
-      "id": "REQ-79",
-      "summary": "Update modal dialogs with vibrant styling and animated entrance/exit effects",
-      "acceptanceCriteria": [
-        "Modals animate in with scale/fade effect",
-        "Modal backgrounds use backdrop blur",
-        "Modal headers feature vibrant colors",
-        "Modal buttons use bold accent colors",
-        "Exit animations are smooth and noticeable"
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/ProfileSetupModal.tsx",
-          "operation": "modify",
-          "description": "Wrap modal content with Framer Motion components for animated entrance (scale from 0.9 to 1.0, opacity 0 to 1) and exit effects (scale to 0.95, opacity to 0). Add backdrop blur effect to modal overlay. Update modal header with vibrant gradient or solid accent color. Style form buttons with bold, energetic colors from the new palette. Set animation duration to 300ms for dynamic feel."
-        },
         {
           "path": "frontend/src/components/AddAccountDialog.tsx",
           "operation": "modify",
-          "description": "Implement Framer Motion scale and fade animations for dialog entrance and exit. Apply vibrant colors to dialog header, use colorful backgrounds for form sections, and style action buttons with energetic accent colors. Add backdrop blur to overlay."
+          "description": "Update the Select component's SelectContent to include explicit max-height (max-h-[400px]) and overflow-y-auto classes. Ensure z-index is set to z-50 or higher. Add scroll-behavior-smooth for better UX. Verify SelectScrollUpButton and SelectScrollDownButton components are present. Test keyboard navigation (arrow keys) works properly with SelectItem focus management."
         }
       ]
     },
     {
-      "id": "REQ-80",
-      "summary": "Update Footer component with playful styling and colorful elements",
+      "id": "REQ-115",
+      "summary": "Diagnose and fix account submission error showing 'failed to add account' when users submit the form with valid data",
       "acceptanceCriteria": [
-        "Footer uses vibrant background color or gradient",
-        "Links animate on hover with color changes",
-        "Footer layout remains clean and readable",
-        "Footer styling matches overall energetic theme"
+        "Investigate backend actor method for adding accounts (addAccount or similar) in main.mo",
+        "Verify account data structure matches frontend submission format",
+        "Check for authentication/authorization issues preventing account creation",
+        "Ensure proper error handling and meaningful error messages",
+        "Fix any data type mismatches between frontend and backend",
+        "Successfully added accounts appear immediately in Accounts.tsx dashboard",
+        "Success toast displays 'Account added successfully' on successful submission",
+        "Form clears and dialog closes after successful account addition"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/Footer.tsx",
+          "path": "frontend/src/components/AddAccountDialog.tsx",
           "operation": "modify",
-          "description": "Replace footer background with vibrant color or gradient from the new palette. Add hover animations to all links (color shift to bold accent colors, underline animation). Style social media icons with colorful variants. Apply playful visual elements while maintaining clean, readable layout. Ensure footer styling is consistent with the overall energetic theme."
+          "description": "Review the form submission handler to ensure proper data structure is passed to useAddAccount hook. Verify AccountInput structure matches backend interface: { name: string, accountType: string, balance: number, currency: string }. Add detailed error logging in catch block to capture backend error messages. Ensure propFirm value is assigned to the accountType field (or name field if that's the convention). Add success toast notification using toast.success('Account added successfully'). Clear form fields and close dialog on successful mutation. Add loading state during submission to prevent double-clicks."
+        },
+        {
+          "path": "frontend/src/hooks/useAddAccount.ts",
+          "operation": "modify",
+          "description": "Add detailed error handling in the mutation function. Log the full error object and extract meaningful error messages from backend traps. Ensure proper error propagation to the UI component. Add onSuccess callback that invalidates the accounts query cache to trigger immediate refetch. Verify the AccountInput type being passed matches the backend interface definition exactly."
+        }
+      ]
+    },
+    {
+      "id": "REQ-116",
+      "summary": "Update prop firm dropdown in AddAccountDialog to display merged and sorted list of default firms and user's custom-added firms",
+      "acceptanceCriteria": [
+        "Dropdown shows all firms from PROP_FIRMS constant plus user's custom firms",
+        "Combined list is alphabetically sorted",
+        "Custom firms are visually distinguishable (optional badge or icon)",
+        "Search functionality works across both default and custom firms",
+        "Dropdown performance remains smooth with combined list"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/AddAccountDialog.tsx",
+          "operation": "modify",
+          "description": "Create a useMemo hook that merges PROP_FIRMS constant with customPropFirms from user profile. Remove duplicates using Set. Sort the combined array alphabetically using localeCompare. When rendering SelectItem components, check if the firm is from customPropFirms array and conditionally render a Badge or icon (e.g., Star icon) next to custom firm names for visual distinction. Ensure the search filter operates on the merged list. Use the sorted, merged list as the data source for both the Select dropdown and the search filter."
         }
       ]
     }

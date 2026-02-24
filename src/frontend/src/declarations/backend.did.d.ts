@@ -10,6 +10,43 @@ import type { ActorMethod } from '@icp-sdk/core/agent';
 import type { IDL } from '@icp-sdk/core/candid';
 import type { Principal } from '@icp-sdk/core/principal';
 
+export interface Account {
+  'id' : string,
+  'balance' : number,
+  'owner' : Principal,
+  'name' : string,
+  'createdAt' : Time,
+  'updatedAt' : Time,
+  'accountType' : string,
+  'currency' : string,
+}
+export interface AccountInput {
+  'balance' : number,
+  'name' : string,
+  'accountType' : string,
+  'currency' : string,
+}
+export type ExternalBlob = Uint8Array;
+export interface Payout {
+  'certificateDocument' : [] | [ExternalBlob],
+  'accountId' : string,
+  'owner' : Principal,
+  'invoiceDocument' : [] | [ExternalBlob],
+  'payoutId' : string,
+  'propFirm' : string,
+  'currency' : string,
+  'amount' : number,
+  'payoutDate' : Time,
+}
+export interface PayoutInput {
+  'certificateDocument' : [] | [ExternalBlob],
+  'accountId' : string,
+  'invoiceDocument' : [] | [ExternalBlob],
+  'propFirm' : string,
+  'currency' : string,
+  'amount' : number,
+  'payoutDate' : Time,
+}
 export interface ShoppingItem {
   'productName' : string,
   'currency' : string,
@@ -36,6 +73,7 @@ export interface TransformationOutput {
   'headers' : Array<http_header>,
 }
 export interface UserProfile {
+  'customPropFirms' : Array<string>,
   'name' : string,
   'createdAt' : Time,
   'email' : string,
@@ -77,13 +115,21 @@ export interface _SERVICE {
   >,
   '_caffeineStorageUpdateGatewayPrincipals' : ActorMethod<[], undefined>,
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
+  'addAccount' : ActorMethod<[AccountInput], Account>,
+  'addCustomPropFirm' : ActorMethod<[string], undefined>,
+  'addPayout' : ActorMethod<[PayoutInput], Payout>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'createCheckoutSession' : ActorMethod<
     [Array<ShoppingItem>, string, string],
     string
   >,
+  'deleteAccount' : ActorMethod<[string], boolean>,
+  'getAccount' : ActorMethod<[string], [] | [Account]>,
+  'getAccounts' : ActorMethod<[], Array<Account>>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getPayout' : ActorMethod<[string], [] | [Payout]>,
+  'getPayouts' : ActorMethod<[], Array<Payout>>,
   'getStripeSessionStatus' : ActorMethod<[string], StripeSessionStatus>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
@@ -91,6 +137,7 @@ export interface _SERVICE {
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'setStripeConfiguration' : ActorMethod<[StripeConfiguration], undefined>,
   'transform' : ActorMethod<[TransformationInput], TransformationOutput>,
+  'updateAccount' : ActorMethod<[string, AccountInput], Account>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 17,
+  "projectStateVersion": 27,
   "summary": "Propfolio - A comprehensive prop trading firm management platform for tracking trading performance, payouts, tax calculations, and financial analysis across multiple prop trading accounts",
   "architectural_notes": [
     "Internet Identity for authentication (email verification and 2FA not available)",
@@ -19,9 +19,13 @@
     "2FA/Google Authenticator not supported on platform",
     "Real-time Discord/website scraping for offers not feasible",
     "CSV file upload parsing has limited capabilities",
-    "Video embedding from external sources may have restrictions"
+    "Video embedding from external sources may have restrictions",
+    "PropFirmTicker component has visibility issues with current color scheme",
+    "Risk Calculator formula doesn't match expected behavior",
+    "Exchange converter doesn't use real-time API rates",
+    "Dashboard sidebar disappeared after Version 11 deployment"
   ],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-implement-user-authentication-with-internet-identity-supporting-signup-and-login-user-registration-requires-username-full-name-email-mobile-and-discord-user-id-as-mandatory-fields",
@@ -412,6 +416,286 @@
       "title": "Update the Footer component with playful styling including colorful link hover effects, vibrant social media icons, animated elements, and a colorful background that complements the new energetic theme.",
       "reqIds": [
         "REQ-80"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-the-entire-color-scheme-in-frontend-index-css-with-a-clean-professional-palette-using-white-backgrounds-and-a-combination-of-blue-teal-and-dark-green-brand-colors-update-css-variables-for-both-light-and-dark-modes-using-oklch-color-space-remove-all-vibrant-playful-color-definitions-and-implement-professional-blues-0066cc-0077be-teals-008b8b-20b2aa-and-dark-greens-006400-2e8b57-for-primary-secondary-and-accent-colors",
+      "title": "Replace the entire color scheme in frontend/index.css with a clean, professional palette using white backgrounds and a combination of blue, teal, and dark green brand colors. Update CSS variables for both light and dark modes using OKLCH color space. Remove all vibrant/playful color definitions and implement professional blues (#0066CC, #0077BE), teals (#008B8B, #20B2AA), and dark greens (#006400, #2E8B57) for primary, secondary, and accent colors.",
+      "reqIds": [
+        "REQ-81"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-dashboard-components-dashboardoverview-tsx-accounts-tsx-payouts-tsx-expenses-tsx-tradingoverview-tsx-tools-tsx-exchange-tsx-compounding-tsx-reviewsdisputes-tsx-discountoffers-tsx-taxauditreport-tsx-incometaxcalculator-tsx-affiliate-tsx-settings-tsx-to-use-the-new-white-background-with-blue-teal-dark-green-color-classes-for-cards-buttons-badges-borders-and-data-visualization-elements",
+      "title": "Update all dashboard components (DashboardOverview.tsx, Accounts.tsx, Payouts.tsx, Expenses.tsx, TradingOverview.tsx, Tools.tsx, Exchange.tsx, Compounding.tsx, ReviewsDisputes.tsx, DiscountOffers.tsx, TaxAuditReport.tsx, IncomeTaxCalculator.tsx, Affiliate.tsx, Settings.tsx) to use the new white background with blue/teal/dark green color classes for cards, buttons, badges, borders, and data visualization elements.",
+      "reqIds": [
+        "REQ-82"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-redesign-the-sidebar-component-with-white-background-and-professional-styling-using-blue-teal-and-dark-green-colors-for-menu-items-icons-active-states-and-hover-effects-remove-vibrant-gradients-and-replace-with-clean-professional-design-patterns",
+      "title": "Redesign the Sidebar component with white background and professional styling using blue, teal, and dark green colors for menu items, icons, active states, and hover effects. Remove vibrant gradients and replace with clean, professional design patterns.",
+      "reqIds": [
+        "REQ-83"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-landingpage-component-with-white-background-and-professional-hero-section-using-blue-teal-dark-green-color-scheme-replace-vibrant-gradients-with-clean-backgrounds-update-feature-cards-with-white-cards-and-blue-teal-dark-green-accents-and-style-call-to-action-buttons-with-the-new-professional-palette",
+      "title": "Update the LandingPage component with white background and professional hero section using blue/teal/dark green color scheme. Replace vibrant gradients with clean backgrounds, update feature cards with white cards and blue/teal/dark green accents, and style call-to-action buttons with the new professional palette.",
+      "reqIds": [
+        "REQ-84"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-propfirmticker-component-with-white-background-and-blue-teal-dark-green-text-colors-for-prop-firm-names-ensure-ticker-is-clearly-visible-with-sufficient-contrast-between-background-and-text-remove-any-gradient-backgrounds-and-replace-with-solid-white",
+      "title": "Update the PropFirmTicker component with white background and blue/teal/dark green text colors for prop firm names. Ensure ticker is clearly visible with sufficient contrast between background and text. Remove any gradient backgrounds and replace with solid white.",
+      "reqIds": [
+        "REQ-85"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-component-with-white-background-and-professional-styling-using-blue-teal-dark-green-colors-for-links-social-media-icons-and-decorative-elements-remove-vibrant-playful-styling-and-implement-clean-professional-design",
+      "title": "Update the Footer component with white background and professional styling using blue/teal/dark green colors for links, social media icons, and decorative elements. Remove vibrant/playful styling and implement clean professional design.",
+      "reqIds": [
+        "REQ-86"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-modal-dialogs-profilesetupmodal-addaccountdialog-and-any-other-modals-with-white-backgrounds-and-professional-styling-using-blue-teal-dark-green-colors-for-headers-buttons-and-form-elements-remove-vibrant-gradient-styling-and-energetic-animations-replacing-with-subtle-professional-transitions",
+      "title": "Update all modal dialogs (ProfileSetupModal, AddAccountDialog, and any other modals) with white backgrounds and professional styling using blue/teal/dark green colors for headers, buttons, and form elements. Remove vibrant gradient styling and energetic animations, replacing with subtle professional transitions.",
+      "reqIds": [
+        "REQ-87"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-all-logo-image-references-throughout-the-application-sidebar-footer-landingpage-and-any-other-components-replace-with-propfolio-text-rendered-using-a-clean-professional-font-paired-with-a-simple-decent-icon-that-represents-portfolio-management-or-financial-analytics",
+      "title": "Remove all logo image references throughout the application (Sidebar, Footer, LandingPage, and any other components). Replace with 'Propfolio' text rendered using a clean professional font, paired with a simple, decent icon that represents portfolio management or financial analytics.",
+      "reqIds": [
+        "REQ-88"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-diagnose-and-fix-the-account-addition-bug-where-accounts-show-account-added-success-message-but-do-not-appear-on-the-accounts-dashboard-page-investigate-the-backend-actor-methods-in-main-mo-for-account-storage-the-addaccountdialog-mutation-hook-the-accounts-tsx-data-fetching-logic-and-ensure-accounts-are-properly-persisted-in-stable-storage-and-retrieved-correctly-on-the-dashboard",
+      "title": "Diagnose and fix the account addition bug where accounts show 'Account added' success message but do not appear on the Accounts dashboard page. Investigate the backend actor methods in main.mo for account storage, the AddAccountDialog mutation hook, the Accounts.tsx data fetching logic, and ensure accounts are properly persisted in stable storage and retrieved correctly on the dashboard.",
+      "reqIds": [
+        "REQ-89"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-risk-calculator-in-tools-tsx-to-match-the-formula-and-calculation-behavior-from-https-analystedge-5ee-caffeine-xyz-review-the-reference-implementation-s-input-fields-account-balance-risk-percentage-stop-loss-in-pips-currency-pair-calculation-logic-and-result-display-format-implement-the-same-formula-position-size-account-balance-risk-stop-loss-in-pips-pip-value",
+      "title": "Update the Risk Calculator in Tools.tsx to match the formula and calculation behavior from https://analystedge-5ee.caffeine.xyz/. Review the reference implementation's input fields (account balance, risk percentage, stop loss in pips, currency pair), calculation logic, and result display format. Implement the same formula: Position Size = (Account Balance × Risk %) / (Stop Loss in Pips × Pip Value).",
+      "reqIds": [
+        "REQ-90"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-integrate-a-live-exchange-rate-api-such-as-exchangerate-api-com-fixer-io-or-openexchangerates-org-into-the-exchange-tsx-converter-components-for-both-fx-and-crypto-converters-replace-the-current-mock-exchange-rates-with-real-time-rate-fetching-implement-error-handling-for-api-failures-and-display-loading-states-during-rate-fetching",
+      "title": "Integrate a live exchange rate API (such as exchangerate-api.com, fixer.io, or openexchangerates.org) into the Exchange.tsx converter components for both FX and Crypto converters. Replace the current mock exchange rates with real-time rate fetching. Implement error handling for API failures and display loading states during rate fetching.",
+      "reqIds": [
+        "REQ-91"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-add-account-dialog-overlapping-and-transparency-issues-by-ensuring-proper-z-index-layering-centered-positioning-on-screen-solid-white-background-with-full-opacity-and-a-semi-transparent-backdrop-overlay-that-prevents-interaction-with-content-behind-the-dialog",
+      "title": "Fix Add Account dialog overlapping and transparency issues by ensuring proper z-index layering, centered positioning on screen, solid white background with full opacity, and a semi-transparent backdrop overlay that prevents interaction with content behind the dialog",
+      "reqIds": [
+        "REQ-92"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-change-the-label-in-addaccountdialog-tsx-from-account-name-to-account-no-for-the-account-identifier-input-field",
+      "title": "Change the label in AddAccountDialog.tsx from 'Account Name' to 'Account No' for the account identifier input field",
+      "reqIds": [
+        "REQ-93"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-addpayoutdialog-component-that-opens-when-clicking-add-payout-button-in-payouts-tsx-containing-a-dropdown-to-select-prop-firm-showing-only-firms-where-user-has-added-accounts-input-fields-for-payout-amount-payout-date-and-currency-selection-and-file-upload-fields-for-payout-invoice-and-certificate-supporting-image-and-pdf-formats",
+      "title": "Create AddPayoutDialog component that opens when clicking 'Add Payout' button in Payouts.tsx, containing a dropdown to select prop firm (showing only firms where user has added accounts), input fields for payout amount, payout date, and currency selection, and file upload fields for payout invoice and certificate supporting image and PDF formats",
+      "reqIds": [
+        "REQ-94"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-react-query-mutation-hook-useaddpayout-in-frontend-src-hooks-for-submitting-payout-data-to-the-backend-handling-file-uploads-and-invalidating-the-payouts-query-cache-on-success",
+      "title": "Create React Query mutation hook useAddPayout in frontend/src/hooks/ for submitting payout data to the backend, handling file uploads, and invalidating the payouts query cache on success",
+      "reqIds": [
+        "REQ-96"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-create-react-query-hook-usegetpayouts-in-frontend-src-hooks-for-fetching-user-s-payout-records-from-the-backend-actor",
+      "title": "Create React Query hook useGetPayouts in frontend/src/hooks/ for fetching user's payout records from the backend actor",
+      "reqIds": [
+        "REQ-97"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-payouts-tsx-to-display-the-list-of-added-payouts-in-a-table-or-card-grid-showing-prop-firm-name-payout-amount-currency-date-and-download-links-for-invoice-and-certificate-files",
+      "title": "Update Payouts.tsx to display the list of added payouts in a table or card grid showing prop firm name, payout amount, currency, date, and download links for invoice and certificate files",
+      "reqIds": [
+        "REQ-98"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-payouts-tsx-to-display-a-clickable-certificate-thumbnail-icon-next-to-each-payout-in-the-payout-history-list-when-clicked-the-icon-should-open-a-modal-or-lightbox-displaying-the-full-size-certificate-image-implement-the-modal-using-a-dialog-component-with-proper-image-display-and-close-functionality",
+      "title": "Update Payouts.tsx to display a clickable certificate thumbnail icon next to each payout in the payout history list. When clicked, the icon should open a modal or lightbox displaying the full-size certificate image. Implement the modal using a Dialog component with proper image display and close functionality.",
+      "reqIds": [
+        "REQ-99"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-addpayoutdialog-tsx-to-make-the-invoice-upload-field-optional-rather-than-required-remove-any-validation-that-requires-invoice-upload-when-displaying-payouts-in-payouts-tsx-show-no-invoice-text-or-a-placeholder-for-payouts-that-don-t-have-an-invoice-file-attached",
+      "title": "Update AddPayoutDialog.tsx to make the invoice upload field optional rather than required. Remove any validation that requires invoice upload. When displaying payouts in Payouts.tsx, show 'No invoice' text or a placeholder for payouts that don't have an invoice file attached.",
+      "reqIds": [
+        "REQ-100"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-frontend-index-css-css-variables-to-implement-a-dark-navy-background-with-teal-and-green-accent-colors-replace-the-current-white-blue-teal-dark-green-professional-theme-with-a-dark-navy-base-0a192f-or-similar-teal-accents-14b8a6-2dd4bf-and-green-highlights-10b981-34d399-update-both-light-and-dark-mode-variables-to-create-a-cohesive-dark-theme-throughout-the-application",
+      "title": "Update frontend/index.css CSS variables to implement a dark navy background with teal and green accent colors. Replace the current white/blue/teal/dark green professional theme with a dark navy base (#0a192f or similar), teal accents (#14b8a6, #2dd4bf), and green highlights (#10b981, #34d399). Update both light and dark mode variables to create a cohesive dark theme throughout the application.",
+      "reqIds": [
+        "REQ-101"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-landingpage-tsx-to-apply-the-dark-navy-background-with-teal-green-accents-color-scheme-update-the-hero-section-feature-cards-pricing-section-and-all-other-components-to-use-the-new-dark-theme-ensure-text-remains-readable-with-proper-contrast-against-the-dark-navy-background",
+      "title": "Update LandingPage.tsx to apply the dark navy background with teal/green accents color scheme. Update the hero section, feature cards, pricing section, and all other components to use the new dark theme. Ensure text remains readable with proper contrast against the dark navy background.",
+      "reqIds": [
+        "REQ-102"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-dashboard-components-dashboardoverview-tsx-accounts-tsx-payouts-tsx-expenses-tsx-tradingoverview-tsx-tools-tsx-exchange-tsx-compounding-tsx-reviewsdisputes-tsx-discountoffers-tsx-taxauditreport-tsx-incometaxcalculator-tsx-affiliate-tsx-settings-tsx-to-use-the-dark-navy-background-with-teal-green-accent-color-scheme-for-cards-buttons-badges-borders-and-data-visualization-elements",
+      "title": "Update all dashboard components (DashboardOverview.tsx, Accounts.tsx, Payouts.tsx, Expenses.tsx, TradingOverview.tsx, Tools.tsx, Exchange.tsx, Compounding.tsx, ReviewsDisputes.tsx, DiscountOffers.tsx, TaxAuditReport.tsx, IncomeTaxCalculator.tsx, Affiliate.tsx, Settings.tsx) to use the dark navy background with teal/green accent color scheme for cards, buttons, badges, borders, and data visualization elements.",
+      "reqIds": [
+        "REQ-103"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-dashboardlayout-tsx-and-sidebar-tsx-to-apply-the-dark-navy-background-with-teal-green-accents-style-the-sidebar-with-dark-navy-background-teal-green-highlights-for-active-menu-items-and-proper-hover-effects-using-the-new-color-palette",
+      "title": "Update DashboardLayout.tsx and Sidebar.tsx to apply the dark navy background with teal/green accents. Style the sidebar with dark navy background, teal/green highlights for active menu items, and proper hover effects using the new color palette.",
+      "reqIds": [
+        "REQ-104"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-footer-tsx-to-apply-the-dark-navy-background-with-teal-green-accents-style-links-social-media-icons-and-decorative-elements-using-the-new-color-scheme-with-proper-hover-effects",
+      "title": "Update Footer.tsx to apply the dark navy background with teal/green accents. Style links, social media icons, and decorative elements using the new color scheme with proper hover effects.",
+      "reqIds": [
+        "REQ-105"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-propfirmticker-tsx-to-apply-the-dark-navy-background-with-teal-green-text-colors-for-prop-firm-names-ensure-ticker-is-clearly-visible-with-sufficient-contrast-between-the-dark-navy-background-and-teal-green-text",
+      "title": "Update PropFirmTicker.tsx to apply the dark navy background with teal/green text colors for prop firm names. Ensure ticker is clearly visible with sufficient contrast between the dark navy background and teal/green text.",
+      "reqIds": [
+        "REQ-106"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-all-modal-dialogs-profilesetupmodal-addaccountdialog-addpayoutdialog-with-dark-navy-backgrounds-and-teal-green-accent-colors-for-headers-buttons-and-form-elements-ensure-form-inputs-are-styled-appropriately-for-the-dark-theme",
+      "title": "Update all modal dialogs (ProfileSetupModal, AddAccountDialog, AddPayoutDialog) with dark navy backgrounds and teal/green accent colors for headers, buttons, and form elements. Ensure form inputs are styled appropriately for the dark theme.",
+      "reqIds": [
+        "REQ-107"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restore-the-dashboard-sidebar-component-in-dashboardlayout-tsx-that-disappeared-after-version-11-deployment-ensuring-it-displays-all-navigation-menu-items-dashboard-payouts-accounts-expenses-trading-overview-tax-audit-report-income-tax-calculator-exchange-discount-offers-giveaways-tools-p2p-exchange-trading-tools-reviews-disputes-compounding-and-settings-with-proper-visibility-across-all-dashboard-pages",
+      "title": "Restore the dashboard sidebar component in DashboardLayout.tsx that disappeared after Version 11 deployment, ensuring it displays all navigation menu items (Dashboard, Payouts, Accounts, Expenses, Trading Overview, Tax Audit Report, Income Tax Calculator, Exchange, Discount Offers, Giveaways, Tools, P2P Exchange, Trading Tools, Reviews & Disputes, Compounding, and Settings) with proper visibility across all dashboard pages",
+      "reqIds": [
+        "REQ-108"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-verify-that-the-sidebar-component-is-properly-imported-and-rendered-within-dashboardlayout-tsx-without-conditional-logic-that-might-prevent-it-from-displaying",
+      "title": "Verify that the Sidebar component is properly imported and rendered within DashboardLayout.tsx without conditional logic that might prevent it from displaying",
+      "reqIds": [
+        "REQ-109"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-sidebar-maintains-consistent-styling-with-the-dark-navy-background-and-teal-green-accent-color-scheme-established-in-version-11-with-proper-hover-effects-and-active-state-indicators-for-menu-items",
+      "title": "Ensure the sidebar maintains consistent styling with the dark navy background and teal/green accent color scheme established in Version 11, with proper hover effects and active state indicators for menu items",
+      "reqIds": [
+        "REQ-110"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-live-search-functionality-in-addaccountdialog-prop-firm-dropdown-that-filters-the-55-prop-firms-as-the-user-types-supporting-case-insensitive-partial-name-matching-throughout-the-firm-name",
+      "title": "Implement live search functionality in AddAccountDialog prop firm dropdown that filters the 55+ prop firms as the user types, supporting case-insensitive partial name matching throughout the firm name",
+      "reqIds": [
+        "REQ-111"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-add-your-prop-firm-option-in-addaccountdialog-that-allows-users-to-manually-enter-a-custom-prop-firm-name-when-their-firm-is-not-listed-in-the-dropdown",
+      "title": "Add 'Add your Prop firm' option in AddAccountDialog that allows users to manually enter a custom prop firm name when their firm is not listed in the dropdown",
+      "reqIds": [
+        "REQ-112"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-store-custom-prop-firms-entered-by-users-in-the-backend-user-profile-and-cache-them-in-frontend-localstorage-for-faster-access-across-sessions-and-devices",
+      "title": "Store custom prop firms entered by users in the backend user profile and cache them in frontend localStorage for faster access across sessions and devices",
+      "reqIds": [
+        "REQ-113"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-dropdown-scrolling-issue-in-addaccountdialog-where-the-prop-firm-dropdown-opens-but-does-not-scroll-properly-through-the-list-of-firms",
+      "title": "Fix the dropdown scrolling issue in AddAccountDialog where the prop firm dropdown opens but does not scroll properly through the list of firms",
+      "reqIds": [
+        "REQ-114"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-diagnose-and-fix-the-account-submission-error-in-addaccountdialog-that-shows-failed-to-add-account-message-when-users-attempt-to-submit-the-form-with-valid-data",
+      "title": "Diagnose and fix the account submission error in AddAccountDialog that shows 'failed to add account' message when users attempt to submit the form with valid data",
+      "reqIds": [
+        "REQ-115"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-prop-firm-dropdown-in-addaccountdialog-to-display-both-the-default-55-firms-from-prop-firms-constant-and-user-s-custom-added-firms-in-a-merged-sorted-list",
+      "title": "Update the prop firm dropdown in AddAccountDialog to display both the default 55+ firms from PROP_FIRMS constant and user's custom-added firms in a merged, sorted list",
+      "reqIds": [
+        "REQ-116"
       ],
       "version": 1
     }
@@ -854,6 +1138,74 @@
     {
       "id": "AR-80",
       "summary": "Implement bold and eye-catching animations including prominent entrance animations, parallax scrolling effects on landing page, animated gradient backgrounds, dynamic hover effects, smooth page transitions with scale/fade effects, and animated loading states",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-81",
+      "summary": "Redesign entire UI with white background and blue/teal/dark green color combination throughout different sections, replacing the current vibrant/playful theme",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-82",
+      "summary": "Add hero image on landing page showing analytics dashboards on laptop and mobile with Propfolio brand name",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-83",
+      "summary": "Remove logo and replace with 'Propfolio' text and a decent icon throughout the application",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-85",
+      "summary": "Update Risk Calculator formula and behavior to match the reference implementation at https://analystedge-5ee.caffeine.xyz/",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-86",
+      "summary": "Integrate live API for real-time exchange rates in the Exchange converter to fetch actual market data",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-87",
+      "summary": "Fix PropFirmTicker visibility by changing background to white and using blue/teal/dark green brand colors",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-90",
+      "summary": "Implement Add Payout dialog functionality with prop firm dropdown (showing only firms with added accounts), payout amount/date/currency input fields, and file upload fields for invoice and certificate (image/PDF support)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-94",
+      "summary": "Create backend actor methods in main.mo for storing payout records including prop firm identifier, account reference, payout amount, date, currency, and file storage references for uploaded invoice and certificate documents",
+      "reqIds": [
+        "REQ-95"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-95",
+      "summary": "Add clickable certificate thumbnail icon in payout history that opens full certificate image in modal/lightbox",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-96",
+      "summary": "Make invoice upload optional in Add Payout dialog and display 'No invoice' text for payouts without invoices",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-97",
+      "summary": "Apply dark navy background with teal/green accents color scheme to both landing page and all dashboard pages",
       "reqIds": [],
       "status": "pending"
     }

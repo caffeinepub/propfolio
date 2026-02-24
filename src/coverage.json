@@ -1,237 +1,105 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-24T03:50:55.839Z",
+  "generatedAt": "2026-02-24T05:38:17.991Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 13,
-    "implemented": 13,
+    "total": 6,
+    "implemented": 6,
     "items": [
       {
-        "id": "REQ-68",
-        "summary": "Replace the entire color scheme in frontend/index.css with a vibrant, playful color palette featuring bold primary colors, energetic accent colors, vivid gradients, and colorful UI elements. Remove the current professional IC Markets-inspired blues and grays. Implement bright, saturated colors for buttons, cards, backgrounds, and interactive elements using OKLCH color space.",
+        "id": "REQ-111",
+        "summary": "Implement live search functionality in AddAccountDialog prop firm dropdown that filters the 55+ prop firms as the user types, supporting case-insensitive partial name matching throughout the firm name",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css"
-        ]
-      },
-      {
-        "id": "REQ-69",
-        "summary": "Update all dashboard components (DashboardOverview.tsx, Accounts.tsx, Payouts.tsx, Expenses.tsx, TradingOverview.tsx, Tools.tsx, Exchange.tsx, Compounding.tsx, ReviewsDisputes.tsx, DiscountOffers.tsx, TaxAuditReport.tsx, IncomeTaxCalculator.tsx, Affiliate.tsx, Settings.tsx) to use vibrant color classes from the new color scheme for cards, buttons, badges, and data visualization elements.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/pages/dashboard/Accounts.tsx",
-          "frontend/src/pages/dashboard/Payouts.tsx",
-          "frontend/src/pages/dashboard/Expenses.tsx",
-          "frontend/src/pages/dashboard/TradingOverview.tsx",
-          "frontend/src/pages/dashboard/Tools.tsx",
-          "frontend/src/pages/dashboard/Exchange.tsx",
-          "frontend/src/pages/dashboard/Compounding.tsx",
-          "frontend/src/pages/dashboard/ReviewsDisputes.tsx",
-          "frontend/src/pages/dashboard/DiscountOffers.tsx",
-          "frontend/src/pages/dashboard/TaxAuditReport.tsx",
-          "frontend/src/pages/dashboard/IncomeTaxCalculator.tsx",
-          "frontend/src/pages/dashboard/Affiliate.tsx",
-          "frontend/src/pages/dashboard/Settings.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/pages/dashboard/Accounts.tsx"
-        ]
-      },
-      {
-        "id": "REQ-70",
-        "summary": "Redesign the Sidebar component with a playful, energetic visual style using colorful icons, vibrant background gradients, animated menu items, and bold accent colors for active states and hover effects.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/Sidebar.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/Sidebar.tsx"
-        ]
-      },
-      {
-        "id": "REQ-71",
-        "summary": "Update the LandingPage component with an energetic hero section featuring animated gradient backgrounds, colorful feature cards with vibrant highlights, dynamic content sections, and bold call-to-action buttons using the new playful color scheme.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/LandingPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/LandingPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-72",
-        "summary": "Implement prominent entrance animations for all dashboard components using Framer Motion or CSS animations, including scale-in effects, fade-in transitions, stagger animations for card grids, and slide-in effects for sidebars and modals.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/package.json",
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/pages/dashboard/Accounts.tsx",
-          "frontend/src/pages/dashboard/Payouts.tsx",
-          "frontend/src/pages/dashboard/Expenses.tsx",
-          "frontend/src/pages/dashboard/TradingOverview.tsx",
-          "frontend/src/pages/dashboard/Tools.tsx",
-          "frontend/src/pages/dashboard/Exchange.tsx",
-          "frontend/src/pages/dashboard/Compounding.tsx",
-          "frontend/src/pages/dashboard/ReviewsDisputes.tsx",
-          "frontend/src/pages/dashboard/DiscountOffers.tsx",
-          "frontend/src/pages/dashboard/TaxAuditReport.tsx",
-          "frontend/src/pages/dashboard/IncomeTaxCalculator.tsx",
-          "frontend/src/pages/dashboard/Affiliate.tsx",
-          "frontend/src/pages/dashboard/Settings.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/pages/dashboard/Accounts.tsx"
-        ]
-      },
-      {
-        "id": "REQ-73",
-        "summary": "Add parallax scrolling effects to the LandingPage component, creating depth by moving background elements at different speeds than foreground content during scroll, particularly in the hero section and feature showcase areas.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/LandingPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/LandingPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-74",
-        "summary": "Implement animated gradient backgrounds throughout the application that continuously shift colors, particularly for hero sections, dashboard headers, card backgrounds, and empty state sections. Use CSS animations or JavaScript-based gradient animations.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/pages/LandingPage.tsx",
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/pages/dashboard/Accounts.tsx",
-          "frontend/src/pages/dashboard/TradingOverview.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/pages/LandingPage.tsx",
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/pages/dashboard/Accounts.tsx"
-        ]
-      },
-      {
-        "id": "REQ-75",
-        "summary": "Add dynamic hover effects and micro-interactions to all interactive elements including buttons, cards, input fields, navigation items, and links. Implement scale transforms, color transitions, glow effects, bounce animations, and ripple effects using the vibrant color palette.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/Sidebar.tsx",
-          "frontend/src/pages/LandingPage.tsx",
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/pages/dashboard/Tools.tsx",
-          "frontend/src/components/AddAccountDialog.tsx",
-          "frontend/src/components/LoginButton.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/Sidebar.tsx",
-          "frontend/src/pages/LandingPage.tsx",
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/components/AddAccountDialog.tsx",
-          "frontend/src/components/LoginButton.tsx"
-        ]
-      },
-      {
-        "id": "REQ-76",
-        "summary": "Implement smooth page transitions with scale and fade effects when navigating between routes in App.tsx using Framer Motion's AnimatePresence or similar animation library. Include entrance/exit animations that make page changes feel dynamic.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-77",
-        "summary": "Create animated loading states for all data-fetching components and pages using colorful spinners, skeleton screens with animated shimmer effects, or progress indicators that incorporate the vibrant color palette throughout the application.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/LoadingSpinner.tsx",
-          "frontend/src/components/SkeletonCard.tsx",
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/pages/dashboard/Accounts.tsx",
-          "frontend/src/pages/dashboard/Payouts.tsx",
-          "frontend/src/pages/dashboard/TradingOverview.tsx",
-          "frontend/src/components/DashboardLayout.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/LoadingSpinner.tsx",
-          "frontend/src/components/SkeletonCard.tsx",
-          "frontend/src/pages/dashboard/DashboardOverview.tsx",
-          "frontend/src/pages/dashboard/Accounts.tsx"
-        ]
-      },
-      {
-        "id": "REQ-78",
-        "summary": "Update the PropFirmTicker component to display with colorful styling, animated elements, and vibrant visual treatment that matches the new playful aesthetic, including gradient backgrounds, colorful firm name badges, and enhanced scrolling animation.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/PropFirmTicker.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/PropFirmTicker.tsx"
-        ]
-      },
-      {
-        "id": "REQ-79",
-        "summary": "Update all modal dialogs (ProfileSetupModal, AddAccountDialog, and future modals) with vibrant styling, animated entrance/exit effects using scale and fade transforms, colorful headers, and energetic button styling consistent with the new playful theme.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/ProfileSetupModal.tsx",
           "frontend/src/components/AddAccountDialog.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/ProfileSetupModal.tsx",
           "frontend/src/components/AddAccountDialog.tsx"
         ]
       },
       {
-        "id": "REQ-80",
-        "summary": "Update the Footer component with playful styling including colorful link hover effects, vibrant social media icons, animated elements, and a colorful background that complements the new energetic theme.",
+        "id": "REQ-112",
+        "summary": "Add 'Add your Prop firm' option in AddAccountDialog that allows users to manually enter a custom prop firm name when their firm is not listed in the dropdown",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/Footer.tsx"
+          "frontend/src/components/AddAccountDialog.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/Footer.tsx"
+          "frontend/src/components/AddAccountDialog.tsx"
+        ]
+      },
+      {
+        "id": "REQ-113",
+        "summary": "Store custom prop firms entered by users in the backend user profile and cache them in frontend localStorage for faster access across sessions and devices",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/hooks/useAddCustomPropFirm.ts",
+          "frontend/src/components/AddAccountDialog.tsx",
+          "frontend/src/utils/customPropFirmsStorage.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/hooks/useAddCustomPropFirm.ts",
+          "frontend/src/components/AddAccountDialog.tsx",
+          "frontend/src/utils/customPropFirmsStorage.ts"
+        ]
+      },
+      {
+        "id": "REQ-114",
+        "summary": "Fix the dropdown scrolling issue in AddAccountDialog where the prop firm dropdown opens but does not scroll properly through the list of firms",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/AddAccountDialog.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AddAccountDialog.tsx"
+        ]
+      },
+      {
+        "id": "REQ-115",
+        "summary": "Diagnose and fix the account submission error in AddAccountDialog that shows 'failed to add account' message when users attempt to submit the form with valid data",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/AddAccountDialog.tsx",
+          "frontend/src/hooks/useAddAccount.ts"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AddAccountDialog.tsx",
+          "frontend/src/hooks/useAddAccount.ts"
+        ]
+      },
+      {
+        "id": "REQ-116",
+        "summary": "Update the prop firm dropdown in AddAccountDialog to display both the default 55+ firms from PROP_FIRMS constant and user's custom-added firms in a merged, sorted list",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/AddAccountDialog.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/AddAccountDialog.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
+    "backend/migration.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
     "frontend/src/components/AddAccountDialog.tsx",
-    "frontend/src/components/Footer.tsx",
-    "frontend/src/components/LoadingSpinner.tsx",
-    "frontend/src/components/LoginButton.tsx",
     "frontend/src/components/ProfileSetupModal.tsx",
-    "frontend/src/components/PropFirmTicker.tsx",
-    "frontend/src/components/Sidebar.tsx",
-    "frontend/src/components/SkeletonCard.tsx",
-    "frontend/src/index.css",
-    "frontend/src/pages/LandingPage.tsx",
-    "frontend/src/pages/dashboard/Accounts.tsx",
-    "frontend/src/pages/dashboard/DashboardOverview.tsx",
-    "frontend/tailwind.config.js",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useAddAccount.ts",
+    "frontend/src/hooks/useAddCustomPropFirm.ts",
+    "frontend/src/utils/customPropFirmsStorage.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

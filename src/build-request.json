@@ -1,284 +1,145 @@
 {
   "kind": "build_request",
-  "title": "Transform UI to vibrant, playful, and energetic design with bold animations",
+  "title": "Enhance Add Account Dialog with Live Search, Custom Prop Firm Addition, and Fix Submission Error",
   "projectName": "Propfolio",
-  "priority": "normal",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-68",
-      "text": "Replace the entire color scheme in frontend/index.css with a vibrant, playful color palette featuring bold primary colors, energetic accent colors, vivid gradients, and colorful UI elements. Remove the current professional IC Markets-inspired blues and grays. Implement bright, saturated colors for buttons, cards, backgrounds, and interactive elements using OKLCH color space.",
+      "id": "REQ-111",
+      "text": "Implement live search functionality in AddAccountDialog prop firm dropdown that filters the 55+ prop firms as the user types, supporting case-insensitive partial name matching throughout the firm name",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-recent"
         ],
         "quotes": [
-          "prefer a completely different visual direction (like a more playful/energetic style)",
-          "Primary accent colors for buttons and interactive elements, Card backgrounds and highlights"
+          "search box filter prop firms as you type, or do you want a full autocomplete dropdown And should the search be case-insensitive and match partial names"
         ]
       },
       "acceptanceCriteria": [
-        "CSS variables in frontend/index.css define vibrant primary colors (not blues)",
-        "Accent colors are bold and energetic",
-        "Card backgrounds use colorful gradients or highlights",
-        "Interactive elements have vivid hover states"
+        "Search input field appears above or within the prop firm dropdown",
+        "Typing in search box immediately filters displayed prop firms",
+        "Search matches partial strings anywhere in firm name (case-insensitive)",
+        "Empty search shows all 55+ firms from PROP_FIRMS constant",
+        "Clear search functionality resets filter to show all firms"
       ]
     },
     {
-      "id": "REQ-69",
-      "text": "Update all dashboard components (DashboardOverview.tsx, Accounts.tsx, Payouts.tsx, Expenses.tsx, TradingOverview.tsx, Tools.tsx, Exchange.tsx, Compounding.tsx, ReviewsDisputes.tsx, DiscountOffers.tsx, TaxAuditReport.tsx, IncomeTaxCalculator.tsx, Affiliate.tsx, Settings.tsx) to use vibrant color classes from the new color scheme for cards, buttons, badges, and data visualization elements.",
+      "id": "REQ-112",
+      "text": "Add 'Add your Prop firm' option in AddAccountDialog that allows users to manually enter a custom prop firm name when their firm is not listed in the dropdown",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-recent"
         ],
         "quotes": [
-          "Dashboard data visualization (charts, metrics)",
-          "Card backgrounds and highlights"
+          "if Porpfirm not listed user shd have option to add Propfirm manually - Add your Prop firm"
         ]
       },
       "acceptanceCriteria": [
-        "All dashboard cards display colorful backgrounds or borders",
-        "Chart elements use vibrant colors for different data series",
-        "Metric cards feature bold accent colors",
-        "Interactive elements use energetic color states"
+        "'Add your Prop firm' option is visible in the dropdown or as a separate action button",
+        "Clicking the option opens an input field or inline form to enter custom firm name",
+        "User can type any custom prop firm name without validation constraints",
+        "Custom firm name is immediately available for selection in current session"
       ]
     },
     {
-      "id": "REQ-70",
-      "text": "Redesign the Sidebar component with a playful, energetic visual style using colorful icons, vibrant background gradients, animated menu items, and bold accent colors for active states and hover effects.",
-      "target": "frontend",
+      "id": "REQ-113",
+      "text": "Store custom prop firms entered by users in the backend user profile and cache them in frontend localStorage for faster access across sessions and devices",
+      "target": "both",
       "source": {
         "messageIds": [
           "msg-recent"
         ],
         "quotes": [
-          "Navigation and sidebar elements",
-          "prefer a completely different visual direction (like a more playful/energetic style)"
+          "should it be saved to their profile so they can reuse it for future accounts",
+          "also cached locally in the frontend for faster access"
         ]
       },
       "acceptanceCriteria": [
-        "Sidebar background uses vibrant gradients or colors",
-        "Menu items have colorful icons and animated hover states",
-        "Active menu item displays bold accent color",
-        "Sidebar incorporates playful visual elements"
+        "Backend actor method in main.mo saves custom prop firm names to user profile in stable storage",
+        "Custom firms are associated with the authenticated user's principal",
+        "Frontend stores custom firms in localStorage after successful backend save",
+        "On component mount, AddAccountDialog loads custom firms from localStorage and merges with PROP_FIRMS constant",
+        "Custom firms persist across browser sessions and device logins",
+        "Duplicate custom firm names are prevented"
       ]
     },
     {
-      "id": "REQ-71",
-      "text": "Update the LandingPage component with an energetic hero section featuring animated gradient backgrounds, colorful feature cards with vibrant highlights, dynamic content sections, and bold call-to-action buttons using the new playful color scheme.",
+      "id": "REQ-114",
+      "text": "Fix the dropdown scrolling issue in AddAccountDialog where the prop firm dropdown opens but does not scroll properly through the list of firms",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-recent"
         ],
         "quotes": [
-          "prefer a completely different visual direction (like a more playful/energetic style)",
-          "Primary accent colors for buttons and interactive elements"
+          "opens but doesn't scroll properly"
         ]
       },
       "acceptanceCriteria": [
-        "Hero section displays animated gradient background",
-        "Feature cards use vibrant, varied colors",
-        "CTA buttons feature bold, energetic colors",
-        "Landing page sections have playful visual styling"
+        "Dropdown properly displays vertical scrollbar when firm list exceeds visible height",
+        "Mouse scroll and keyboard arrow keys navigate through full list of firms",
+        "Dropdown height is constrained to reasonable maximum (e.g., 300-400px)",
+        "Selected firm remains visible when dropdown closes",
+        "Dropdown z-index ensures it appears above other form elements"
       ]
     },
     {
-      "id": "REQ-72",
-      "text": "Implement prominent entrance animations for all dashboard components using Framer Motion or CSS animations, including scale-in effects, fade-in transitions, stagger animations for card grids, and slide-in effects for sidebars and modals.",
-      "target": "frontend",
+      "id": "REQ-115",
+      "text": "Diagnose and fix the account submission error in AddAccountDialog that shows 'failed to add account' message when users attempt to submit the form with valid data",
+      "target": "both",
       "source": {
         "messageIds": [
           "msg-recent"
         ],
         "quotes": [
-          "Bold and eye-catching (prominent animations, parallax effects, animated backgrounds)",
-          "Prominent animations throughout"
+          "failed to add account while adding account",
+          "it show an error message when you try to submit"
         ]
       },
       "acceptanceCriteria": [
-        "All dashboard pages animate in when rendered",
-        "Card grids use staggered entrance animations",
-        "Modals and dialogs slide in smoothly",
-        "Animation timing feels energetic and dynamic"
+        "Investigate backend actor method for adding accounts (addAccount or similar) in main.mo",
+        "Verify account data structure matches frontend submission format",
+        "Check for authentication/authorization issues preventing account creation",
+        "Ensure proper error handling and meaningful error messages",
+        "Fix any data type mismatches between frontend and backend",
+        "Successfully added accounts appear immediately in Accounts.tsx dashboard",
+        "Success toast displays 'Account added successfully' on successful submission",
+        "Form clears and dialog closes after successful account addition"
       ]
     },
     {
-      "id": "REQ-73",
-      "text": "Add parallax scrolling effects to the LandingPage component, creating depth by moving background elements at different speeds than foreground content during scroll, particularly in the hero section and feature showcase areas.",
+      "id": "REQ-116",
+      "text": "Update the prop firm dropdown in AddAccountDialog to display both the default 55+ firms from PROP_FIRMS constant and user's custom-added firms in a merged, sorted list",
       "target": "frontend",
       "source": {
         "messageIds": [
           "msg-recent"
-        ],
-        "quotes": [
-          "Parallax scrolling effects on landing page",
-          "Bold and eye-catching (prominent animations, parallax effects, animated backgrounds)"
         ]
       },
       "acceptanceCriteria": [
-        "Hero section implements parallax effect on scroll",
-        "Background elements move at different rates than foreground",
-        "Parallax creates noticeable depth perception",
-        "Scroll performance remains smooth"
-      ]
-    },
-    {
-      "id": "REQ-74",
-      "text": "Implement animated gradient backgrounds throughout the application that continuously shift colors, particularly for hero sections, dashboard headers, card backgrounds, and empty state sections. Use CSS animations or JavaScript-based gradient animations.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-recent"
-        ],
-        "quotes": [
-          "Animated gradient backgrounds",
-          "animated backgrounds"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Key sections display continuously animating gradients",
-        "Gradient animations are smooth and performant",
-        "Animation speed is appropriate (not too fast/slow)",
-        "Animated backgrounds use vibrant colors from the new palette"
-      ]
-    },
-    {
-      "id": "REQ-75",
-      "text": "Add dynamic hover effects and micro-interactions to all interactive elements including buttons, cards, input fields, navigation items, and links. Implement scale transforms, color transitions, glow effects, bounce animations, and ripple effects using the vibrant color palette.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-recent"
-        ],
-        "quotes": [
-          "Dynamic hover effects and transitions",
-          "Bold and eye-catching"
-        ]
-      },
-      "acceptanceCriteria": [
-        "All buttons scale and change color on hover",
-        "Cards lift and glow on hover",
-        "Input fields show colorful focus states",
-        "Navigation items animate on hover",
-        "Hover effects feel energetic and responsive"
-      ]
-    },
-    {
-      "id": "REQ-76",
-      "text": "Implement smooth page transitions with scale and fade effects when navigating between routes in App.tsx using Framer Motion's AnimatePresence or similar animation library. Include entrance/exit animations that make page changes feel dynamic.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-recent"
-        ],
-        "quotes": [
-          "Smooth page transitions with scale/fade effects",
-          "Dynamic transitions and micro-interactions"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Route changes trigger page transition animations",
-        "Exiting pages fade/scale out smoothly",
-        "Entering pages fade/scale in dynamically",
-        "Transitions complete within 300-500ms"
-      ]
-    },
-    {
-      "id": "REQ-77",
-      "text": "Create animated loading states for all data-fetching components and pages using colorful spinners, skeleton screens with animated shimmer effects, or progress indicators that incorporate the vibrant color palette throughout the application.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-recent"
-        ],
-        "quotes": [
-          "Animated loading states",
-          "Bold and eye-catching"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Loading indicators use vibrant colors",
-        "Skeleton screens have animated shimmer",
-        "Loading states appear during data fetching",
-        "Loading animations feel energetic and polished"
-      ]
-    },
-    {
-      "id": "REQ-78",
-      "text": "Update the PropFirmTicker component to display with colorful styling, animated elements, and vibrant visual treatment that matches the new playful aesthetic, including gradient backgrounds, colorful firm name badges, and enhanced scrolling animation.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-recent"
-        ],
-        "quotes": [
-          "prefer a completely different visual direction (like a more playful/energetic style)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Ticker displays on vibrant background",
-        "Firm names use colorful badges or cards",
-        "Scrolling animation is smooth and dynamic",
-        "Ticker styling matches new energetic theme"
-      ]
-    },
-    {
-      "id": "REQ-79",
-      "text": "Update all modal dialogs (ProfileSetupModal, AddAccountDialog, and future modals) with vibrant styling, animated entrance/exit effects using scale and fade transforms, colorful headers, and energetic button styling consistent with the new playful theme.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-recent"
-        ],
-        "quotes": [
-          "Modal entrance/exit animations",
-          "Primary accent colors for buttons and interactive elements"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Modals animate in with scale/fade effect",
-        "Modal backgrounds use backdrop blur",
-        "Modal headers feature vibrant colors",
-        "Modal buttons use bold accent colors",
-        "Exit animations are smooth and noticeable"
-      ]
-    },
-    {
-      "id": "REQ-80",
-      "text": "Update the Footer component with playful styling including colorful link hover effects, vibrant social media icons, animated elements, and a colorful background that complements the new energetic theme.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-recent"
-        ],
-        "quotes": [
-          "prefer a completely different visual direction (like a more playful/energetic style)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Footer uses vibrant background color or gradient",
-        "Links animate on hover with color changes",
-        "Footer layout remains clean and readable",
-        "Footer styling matches overall energetic theme"
+        "Dropdown shows all firms from PROP_FIRMS constant plus user's custom firms",
+        "Combined list is alphabetically sorted",
+        "Custom firms are visually distinguishable (optional badge or icon)",
+        "Search functionality works across both default and custom firms",
+        "Dropdown performance remains smooth with combined list"
       ]
     }
   ],
   "constraints": [
-    "Do not modify files in frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui",
-    "Maintain single-actor backend architecture in backend/main.mo",
-    "Do not generate backend/migration.mo unless state upgrade is explicitly needed",
-    "Preserve all existing functionality while updating visual design",
-    "Ensure animations are performant and do not negatively impact user experience"
+    "Do not modify frontend/src/hooks/useInternetIdentity.ts or useActor.ts",
+    "Maintain single-actor architecture in backend/main.mo",
+    "Do not add validation constraints for custom prop firm names",
+    "Preserve existing dark navy background with teal/green accent color scheme",
+    "Keep all existing prop firms in PROP_FIRMS constant unchanged"
   ],
   "nonGoals": [
-    "Changing backend logic or data structures",
-    "Modifying authentication flow or Internet Identity integration",
-    "Altering admin authentication system",
-    "Changing route structure or navigation hierarchy",
-    "Implementing new features beyond visual redesign and animations",
-    "Modifying trading calculator logic or financial calculations"
+    "Admin interface for managing custom prop firms",
+    "Sharing custom prop firms between users",
+    "Prop firm logo uploads or visual branding",
+    "Auto-complete suggestions from external prop firm databases",
+    "Validation of prop firm legitimacy or compliance"
   ],
   "imageRequirements": {
     "required": [],

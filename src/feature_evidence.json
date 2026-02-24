@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-replace-the-entire-color-scheme-in-frontend-index-css-with-a-vibrant-playful-color-palette-featuring-bold-primary-colors-energetic-accent-colors-vivid-gradients-and-colorful-ui-elements-remove-the-current-professional-ic-markets-inspired-blues-and-grays-implement-bright-saturated-colors-for-buttons-cards-backgrounds-and-interactive-elements-using-oklch-color-space",
-      "featureTitle": "Replace the entire color scheme in frontend/index.css with a vibrant, playful color palette featuring bold primary colors, energetic accent colors, vivid gradients, and colorful UI elements. Remove the current professional IC Markets-inspired blues and grays. Implement bright, saturated colors for buttons, cards, backgrounds, and interactive elements using OKLCH color space.",
+      "featureId": "feature-implement-live-search-functionality-in-addaccountdialog-prop-firm-dropdown-that-filters-the-55-prop-firms-as-the-user-types-supporting-case-insensitive-partial-name-matching-throughout-the-firm-name",
+      "featureTitle": "Implement live search functionality in AddAccountDialog prop firm dropdown that filters the 55+ prop firms as the user types, supporting case-insensitive partial name matching throughout the firm name",
       "files": [
-        "frontend/src/index.css"
+        "frontend/src/components/AddAccountDialog.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -19,16 +19,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-68"
+        "REQ-111"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-all-dashboard-components-dashboardoverview-tsx-accounts-tsx-payouts-tsx-expenses-tsx-tradingoverview-tsx-tools-tsx-exchange-tsx-compounding-tsx-reviewsdisputes-tsx-discountoffers-tsx-taxauditreport-tsx-incometaxcalculator-tsx-affiliate-tsx-settings-tsx-to-use-vibrant-color-classes-from-the-new-color-scheme-for-cards-buttons-badges-and-data-visualization-elements",
-      "featureTitle": "Update all dashboard components (DashboardOverview.tsx, Accounts.tsx, Payouts.tsx, Expenses.tsx, TradingOverview.tsx, Tools.tsx, Exchange.tsx, Compounding.tsx, ReviewsDisputes.tsx, DiscountOffers.tsx, TaxAuditReport.tsx, IncomeTaxCalculator.tsx, Affiliate.tsx, Settings.tsx) to use vibrant color classes from the new color scheme for cards, buttons, badges, and data visualization elements.",
+      "featureId": "feature-add-add-your-prop-firm-option-in-addaccountdialog-that-allows-users-to-manually-enter-a-custom-prop-firm-name-when-their-firm-is-not-listed-in-the-dropdown",
+      "featureTitle": "Add 'Add your Prop firm' option in AddAccountDialog that allows users to manually enter a custom prop firm name when their firm is not listed in the dropdown",
       "files": [
-        "frontend/src/pages/dashboard/Accounts.tsx",
-        "frontend/src/pages/dashboard/DashboardOverview.tsx"
+        "frontend/src/components/AddAccountDialog.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -42,134 +41,17 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-69"
+        "REQ-112"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-redesign-the-sidebar-component-with-a-playful-energetic-visual-style-using-colorful-icons-vibrant-background-gradients-animated-menu-items-and-bold-accent-colors-for-active-states-and-hover-effects",
-      "featureTitle": "Redesign the Sidebar component with a playful, energetic visual style using colorful icons, vibrant background gradients, animated menu items, and bold accent colors for active states and hover effects.",
-      "files": [
-        "frontend/src/components/Sidebar.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-70"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-landingpage-component-with-an-energetic-hero-section-featuring-animated-gradient-backgrounds-colorful-feature-cards-with-vibrant-highlights-dynamic-content-sections-and-bold-call-to-action-buttons-using-the-new-playful-color-scheme",
-      "featureTitle": "Update the LandingPage component with an energetic hero section featuring animated gradient backgrounds, colorful feature cards with vibrant highlights, dynamic content sections, and bold call-to-action buttons using the new playful color scheme.",
-      "files": [
-        "frontend/src/pages/LandingPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-71"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-prominent-entrance-animations-for-all-dashboard-components-using-framer-motion-or-css-animations-including-scale-in-effects-fade-in-transitions-stagger-animations-for-card-grids-and-slide-in-effects-for-sidebars-and-modals",
-      "featureTitle": "Implement prominent entrance animations for all dashboard components using Framer Motion or CSS animations, including scale-in effects, fade-in transitions, stagger animations for card grids, and slide-in effects for sidebars and modals.",
-      "files": [
-        "frontend/src/pages/dashboard/Accounts.tsx",
-        "frontend/src/pages/dashboard/DashboardOverview.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-72"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-parallax-scrolling-effects-to-the-landingpage-component-creating-depth-by-moving-background-elements-at-different-speeds-than-foreground-content-during-scroll-particularly-in-the-hero-section-and-feature-showcase-areas",
-      "featureTitle": "Add parallax scrolling effects to the LandingPage component, creating depth by moving background elements at different speeds than foreground content during scroll, particularly in the hero section and feature showcase areas.",
-      "files": [
-        "frontend/src/pages/LandingPage.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-73"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-animated-gradient-backgrounds-throughout-the-application-that-continuously-shift-colors-particularly-for-hero-sections-dashboard-headers-card-backgrounds-and-empty-state-sections-use-css-animations-or-javascript-based-gradient-animations",
-      "featureTitle": "Implement animated gradient backgrounds throughout the application that continuously shift colors, particularly for hero sections, dashboard headers, card backgrounds, and empty state sections. Use CSS animations or JavaScript-based gradient animations.",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/LandingPage.tsx",
-        "frontend/src/pages/dashboard/Accounts.tsx",
-        "frontend/src/pages/dashboard/DashboardOverview.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-74"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-dynamic-hover-effects-and-micro-interactions-to-all-interactive-elements-including-buttons-cards-input-fields-navigation-items-and-links-implement-scale-transforms-color-transitions-glow-effects-bounce-animations-and-ripple-effects-using-the-vibrant-color-palette",
-      "featureTitle": "Add dynamic hover effects and micro-interactions to all interactive elements including buttons, cards, input fields, navigation items, and links. Implement scale transforms, color transitions, glow effects, bounce animations, and ripple effects using the vibrant color palette.",
+      "featureId": "feature-store-custom-prop-firms-entered-by-users-in-the-backend-user-profile-and-cache-them-in-frontend-localstorage-for-faster-access-across-sessions-and-devices",
+      "featureTitle": "Store custom prop firms entered by users in the backend user profile and cache them in frontend localStorage for faster access across sessions and devices",
       "files": [
         "frontend/src/components/AddAccountDialog.tsx",
-        "frontend/src/components/LoginButton.tsx",
-        "frontend/src/components/Sidebar.tsx",
-        "frontend/src/index.css",
-        "frontend/src/pages/LandingPage.tsx",
-        "frontend/src/pages/dashboard/DashboardOverview.tsx"
+        "frontend/src/hooks/useAddCustomPropFirm.ts",
+        "frontend/src/utils/customPropFirmsStorage.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -183,15 +65,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-75"
+        "REQ-113"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-implement-smooth-page-transitions-with-scale-and-fade-effects-when-navigating-between-routes-in-app-tsx-using-framer-motion-s-animatepresence-or-similar-animation-library-include-entrance-exit-animations-that-make-page-changes-feel-dynamic",
-      "featureTitle": "Implement smooth page transitions with scale and fade effects when navigating between routes in App.tsx using Framer Motion's AnimatePresence or similar animation library. Include entrance/exit animations that make page changes feel dynamic.",
+      "featureId": "feature-fix-the-dropdown-scrolling-issue-in-addaccountdialog-where-the-prop-firm-dropdown-opens-but-does-not-scroll-properly-through-the-list-of-firms",
+      "featureTitle": "Fix the dropdown scrolling issue in AddAccountDialog where the prop firm dropdown opens but does not scroll properly through the list of firms",
       "files": [
-        "frontend/src/App.tsx"
+        "frontend/src/components/AddAccountDialog.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -205,63 +87,16 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-76"
+        "REQ-114"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-create-animated-loading-states-for-all-data-fetching-components-and-pages-using-colorful-spinners-skeleton-screens-with-animated-shimmer-effects-or-progress-indicators-that-incorporate-the-vibrant-color-palette-throughout-the-application",
-      "featureTitle": "Create animated loading states for all data-fetching components and pages using colorful spinners, skeleton screens with animated shimmer effects, or progress indicators that incorporate the vibrant color palette throughout the application.",
-      "files": [
-        "frontend/src/components/LoadingSpinner.tsx",
-        "frontend/src/components/SkeletonCard.tsx",
-        "frontend/src/pages/dashboard/Accounts.tsx",
-        "frontend/src/pages/dashboard/DashboardOverview.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-77"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-propfirmticker-component-to-display-with-colorful-styling-animated-elements-and-vibrant-visual-treatment-that-matches-the-new-playful-aesthetic-including-gradient-backgrounds-colorful-firm-name-badges-and-enhanced-scrolling-animation",
-      "featureTitle": "Update the PropFirmTicker component to display with colorful styling, animated elements, and vibrant visual treatment that matches the new playful aesthetic, including gradient backgrounds, colorful firm name badges, and enhanced scrolling animation.",
-      "files": [
-        "frontend/src/components/PropFirmTicker.tsx"
-      ],
-      "components": [
-        "authorization@4.0.0",
-        "blob-storage@4.0.0",
-        "stripe@3.0.0",
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0",
-        "http-outcalls@3.0.0"
-      ],
-      "testIds": [
-        "REQ-78"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-all-modal-dialogs-profilesetupmodal-addaccountdialog-and-future-modals-with-vibrant-styling-animated-entrance-exit-effects-using-scale-and-fade-transforms-colorful-headers-and-energetic-button-styling-consistent-with-the-new-playful-theme",
-      "featureTitle": "Update all modal dialogs (ProfileSetupModal, AddAccountDialog, and future modals) with vibrant styling, animated entrance/exit effects using scale and fade transforms, colorful headers, and energetic button styling consistent with the new playful theme.",
+      "featureId": "feature-diagnose-and-fix-the-account-submission-error-in-addaccountdialog-that-shows-failed-to-add-account-message-when-users-attempt-to-submit-the-form-with-valid-data",
+      "featureTitle": "Diagnose and fix the account submission error in AddAccountDialog that shows 'failed to add account' message when users attempt to submit the form with valid data",
       "files": [
         "frontend/src/components/AddAccountDialog.tsx",
-        "frontend/src/components/ProfileSetupModal.tsx"
+        "frontend/src/hooks/useAddAccount.ts"
       ],
       "components": [
         "authorization@4.0.0",
@@ -275,15 +110,15 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-79"
+        "REQ-115"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-footer-component-with-playful-styling-including-colorful-link-hover-effects-vibrant-social-media-icons-animated-elements-and-a-colorful-background-that-complements-the-new-energetic-theme",
-      "featureTitle": "Update the Footer component with playful styling including colorful link hover effects, vibrant social media icons, animated elements, and a colorful background that complements the new energetic theme.",
+      "featureId": "feature-update-the-prop-firm-dropdown-in-addaccountdialog-to-display-both-the-default-55-firms-from-prop-firms-constant-and-user-s-custom-added-firms-in-a-merged-sorted-list",
+      "featureTitle": "Update the prop firm dropdown in AddAccountDialog to display both the default 55+ firms from PROP_FIRMS constant and user's custom-added firms in a merged, sorted list",
       "files": [
-        "frontend/src/components/Footer.tsx"
+        "frontend/src/components/AddAccountDialog.tsx"
       ],
       "components": [
         "authorization@4.0.0",
@@ -297,7 +132,7 @@
         "http-outcalls@3.0.0"
       ],
       "testIds": [
-        "REQ-80"
+        "REQ-116"
       ],
       "confidence": "high"
     }

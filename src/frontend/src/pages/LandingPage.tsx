@@ -26,147 +26,119 @@ export default function LandingPage() {
       icon: Wallet,
       title: 'Payout Tracking',
       description: 'Track all your prop firm payouts in one centralized dashboard',
-      color: 'from-primary to-primary/70',
-      delay: '0s',
     },
     {
       icon: TrendingUp,
       title: 'Trading Analytics',
       description: 'Comprehensive analytics for your trading performance',
-      color: 'from-secondary to-secondary/70',
-      delay: '0.1s',
     },
     {
       icon: Calculator,
       title: 'Tax Calculator',
       description: 'Calculate your tax obligations with ease',
-      color: 'from-accent to-accent/70',
-      delay: '0.2s',
     },
     {
       icon: FileText,
       title: 'Expense Management',
       description: 'Track business and personal expenses effortlessly',
-      color: 'from-chart-1 to-chart-1/70',
-      delay: '0.3s',
     },
     {
       icon: DollarSign,
       title: 'Currency Converter',
       description: 'Real-time FX and crypto conversion tools',
-      color: 'from-chart-2 to-chart-2/70',
-      delay: '0.4s',
     },
     {
       icon: BarChart3,
       title: 'Compounding Calculator',
       description: 'Plan your capital growth with precision',
-      color: 'from-chart-3 to-chart-3/70',
-      delay: '0.5s',
     },
     {
       icon: Shield,
       title: 'Secure & Private',
       description: 'Your data is encrypted and stored securely',
-      color: 'from-primary to-secondary',
-      delay: '0.6s',
     },
     {
       icon: Zap,
       title: 'Lightning Fast',
       description: 'Optimized performance for seamless experience',
-      color: 'from-accent to-chart-1',
-      delay: '0.7s',
     },
     {
       icon: Users,
       title: 'Multi-Account',
       description: 'Manage multiple prop firm accounts easily',
-      color: 'from-chart-2 to-chart-3',
-      delay: '0.8s',
     },
     {
       icon: Award,
       title: 'Discount Offers',
       description: 'Exclusive deals from top prop firms',
-      color: 'from-chart-4 to-primary',
-      delay: '0.9s',
     },
     {
       icon: Target,
       title: 'Goal Tracking',
       description: 'Set and monitor your trading goals',
-      color: 'from-secondary to-accent',
-      delay: '1.0s',
     },
     {
       icon: Sparkles,
-      title: 'Affiliate Program',
-      description: 'Earn rewards by referring other traders',
-      color: 'from-chart-5 to-chart-1',
-      delay: '1.1s',
-    },
-  ];
-
-  const benefits = [
-    {
-      title: 'Save Time',
-      description: 'Automate your financial tracking and spend more time trading',
-      icon: '⚡',
-    },
-    {
-      title: 'Stay Organized',
-      description: 'Keep all your trading finances in one place',
-      icon: '📊',
-    },
-    {
-      title: 'Make Better Decisions',
-      description: 'Data-driven insights to improve your trading strategy',
-      icon: '🎯',
-    },
-    {
-      title: 'Tax Compliance',
-      description: 'Never miss a tax deadline with automated reminders',
-      icon: '📅',
+      title: 'Smart Insights',
+      description: 'AI-powered insights for better decisions',
     },
   ];
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 bg-gradient-animated" />
-        
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-20 h-20 bg-primary/20 rounded-full blur-xl animate-float" />
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-secondary/20 rounded-full blur-xl animate-float" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 right-1/4 w-24 h-24 bg-accent/20 rounded-full blur-xl animate-float" style={{ animationDelay: '2s' }} />
+    <div className="min-h-screen bg-[#0a192f]">
+      {/* Header */}
+      <header className="border-b border-teal-500/20 bg-[#0a192f]">
+        <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+          <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate({ to: '/' })}>
+            <div className="p-2 bg-teal-500 rounded-lg">
+              <BarChart3 className="h-6 w-6 text-white" />
+            </div>
+            <span className="text-2xl font-bold text-teal-400">Propfolio</span>
+          </div>
+          <Button onClick={() => navigate({ to: '/dashboard' })} className="bg-teal-500 hover:bg-teal-600 text-white">
+            Get Started
+          </Button>
+        </div>
+      </header>
 
-        <div className="relative z-10 container mx-auto px-4 text-center animate-fade-in">
-          <div>
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-gradient-vibrant animate-slide-up">
-              Propfolio
-            </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
-              The ultimate financial management platform for prop traders
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center animate-scale-in" style={{ animationDelay: '0.4s' }}>
-              <Button
-                size="lg"
-                onClick={() => navigate({ to: '/dashboard' })}
-                className="text-lg px-8 py-6 bg-gradient-to-r from-primary via-secondary to-accent hover:shadow-glow transition-all duration-300 hover:scale-110 active:scale-95"
-              >
-                Get Started Free
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                onClick={() => navigate({ to: '/subscribe' })}
-                className="text-lg px-8 py-6 border-2 border-primary hover:bg-primary/10 hover:shadow-glow-accent transition-all duration-300 hover:scale-110 active:scale-95"
-              >
-                View Pricing
-              </Button>
+      {/* Hero Section */}
+      <section className="bg-[#0a192f] py-20">
+        <div className="container mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6">
+              <h1 className="text-5xl font-bold text-gray-100 leading-tight">
+                Manage all your Prop firm Payouts
+              </h1>
+              <p className="text-3xl font-bold bg-gradient-to-r from-teal-400 to-green-400 bg-clip-text text-transparent">
+                and Trades analysis in one place
+              </p>
+              <p className="text-xl text-gray-300">
+                Professional trading management platform for prop traders. Track performance, manage payouts, calculate taxes, and grow your trading business.
+              </p>
+              <div className="flex gap-4">
+                <Button 
+                  size="lg" 
+                  onClick={() => navigate({ to: '/dashboard' })}
+                  className="bg-teal-500 hover:bg-teal-600 text-white"
+                >
+                  Get Started - $75/year
+                </Button>
+                <Button 
+                  size="lg" 
+                  variant="outline"
+                  onClick={() => navigate({ to: '/dashboard' })}
+                  className="border-teal-500 text-teal-400 hover:bg-teal-500/10"
+                >
+                  View Dashboard
+                </Button>
+              </div>
+            </div>
+            <div className="relative">
+              <img
+                src="/assets/generated/hero-dashboard-mockup.dim_1920x1080.png"
+                alt="Propfolio Dashboard Analytics"
+                className="w-full rounded-lg shadow-elevated border border-teal-500/20"
+              />
             </div>
           </div>
         </div>
@@ -176,96 +148,81 @@ export default function LandingPage() {
       <PropFirmTicker />
 
       {/* Features Section */}
-      <section className="py-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
-        <div className="container mx-auto relative z-10">
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient">
-              Powerful Features
+      <section className="py-20 bg-[#0f2137]">
+        <div className="container mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-100 mb-4">
+              Everything You Need to Succeed
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Everything you need to manage your prop trading finances
+            <p className="text-xl text-gray-300">
+              Powerful tools designed specifically for prop traders
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div
-                key={index}
-                className="animate-slide-up"
-                style={{ animationDelay: feature.delay }}
-              >
-                <Card className="group hover:shadow-glow hover:scale-105 hover:-translate-y-2 transition-all duration-300 border-2 border-transparent hover:border-primary/30 bg-gradient-to-br from-card to-card/50 backdrop-blur-sm h-full">
-                  <CardHeader>
-                    <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center mb-4 shadow-lg group-hover:rotate-12 transition-transform duration-300`}>
-                      <feature.icon className="h-7 w-7 text-white" />
-                    </div>
-                    <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
-                      {feature.title}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent>
-                    <p className="text-muted-foreground">{feature.description}</p>
-                  </CardContent>
-                </Card>
-              </div>
+              <Card key={index} className="bg-[#0a192f] border-teal-500/20 hover:border-teal-500/40 hover:shadow-elevated transition-all duration-200">
+                <CardHeader>
+                  <div className="w-12 h-12 bg-teal-500/10 rounded-lg flex items-center justify-center mb-4">
+                    <feature.icon className="h-6 w-6 text-teal-400" />
+                  </div>
+                  <CardTitle className="text-xl text-gray-100">{feature.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-gray-400">{feature.description}</p>
+                </CardContent>
+              </Card>
             ))}
           </div>
         </div>
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20 px-4 bg-gradient-to-br from-secondary/10 via-accent/10 to-primary/10 relative overflow-hidden">
-        <div className="absolute top-10 right-10 w-64 h-64 bg-primary/10 rounded-full blur-3xl animate-pulse-slow" />
-        <div className="absolute bottom-10 left-10 w-80 h-80 bg-accent/10 rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }} />
-        
-        <div className="container mx-auto relative z-10">
-          <div className="text-center mb-16 animate-slide-up">
-            <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gradient-vibrant">
+      <section className="py-20 bg-[#0a192f]">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-4xl font-bold text-center text-gray-100 mb-12">
               Why Choose Propfolio?
             </h2>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Join thousands of prop traders who trust Propfolio
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {benefits.map((benefit, index) => (
-              <div
-                key={index}
-                className="text-center animate-bounce-in group hover:scale-105 transition-transform duration-300"
-                style={{ animationDelay: `${index * 0.1}s` }}
-              >
-                <div className="text-6xl mb-4 animate-bounce-subtle">
-                  {benefit.icon}
+            <div className="space-y-6">
+              {[
+                'Centralized dashboard for all your prop firm accounts',
+                'Automated payout tracking and reconciliation',
+                'Tax-ready reports for easy filing',
+                'Real-time currency conversion for global traders',
+                'Secure data encryption and privacy protection',
+                'Mobile-friendly interface for trading on the go',
+              ].map((benefit, index) => (
+                <div key={index} className="flex items-start gap-4">
+                  <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-lg text-gray-300">{benefit}</p>
                 </div>
-                <h3 className="text-2xl font-bold mb-2 text-gradient">{benefit.title}</h3>
-                <p className="text-muted-foreground">{benefit.description}</p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-animated" />
-        <div className="container mx-auto text-center relative z-10 animate-scale-in">
-          <div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-              Ready to Transform Your Trading?
-            </h2>
-            <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-              Start managing your prop trading finances like a pro today
-            </p>
-            <Button
-              size="lg"
-              onClick={() => navigate({ to: '/dashboard' })}
-              className="text-lg px-10 py-7 bg-white text-primary hover:bg-white/90 hover:shadow-glow-lg transition-all duration-300 hover:scale-110 active:scale-95 font-bold"
-            >
-              Get Started Now
-            </Button>
-          </div>
+      <section className="py-20 bg-gradient-to-r from-teal-600 to-green-600">
+        <div className="container mx-auto px-6 text-center">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Ready to Take Control of Your Trading Business?
+          </h2>
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+            Join thousands of prop traders who trust Propfolio to manage their trading portfolio
+          </p>
+          <Button 
+            size="lg" 
+            onClick={() => navigate({ to: '/dashboard' })}
+            className="bg-white text-teal-600 hover:bg-gray-100"
+          >
+            Get Started Now
+          </Button>
         </div>
       </section>
 

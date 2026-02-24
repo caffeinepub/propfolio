@@ -19,6 +19,44 @@ export const _CaffeineStorageRefillResult = IDL.Record({
   'success' : IDL.Opt(IDL.Bool),
   'topped_up_amount' : IDL.Opt(IDL.Nat),
 });
+export const AccountInput = IDL.Record({
+  'balance' : IDL.Float64,
+  'name' : IDL.Text,
+  'accountType' : IDL.Text,
+  'currency' : IDL.Text,
+});
+export const Time = IDL.Int;
+export const Account = IDL.Record({
+  'id' : IDL.Text,
+  'balance' : IDL.Float64,
+  'owner' : IDL.Principal,
+  'name' : IDL.Text,
+  'createdAt' : Time,
+  'updatedAt' : Time,
+  'accountType' : IDL.Text,
+  'currency' : IDL.Text,
+});
+export const ExternalBlob = IDL.Vec(IDL.Nat8);
+export const PayoutInput = IDL.Record({
+  'certificateDocument' : IDL.Opt(ExternalBlob),
+  'accountId' : IDL.Text,
+  'invoiceDocument' : IDL.Opt(ExternalBlob),
+  'propFirm' : IDL.Text,
+  'currency' : IDL.Text,
+  'amount' : IDL.Float64,
+  'payoutDate' : Time,
+});
+export const Payout = IDL.Record({
+  'certificateDocument' : IDL.Opt(ExternalBlob),
+  'accountId' : IDL.Text,
+  'owner' : IDL.Principal,
+  'invoiceDocument' : IDL.Opt(ExternalBlob),
+  'payoutId' : IDL.Text,
+  'propFirm' : IDL.Text,
+  'currency' : IDL.Text,
+  'amount' : IDL.Float64,
+  'payoutDate' : Time,
+});
 export const UserRole = IDL.Variant({
   'admin' : IDL.Null,
   'user' : IDL.Null,
@@ -31,8 +69,8 @@ export const ShoppingItem = IDL.Record({
   'priceInCents' : IDL.Nat,
   'productDescription' : IDL.Text,
 });
-export const Time = IDL.Int;
 export const UserProfile = IDL.Record({
+  'customPropFirms' : IDL.Vec(IDL.Text),
   'name' : IDL.Text,
   'createdAt' : Time,
   'email' : IDL.Text,
@@ -95,14 +133,22 @@ export const idlService = IDL.Service({
     ),
   '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+  'addAccount' : IDL.Func([AccountInput], [Account], []),
+  'addCustomPropFirm' : IDL.Func([IDL.Text], [], []),
+  'addPayout' : IDL.Func([PayoutInput], [Payout], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'createCheckoutSession' : IDL.Func(
       [IDL.Vec(ShoppingItem), IDL.Text, IDL.Text],
       [IDL.Text],
       [],
     ),
+  'deleteAccount' : IDL.Func([IDL.Text], [IDL.Bool], []),
+  'getAccount' : IDL.Func([IDL.Text], [IDL.Opt(Account)], ['query']),
+  'getAccounts' : IDL.Func([], [IDL.Vec(Account)], ['query']),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getPayout' : IDL.Func([IDL.Text], [IDL.Opt(Payout)], ['query']),
+  'getPayouts' : IDL.Func([], [IDL.Vec(Payout)], ['query']),
   'getStripeSessionStatus' : IDL.Func([IDL.Text], [StripeSessionStatus], []),
   'getUserProfile' : IDL.Func(
       [IDL.Principal],
@@ -118,6 +164,7 @@ export const idlService = IDL.Service({
       [TransformationOutput],
       ['query'],
     ),
+  'updateAccount' : IDL.Func([IDL.Text, AccountInput], [Account], []),
 });
 
 export const idlInitArgs = [];
@@ -134,6 +181,44 @@ export const idlFactory = ({ IDL }) => {
     'success' : IDL.Opt(IDL.Bool),
     'topped_up_amount' : IDL.Opt(IDL.Nat),
   });
+  const AccountInput = IDL.Record({
+    'balance' : IDL.Float64,
+    'name' : IDL.Text,
+    'accountType' : IDL.Text,
+    'currency' : IDL.Text,
+  });
+  const Time = IDL.Int;
+  const Account = IDL.Record({
+    'id' : IDL.Text,
+    'balance' : IDL.Float64,
+    'owner' : IDL.Principal,
+    'name' : IDL.Text,
+    'createdAt' : Time,
+    'updatedAt' : Time,
+    'accountType' : IDL.Text,
+    'currency' : IDL.Text,
+  });
+  const ExternalBlob = IDL.Vec(IDL.Nat8);
+  const PayoutInput = IDL.Record({
+    'certificateDocument' : IDL.Opt(ExternalBlob),
+    'accountId' : IDL.Text,
+    'invoiceDocument' : IDL.Opt(ExternalBlob),
+    'propFirm' : IDL.Text,
+    'currency' : IDL.Text,
+    'amount' : IDL.Float64,
+    'payoutDate' : Time,
+  });
+  const Payout = IDL.Record({
+    'certificateDocument' : IDL.Opt(ExternalBlob),
+    'accountId' : IDL.Text,
+    'owner' : IDL.Principal,
+    'invoiceDocument' : IDL.Opt(ExternalBlob),
+    'payoutId' : IDL.Text,
+    'propFirm' : IDL.Text,
+    'currency' : IDL.Text,
+    'amount' : IDL.Float64,
+    'payoutDate' : Time,
+  });
   const UserRole = IDL.Variant({
     'admin' : IDL.Null,
     'user' : IDL.Null,
@@ -146,8 +231,8 @@ export const idlFactory = ({ IDL }) => {
     'priceInCents' : IDL.Nat,
     'productDescription' : IDL.Text,
   });
-  const Time = IDL.Int;
   const UserProfile = IDL.Record({
+    'customPropFirms' : IDL.Vec(IDL.Text),
     'name' : IDL.Text,
     'createdAt' : Time,
     'email' : IDL.Text,
@@ -207,14 +292,22 @@ export const idlFactory = ({ IDL }) => {
       ),
     '_caffeineStorageUpdateGatewayPrincipals' : IDL.Func([], [], []),
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+    'addAccount' : IDL.Func([AccountInput], [Account], []),
+    'addCustomPropFirm' : IDL.Func([IDL.Text], [], []),
+    'addPayout' : IDL.Func([PayoutInput], [Payout], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'createCheckoutSession' : IDL.Func(
         [IDL.Vec(ShoppingItem), IDL.Text, IDL.Text],
         [IDL.Text],
         [],
       ),
+    'deleteAccount' : IDL.Func([IDL.Text], [IDL.Bool], []),
+    'getAccount' : IDL.Func([IDL.Text], [IDL.Opt(Account)], ['query']),
+    'getAccounts' : IDL.Func([], [IDL.Vec(Account)], ['query']),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getPayout' : IDL.Func([IDL.Text], [IDL.Opt(Payout)], ['query']),
+    'getPayouts' : IDL.Func([], [IDL.Vec(Payout)], ['query']),
     'getStripeSessionStatus' : IDL.Func([IDL.Text], [StripeSessionStatus], []),
     'getUserProfile' : IDL.Func(
         [IDL.Principal],
@@ -230,6 +323,7 @@ export const idlFactory = ({ IDL }) => {
         [TransformationOutput],
         ['query'],
       ),
+    'updateAccount' : IDL.Func([IDL.Text, AccountInput], [Account], []),
   });
 };
 
