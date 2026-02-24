@@ -43,7 +43,11 @@ import AdminProtectedRoute from './components/AdminProtectedRoute';
 import { Toaster } from './components/ui/sonner';
 
 const rootRoute = createRootRoute({
-  component: () => <Outlet />,
+  component: () => (
+    <div className="animate-fade-in">
+      <Outlet />
+    </div>
+  ),
 });
 
 const indexRoute = createRoute({
@@ -190,12 +194,14 @@ const refundPolicyRoute = createRoute({
   component: RefundPolicy,
 });
 
+// Admin routes - login is NOT protected
 const adminLoginRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin/login',
   component: AdminLogin,
 });
 
+// Admin panel and all sub-routes ARE protected
 const adminRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/admin',
@@ -381,9 +387,15 @@ const routeTree = rootRoute.addChildren([
 
 const router = createRouter({ routeTree });
 
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
+
 export default function App() {
   return (
-    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
       <RouterProvider router={router} />
       <Toaster />
     </ThemeProvider>

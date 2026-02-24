@@ -1,163 +1,284 @@
 {
   "kind": "build_request",
-  "title": "Build separate admin authentication system with username/password login",
+  "title": "Transform UI to vibrant, playful, and energetic design with bold animations",
   "projectName": "Propfolio",
-  "priority": "high",
+  "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-56",
-      "text": "Create backend admin authentication system in main.mo with stable variable for storing admin credentials (username and hashed password), and actor methods for admin login verification that returns a session token or admin principal identifier upon successful authentication",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "Separate admin login",
-          "Backend actor methods for admin authentication using username/password credentials",
-          "Secure credential storage in backend canister"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Stable variable stores admin credentials with hashed passwords",
-        "Login method accepts username and password and returns authentication result",
-        "Password verification uses secure hashing comparison",
-        "Failed login attempts return error messages without exposing security details"
-      ]
-    },
-    {
-      "id": "REQ-57",
-      "text": "Implement role-based access control in backend by adding admin role type to user profile data structure and creating guard methods that verify admin status before allowing access to admin-only operations",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-last"
-        ],
-        "quotes": [
-          "Admin role type in backend to distinguish admin users from regular users",
-          "Permission checks on all admin-only operations"
-        ]
-      },
-      "acceptanceCriteria": [
-        "User profile includes role field (user or admin)",
-        "Backend methods verify admin role before executing privileged operations",
-        "Non-admin users receive authorization errors when attempting admin actions"
-      ]
-    },
-    {
-      "id": "REQ-58",
-      "text": "Create AdminLogin.tsx page component with form containing username and password input fields, login button, form validation, and error message display that authenticates against the backend admin authentication system",
+      "id": "REQ-68",
+      "text": "Replace the entire color scheme in frontend/index.css with a vibrant, playful color palette featuring bold primary colors, energetic accent colors, vivid gradients, and colorful UI elements. Remove the current professional IC Markets-inspired blues and grays. Implement bright, saturated colors for buttons, cards, backgrounds, and interactive elements using OKLCH color space.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-recent"
         ],
         "quotes": [
-          "Admin login page separate from user Internet Identity login"
+          "prefer a completely different visual direction (like a more playful/energetic style)",
+          "Primary accent colors for buttons and interactive elements, Card backgrounds and highlights"
         ]
       },
       "acceptanceCriteria": [
-        "Login form includes username and password fields with proper validation",
-        "Submit button calls backend admin login method",
-        "Successful login redirects to admin dashboard",
-        "Failed login displays error message without page reload",
-        "Form prevents submission with empty fields"
+        "CSS variables in frontend/index.css define vibrant primary colors (not blues)",
+        "Accent colors are bold and energetic",
+        "Card backgrounds use colorful gradients or highlights",
+        "Interactive elements have vivid hover states"
       ]
     },
     {
-      "id": "REQ-59",
-      "text": "Implement frontend admin session management using React Context or local storage to persist admin authentication state, storing admin session token or identifier after successful login and clearing it on logout",
+      "id": "REQ-69",
+      "text": "Update all dashboard components (DashboardOverview.tsx, Accounts.tsx, Payouts.tsx, Expenses.tsx, TradingOverview.tsx, Tools.tsx, Exchange.tsx, Compounding.tsx, ReviewsDisputes.tsx, DiscountOffers.tsx, TaxAuditReport.tsx, IncomeTaxCalculator.tsx, Affiliate.tsx, Settings.tsx) to use vibrant color classes from the new color scheme for cards, buttons, badges, and data visualization elements.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-recent"
         ],
         "quotes": [
-          "Session management for admin users"
+          "Dashboard data visualization (charts, metrics)",
+          "Card backgrounds and highlights"
         ]
       },
       "acceptanceCriteria": [
-        "Admin authentication state persists across page refreshes",
-        "Session token is stored securely in browser storage",
-        "Logout clears admin session data completely",
-        "Expired sessions redirect to admin login page"
+        "All dashboard cards display colorful backgrounds or borders",
+        "Chart elements use vibrant colors for different data series",
+        "Metric cards feature bold accent colors",
+        "Interactive elements use energetic color states"
       ]
     },
     {
-      "id": "REQ-60",
-      "text": "Create protected route wrapper component for admin routes that checks admin authentication status and redirects unauthenticated users to the admin login page before allowing access to admin dashboard and admin management pages",
+      "id": "REQ-70",
+      "text": "Redesign the Sidebar component with a playful, energetic visual style using colorful icons, vibrant background gradients, animated menu items, and bold accent colors for active states and hover effects.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-recent"
         ],
         "quotes": [
-          "Admin-only routes and components in frontend",
-          "Protected routes that require admin authentication"
+          "Navigation and sidebar elements",
+          "prefer a completely different visual direction (like a more playful/energetic style)"
         ]
       },
       "acceptanceCriteria": [
-        "All admin routes require authentication before rendering",
-        "Unauthenticated access attempts redirect to admin login",
-        "Authenticated admin users can access all admin pages",
-        "Route protection works consistently across all admin paths"
+        "Sidebar background uses vibrant gradients or colors",
+        "Menu items have colorful icons and animated hover states",
+        "Active menu item displays bold accent color",
+        "Sidebar incorporates playful visual elements"
       ]
     },
     {
-      "id": "REQ-61",
-      "text": "Update AdminPanel.tsx to display admin profile information (logged-in username, role) in the header section and add logout button that clears admin session and redirects to admin login page",
+      "id": "REQ-71",
+      "text": "Update the LandingPage component with an energetic hero section featuring animated gradient backgrounds, colorful feature cards with vibrant highlights, dynamic content sections, and bold call-to-action buttons using the new playful color scheme.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-recent"
         ],
         "quotes": [
-          "Admin profile display showing logged-in admin details",
-          "Admin Dashboard Foundation"
+          "prefer a completely different visual direction (like a more playful/energetic style)",
+          "Primary accent colors for buttons and interactive elements"
         ]
       },
       "acceptanceCriteria": [
-        "Admin dashboard header shows current admin username",
-        "Logout button is visible and accessible in admin panel",
-        "Clicking logout clears session and returns to login page",
-        "Admin role is displayed if multiple admin types exist"
+        "Hero section displays animated gradient background",
+        "Feature cards use vibrant, varied colors",
+        "CTA buttons feature bold, energetic colors",
+        "Landing page sections have playful visual styling"
       ]
     },
     {
-      "id": "REQ-62",
-      "text": "Add admin login route to App.tsx routing configuration at path /admin/login that renders the AdminLogin component and is accessible without authentication",
+      "id": "REQ-72",
+      "text": "Implement prominent entrance animations for all dashboard components using Framer Motion or CSS animations, including scale-in effects, fade-in transitions, stagger animations for card grids, and slide-in effects for sidebars and modals.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-last"
+          "msg-recent"
         ],
         "quotes": [
-          "Admin login page separate from user Internet Identity login"
+          "Bold and eye-catching (prominent animations, parallax effects, animated backgrounds)",
+          "Prominent animations throughout"
         ]
       },
       "acceptanceCriteria": [
-        "Route /admin/login renders AdminLogin component",
-        "Admin login page is accessible without authentication",
-        "Route does not conflict with existing admin routes",
-        "Successful login redirects to /admin path"
+        "All dashboard pages animate in when rendered",
+        "Card grids use staggered entrance animations",
+        "Modals and dialogs slide in smoothly",
+        "Animation timing feels energetic and dynamic"
+      ]
+    },
+    {
+      "id": "REQ-73",
+      "text": "Add parallax scrolling effects to the LandingPage component, creating depth by moving background elements at different speeds than foreground content during scroll, particularly in the hero section and feature showcase areas.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Parallax scrolling effects on landing page",
+          "Bold and eye-catching (prominent animations, parallax effects, animated backgrounds)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero section implements parallax effect on scroll",
+        "Background elements move at different rates than foreground",
+        "Parallax creates noticeable depth perception",
+        "Scroll performance remains smooth"
+      ]
+    },
+    {
+      "id": "REQ-74",
+      "text": "Implement animated gradient backgrounds throughout the application that continuously shift colors, particularly for hero sections, dashboard headers, card backgrounds, and empty state sections. Use CSS animations or JavaScript-based gradient animations.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Animated gradient backgrounds",
+          "animated backgrounds"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Key sections display continuously animating gradients",
+        "Gradient animations are smooth and performant",
+        "Animation speed is appropriate (not too fast/slow)",
+        "Animated backgrounds use vibrant colors from the new palette"
+      ]
+    },
+    {
+      "id": "REQ-75",
+      "text": "Add dynamic hover effects and micro-interactions to all interactive elements including buttons, cards, input fields, navigation items, and links. Implement scale transforms, color transitions, glow effects, bounce animations, and ripple effects using the vibrant color palette.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Dynamic hover effects and transitions",
+          "Bold and eye-catching"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All buttons scale and change color on hover",
+        "Cards lift and glow on hover",
+        "Input fields show colorful focus states",
+        "Navigation items animate on hover",
+        "Hover effects feel energetic and responsive"
+      ]
+    },
+    {
+      "id": "REQ-76",
+      "text": "Implement smooth page transitions with scale and fade effects when navigating between routes in App.tsx using Framer Motion's AnimatePresence or similar animation library. Include entrance/exit animations that make page changes feel dynamic.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Smooth page transitions with scale/fade effects",
+          "Dynamic transitions and micro-interactions"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Route changes trigger page transition animations",
+        "Exiting pages fade/scale out smoothly",
+        "Entering pages fade/scale in dynamically",
+        "Transitions complete within 300-500ms"
+      ]
+    },
+    {
+      "id": "REQ-77",
+      "text": "Create animated loading states for all data-fetching components and pages using colorful spinners, skeleton screens with animated shimmer effects, or progress indicators that incorporate the vibrant color palette throughout the application.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Animated loading states",
+          "Bold and eye-catching"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Loading indicators use vibrant colors",
+        "Skeleton screens have animated shimmer",
+        "Loading states appear during data fetching",
+        "Loading animations feel energetic and polished"
+      ]
+    },
+    {
+      "id": "REQ-78",
+      "text": "Update the PropFirmTicker component to display with colorful styling, animated elements, and vibrant visual treatment that matches the new playful aesthetic, including gradient backgrounds, colorful firm name badges, and enhanced scrolling animation.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "prefer a completely different visual direction (like a more playful/energetic style)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Ticker displays on vibrant background",
+        "Firm names use colorful badges or cards",
+        "Scrolling animation is smooth and dynamic",
+        "Ticker styling matches new energetic theme"
+      ]
+    },
+    {
+      "id": "REQ-79",
+      "text": "Update all modal dialogs (ProfileSetupModal, AddAccountDialog, and future modals) with vibrant styling, animated entrance/exit effects using scale and fade transforms, colorful headers, and energetic button styling consistent with the new playful theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "Modal entrance/exit animations",
+          "Primary accent colors for buttons and interactive elements"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Modals animate in with scale/fade effect",
+        "Modal backgrounds use backdrop blur",
+        "Modal headers feature vibrant colors",
+        "Modal buttons use bold accent colors",
+        "Exit animations are smooth and noticeable"
+      ]
+    },
+    {
+      "id": "REQ-80",
+      "text": "Update the Footer component with playful styling including colorful link hover effects, vibrant social media icons, animated elements, and a colorful background that complements the new energetic theme.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "prefer a completely different visual direction (like a more playful/energetic style)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Footer uses vibrant background color or gradient",
+        "Links animate on hover with color changes",
+        "Footer layout remains clean and readable",
+        "Footer styling matches overall energetic theme"
       ]
     }
   ],
   "constraints": [
-    "Use single-actor architecture in backend/main.mo for all admin authentication logic",
-    "Do not modify Internet Identity authentication system for regular users",
-    "Admin authentication must be completely separate from user Internet Identity flow",
-    "Do not modify files in frontend/src/hooks/useInternetIdentity.ts or frontend/src/hooks/useActor.ts",
-    "Password storage must use secure hashing, never plain text"
+    "Do not modify files in frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui",
+    "Maintain single-actor backend architecture in backend/main.mo",
+    "Do not generate backend/migration.mo unless state upgrade is explicitly needed",
+    "Preserve all existing functionality while updating visual design",
+    "Ensure animations are performant and do not negatively impact user experience"
   ],
   "nonGoals": [
-    "Payment gateway configuration functionality",
-    "Theme management controls",
-    "Page management system",
-    "Backend integration for Payouts, Expenses, Trading Overview modules",
-    "Multi-factor authentication for admin users",
-    "Password reset or forgot password functionality",
-    "Admin user registration through UI"
+    "Changing backend logic or data structures",
+    "Modifying authentication flow or Internet Identity integration",
+    "Altering admin authentication system",
+    "Changing route structure or navigation hierarchy",
+    "Implementing new features beyond visual redesign and animations",
+    "Modifying trading calculator logic or financial calculations"
   ],
   "imageRequirements": {
     "required": [],

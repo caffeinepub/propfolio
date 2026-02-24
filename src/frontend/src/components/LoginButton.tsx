@@ -27,28 +27,34 @@ export default function LoginButton() {
   };
 
   return (
-    <Button
-      onClick={handleAuth}
-      disabled={disabled}
-      variant={isAuthenticated ? "outline" : "default"}
-      className="w-full transition-all duration-300 hover:scale-105 active:scale-95"
-    >
-      {loginStatus === 'logging-in' ? (
-        <>
-          <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-          Logging in...
-        </>
-      ) : isAuthenticated ? (
-        <>
-          <LogOut className="h-4 w-4 mr-2" />
-          Logout
-        </>
-      ) : (
-        <>
-          <LogIn className="h-4 w-4 mr-2" />
-          Login
-        </>
-      )}
-    </Button>
+    <div className="hover:scale-105 active:scale-95 transition-transform duration-300">
+      <Button
+        onClick={handleAuth}
+        disabled={disabled}
+        variant={isAuthenticated ? "outline" : "default"}
+        className={`w-full transition-all duration-300 ${
+          isAuthenticated 
+            ? 'hover:bg-destructive/10 hover:text-destructive hover:border-destructive/50' 
+            : 'bg-gradient-to-r from-primary via-secondary to-accent hover:shadow-glow'
+        }`}
+      >
+        {loginStatus === 'logging-in' ? (
+          <>
+            <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+            Logging in...
+          </>
+        ) : isAuthenticated ? (
+          <>
+            <LogOut className="h-4 w-4 mr-2" />
+            Logout
+          </>
+        ) : (
+          <>
+            <LogIn className="h-4 w-4 mr-2" />
+            Login
+          </>
+        )}
+      </Button>
+    </div>
   );
 }

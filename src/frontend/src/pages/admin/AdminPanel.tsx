@@ -1,7 +1,7 @@
+import { useState, useEffect } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { useNavigate } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
-import { useAdminAuth } from '../../hooks/useAdminAuth';
 import { 
   Building2, 
   Tag, 
@@ -19,12 +19,31 @@ import {
   User
 } from 'lucide-react';
 
+interface AdminSession {
+  username: string;
+  token: string;
+  timestamp: number;
+}
+
 export default function AdminPanel() {
   const navigate = useNavigate();
-  const { adminUsername, logout } = useAdminAuth();
+  const [adminUsername, setAdminUsername] = useState<string>('Admin');
+
+  useEffect(() => {
+    // Load admin username from localStorage
+    try {
+      const sessionData = localStorage.getItem('adminSession');
+      if (sessionData) {
+        const session: AdminSession = JSON.parse(sessionData);
+        setAdminUsername(session.username);
+      }
+    } catch (error) {
+      console.error('Error loading admin session:', error);
+    }
+  }, []);
 
   const handleLogout = () => {
-    logout();
+    localStorage.removeItem('adminSession');
     navigate({ to: '/admin/login' });
   };
 

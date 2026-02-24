@@ -5,15 +5,15 @@ export default function PropFirmTicker() {
   const duplicatedFirms = [...PROP_FIRMS, ...PROP_FIRMS];
 
   return (
-    <div className="relative w-full overflow-hidden bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10 border-y border-border py-4">
+    <div className="relative w-full overflow-hidden bg-gradient-to-r from-primary/20 via-secondary/20 to-accent/20 border-y border-border/50 py-6 shadow-lg animate-fade-in">
       <div className="ticker-wrapper">
         <div className="ticker-content">
           {duplicatedFirms.map((firm, index) => (
             <div
               key={`${firm}-${index}`}
-              className="ticker-item inline-flex items-center justify-center px-6 py-2 mx-2 bg-card border border-primary/20 rounded-full shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300"
+              className="ticker-item inline-flex items-center justify-center px-8 py-3 mx-3 bg-gradient-to-br from-card to-card/80 border-2 border-primary/30 rounded-2xl shadow-lg hover:shadow-glow hover:border-primary/60 hover:scale-110 hover:-translate-y-1 transition-all duration-300 backdrop-blur-sm"
             >
-              <span className="text-sm font-semibold text-foreground whitespace-nowrap">
+              <span className="text-sm font-bold text-gradient-vibrant whitespace-nowrap">
                 {firm}
               </span>
             </div>
